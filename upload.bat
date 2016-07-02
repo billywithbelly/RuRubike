@@ -4,4 +4,3 @@ echo %var%
 git add .
 git commit -am "%var%"
 git push heroku master
-pause
