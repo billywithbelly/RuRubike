@@ -64,6 +64,12 @@
 
 </body>
 <script type="text/javascript">
-  alert("123");
+  $(document).ready(function(){
+    $("button").click(function(){
+      $.get("./willywu", function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+      });
+    });
+  });
 </script>
 </html>
