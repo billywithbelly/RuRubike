@@ -48,7 +48,7 @@ var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://willy3364:c0806449@ds019491.mlab.com:19491/rurubike';
 MongoClient.connect(url, function (err, db) {
 	if (err) {
-		console.log('Unable to connect to the mongoDB server. Error:', err);
+		console.log('Unable too connect to the mongoDB server. Error:', err);
 	} 
 	else {
 		//HURRAY!! We are connected. :)
