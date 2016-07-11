@@ -28,7 +28,7 @@ app.get('/willywu', function(request, response) {
 app.post('/willywu',function(request, response) {
 	// body...
 	var data = request.body;
-	console.log(data['classes[]']);
+	console.log(data);
 	var answer = {};
 	answer.teachers = [];
 	for(var i in data.classes)
