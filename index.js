@@ -39,10 +39,12 @@ app.post('/willywu',function(request, response) {
 		} 
 		else {
 			var courses = db.collection("courses");
-			console.log(courses.find());
-			answer.number = data.number;
-			response.send(answer);
-			db.close();
+			courses.find(function(err,callBack) {
+				answer.courses = callBack;
+				answer.number = data.number;
+				response.send(answer);
+				db.close();
+			});
 		}
 	});
 });
