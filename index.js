@@ -28,12 +28,12 @@ app.get('/willywu', function(request, response) {
 app.post('/willywu',function(request, response) {
 	// body...
 	var data = request.body;
-	console.log(data.classes);
+	console.log(data['classes']);
 	var answer = {};
 	answer.teachers = [];
-	for(var i in data.classes)
+	for(var i in data['classes'])
 	{
-		answer.teachers.push(data.classes[i]);
+		answer.teachers.push(data['classes'][i]);
 	}
 	response.send(answer);
 });
