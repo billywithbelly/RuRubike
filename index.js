@@ -31,7 +31,7 @@ app.post('/willywu',function(request, response) {
 	console.log(data);
 	var answer = {};
 	answer.teachers = [];
-	for(var i in data.classes
+	for(var i in data.classes)
 	{
 		answer.teachers.push(data.classes[i]);
 	}
