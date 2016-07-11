@@ -2,9 +2,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
-var url = 'mongodb://willy3364:c0806449@ds019491.mlab.com';
-var mongodbServer = new mongodb.Server(url, 19491, { auto_reconnect: true });
-var db = new mongodb.Db('rurubike', mongodbServer);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -47,16 +44,20 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port2', app.get('port'));
 });
 
-db.open(function(err,db) {
-	// body...
-	if(err)
-	{
-		console.log("dick");
-	}
-	else
-	{
-		console.log("Fuck");
+var MongoClient = mongodb.MongoClient;
+var url = 'mongodb://willy3364:c0806449@ds019491.mlab.com:19491/rurubike';
+MongoClient.connect(url, function (err, db) {
+	if (err) {
+		console.log('Unable to connect to the mongoDB server. Error:', err);
+	} 
+	else {
+		//HURRAY!! We are connected. :)
+		console.log('Connection established to', url);
+
+		// do some work here with the database.
+
+		//Close connection
+		db.close();
 	}
 });
-
 
