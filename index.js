@@ -40,7 +40,7 @@ app.post('/willywu',function(request, response) {
 		else {
 			var courses = db.collection("courses");
 			courses.find().toArray(function(err,callBack) {
-				console.log(callBack);
+				answer.courses = callBack;
 				answer.number = data.number;
 				response.send(answer);
 				db.close();
