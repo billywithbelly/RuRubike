@@ -1,12 +1,13 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 // views is directory for all template files
@@ -43,4 +44,20 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port2', app.get('port'));
 });
 
+var MongoClient = mongodb.MongoClient;
+var url = 'mongodb://willy3364:c0806449@ds021994.mlab.com:21994/rurubike';
+MongoClient.connect(url, function (err, db) {
+	if (err) {
+		console.log('Unable to connect to the mongoDB server. Error:', err);
+	} 
+	else {
+		//HURRAY!! We are connected. :)
+		console.log('Connection established to', url);
+
+		// do some work here with the database.
+
+		//Close connection
+		db.close();
+	}
+});
 
