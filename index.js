@@ -14,7 +14,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/willywu', function(request, response) {
-  response.send("102062124");
+  response.render('pages/index');
 });
 
 app.listen(app.get('port'), function() {
