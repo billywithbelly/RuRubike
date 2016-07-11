@@ -4,6 +4,7 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.bodyParser());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -19,6 +20,18 @@ app.get('/willywu', function(request, response) {
 	dick.cm = 30;
 	dick.name = 'willy';
   response.send(dick);
+});
+
+app.post('/willywu',function(request, response) {
+	// body...
+	var data = request.body;
+	var answer = {};
+	answer.teachers = [];
+	for(var i in data.classes)
+	{
+		answer.teachers.push(data.classes[i]);
+	}
+	response.send(answer);
 });
 
 app.listen(app.get('port'), function() {
