@@ -6,7 +6,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 // views is directory for all template files
@@ -28,12 +28,12 @@ app.get('/willywu', function(request, response) {
 app.post('/willywu',function(request, response) {
 	// body...
 	var data = request.body;
-	console.log(data.classes[]);
+	console.log(data);
 	var answer = {};
 	answer.teachers = [];
-	for(var i in data.classes[])
+	for(var i in data.classes
 	{
-		answer.teachers.push(data.classes[][i]);
+		answer.teachers.push(data.classes[i]);
 	}
 	answer.number = data.number;
 	response.send(answer);
