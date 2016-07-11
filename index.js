@@ -14,7 +14,11 @@ app.get('/', function(request, response) {
 });
 
 app.get('/willywu', function(request, response) {
-  response.send('102062124');
+	var dick = {};
+	dick.number = '102062124';
+	dick.cm = 30;
+	dick.name = 'willy';
+  response.send(dick);
 });
 
 app.listen(app.get('port'), function() {
