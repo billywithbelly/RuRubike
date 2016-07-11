@@ -67,7 +67,8 @@
   $.get("./willywu", function(data, status){
     console.log(data.number);
   });
-  $.post("./willywu",{classes:['bitch','hooker','motherfucker'],number:3},function(data,status){
+  var dick = ['bitch','hooker','motherfucker'];
+  $.post("./willywu",{classes: dick,number:3},function(data,status){
     // body...
     console.log(data);
   });
