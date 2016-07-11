@@ -35,7 +35,7 @@ app.post('/willywu',function(request, response) {
 	{
 		answer.teachers.push(data.classes[i]);
 	}
-	answer.number = data.number;
+	answer.number = data.classes.length;
 	response.send(answer);
 });
 
