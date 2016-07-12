@@ -20,28 +20,26 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-app.get('/willywu', function(request, response) {
-	var dick = {};
-	dick.number = '102062124';
-	dick.cm = 30;
-	dick.name = 'willy';
-  response.send(dick);
+app.get('/raywu', function(request, response) {
+	var studentId = 102062318
+  	response.send(studentId);
 });
 
-app.post('/willywu',function(request, response) {
-	// body...
+app.post('/raywu',function(request, response) {
 	var data = request.body;
 	console.log(data);
 	var answer = {};
 	MongoClient.connect(url, function (err, db) {
-		if (err) {
+		if (err) 
+		{
 			console.log('Unable to connect to the mongoDB server. Error:', err);
 		} 
-		else {
+		else 
+		{
 			var courses = db.collection("courses");
-			courses.find({className:{"$in":data.classes}},{_id:0}).toArray(function(err,callBack) {
+			courses.find({className:{"$in":data.classes}},{_id:0}).toArray(function(err,callBack) 
+			{
 				answer.courses = callBack;
-				answer.number = data.number;
 				response.send(answer);
 				db.close();
 			});

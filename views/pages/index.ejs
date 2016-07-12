@@ -64,12 +64,11 @@
 
 </body>
 <script type="text/javascript">
-  $.get("./willywu", function(data, status){
+  $.get("./raywu", function(data, status){
     console.log(data.number);
   });
-  var dick = ["Algo","DanDan"];
-  $.post("./willywu",{classes : dick, number : 3},function(data,status){
-    // body...
+  var courses = ["Algo","DanDan"];
+  $.post("./raywu",{classes : courses, number : 3},function(data,status){
     console.log(data);
   });
 </script>
