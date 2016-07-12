@@ -67,8 +67,8 @@
   $.get("./raywu", function(data, status){
     console.log(data);
   });
-  var courses = ["Compiler","Formal language"];
-  $.post("./raywu",{classes : courses},function(data,status){
+  var classes = ["Compiler","Formal language"];
+  $.post("./raywu",{course : classes},function(data,status){
     console.log(data);
   });
 </script>
