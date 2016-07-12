@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://willy3364:c0806449@ds019491.mlab.com:19491/rurubike';
+var url = ' mongodb://raywu:ray840406@ds031948.mlab.com:31948/rurubike';
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -37,7 +37,7 @@ app.post('/raywu',function(request, response) {
 		else 
 		{
 			var courses = db.collection("courses");
-			courses.find({className:{"$in":data.classes}},{_id:0}).toArray(function(err,callBack) 
+			courses.find({course:{"$in":data.classes}},{_id:0}).toArray(function(err,callBack) 
 			{
 				answer.courses = callBack;
 				response.send(answer);
@@ -48,6 +48,6 @@ app.post('/raywu',function(request, response) {
 });
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port2', app.get('port'));
+  console.log('Node app is running on port', app.get('port'));
 });
 

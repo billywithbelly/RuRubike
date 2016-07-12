@@ -65,10 +65,10 @@
 </body>
 <script type="text/javascript">
   $.get("./raywu", function(data, status){
-    console.log(data.number);
+    console.log(data);
   });
-  var courses = ["Algo","DanDan"];
-  $.post("./raywu",{classes : courses, number : 3},function(data,status){
+  var courses = ["Compiler","Formal language"];
+  $.post("./raywu",{classes : courses},function(data,status){
     console.log(data);
   });
 </script>
