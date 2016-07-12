@@ -40,7 +40,7 @@ app.post('/raywu',function(request, response) {
 			courses.find({course : {"$in":data.courses}},{_id:1}).toArray(function(err,callBack) 
 			{
 				answer.courses = callBack;
-				console.log(answer);
+				console.log(callBack + 'xxxxxxxxxxxxxxxxxxx');
 				response.send(answer);
 				db.close();
 			});
