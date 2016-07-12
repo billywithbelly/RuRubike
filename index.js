@@ -37,7 +37,7 @@ app.post('/raywu',function(request, response) {
 		else 
 		{
 			var courses = db.collection("courses");
-			courses.find({course:{"$in":data.classes}},{_id:0}).toArray(function(err,callBack) 
+			courses.find({course:{"$in":data.classes}},{_id:1}).toArray(function(err,callBack) 
 			{
 				answer.courses = callBack;
 				response.send(answer);
