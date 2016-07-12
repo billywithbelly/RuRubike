@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var url = ' mongodb://raywu:ray840406@ds031948.mlab.com:31948/rurubike';
+var url = 'mongodb://raywu:ray840406@ds031948.mlab.com:31948/rurubike';
 
 app.set('port', (process.env.PORT || 5000));
 
