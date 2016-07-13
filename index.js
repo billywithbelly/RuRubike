@@ -4,8 +4,21 @@ var bodyParser = require('body-parser');
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://raywu:ray840406@ds031948.mlab.com:31948/rurubike';
-
-app.set('port', (process.env.PORT || 5000));
+var db;
+MongoClient.connect(url, function (err, database) {
+	if (err) 
+	{
+		console.log('Unable to connect to the mongoDB server. Error:', err);
+	} 
+	else 
+	{
+		db = database;
+		app.set('port', (process.env.PORT || 5000));
+		app.listen(app.get('port'), function() {
+		  console.log('Node app is running on port', app.get('port'));
+		});
+	}
+});
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
@@ -25,30 +38,25 @@ app.get('/raywu', function(request, response) {
   	response.send(studentId);
 });
 
-app.post('/raywu',function(request, response) {
+app.get('/willywu', function(request, response) {
+	var studentId = '102062124';
+  	response.send(studentId);
+});
+
+function findCourses(request, response){
 	var data = request.body;
 	console.log(data);
 	var answer = {};
-	MongoClient.connect(url, function (err, db) {
-		if (err) 
-		{
-			console.log('Unable to connect to the mongoDB server. Error:', err);
-		} 
-		else 
-		{
-			var courses = db.collection("courses");
-			courses.find({course : {"$in":data.courses}},{_id:1}).toArray(function(err,callBack) 
-			{
-				answer.courses = callBack;
-				console.log(callBack + 'xxxxxxxxxxxxxxxxxxx');
-				response.send(answer);
-				db.close();
-			});
-		}
+	var courses = db.collection("courses");
+	courses.find({course : {"$in":data.courses}},{_id:1}).toArray(function(err,callBack) 
+	{
+		answer.courses = callBack;
+		console.log(callBack + 'xxxxxxxxxxxxxxxxxxx');
+		response.send(answer);
+		db.close();
 	});
-});
+}
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+app.post('/raywu',findCourses);
+app.post('/willywu',findCourses);
 
