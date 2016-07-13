@@ -13,6 +13,7 @@ MongoClient.connect(url, function (err, database) {
 	else 
 	{
 		db = database;
+		//Must opening the app before opening the database
 		app.set('port', (process.env.PORT || 5000));
 		app.listen(app.get('port'), function() {
 		  console.log('Node app is running on port', app.get('port'));
