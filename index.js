@@ -21,7 +21,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/raywu', function(request, response) {
-	var studentId = 102062318;
+	var studentId = '102062318';
   	response.send(studentId);
 });
 
