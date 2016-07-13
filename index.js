@@ -48,7 +48,7 @@ function findCourses(request, response){
 	console.log(data);
 	var answer = {};
 	var courses = db.collection("courses");
-	courses.find({course : {"$in":data.courses}},{_id:1}).toArray(function(err,callBack) 
+	courses.find({course : {"$in":data.courses}},{_id:0}).toArray(function(err,callBack) 
 	{
 		answer.courses = callBack;
 		console.log(callBack + 'xxxxxxxxxxxxxxxxxxx');
