@@ -53,7 +53,6 @@ function findCourses(request, response){
 		answer.courses = callBack;
 		console.log(callBack + 'xxxxxxxxxxxxxxxxxxx');
 		response.send(answer);
-		db.close();
 	});
 }
 
