@@ -46,7 +46,7 @@ app.get('/willywu', function(request, response) {
 
 function findCourses(request, response){
 	var data = request.body;
-	console.log(data);
+	console.log("input:" + data);
 	var answer = {};
 	var courses = db.collection("courses");
 	courses.find({course : {"$in":data.courses}},{_id:0}).toArray(function(err,callBack) 
