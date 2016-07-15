@@ -34,7 +34,7 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-app.get('/name', function(request, response) {
+app.get('/searchid', function(request, response) {
 	var studentID;
 	switch(request.query.name)
 	{
@@ -46,11 +46,6 @@ app.get('/name', function(request, response) {
 			break;
 	}
   	response.send(studentID);
-});
-
-app.get('/willywu', function(request, response) {
-	var studentId = '102062124';
-  	response.send(studentId);
 });
 
 function findCourses(request, response){
