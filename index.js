@@ -34,9 +34,18 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-app.get('/raywu', function(request, response) {
-	var studentId = '102062318';
-  	response.send(studentId);
+app.get('/name', function(request, response) {
+	var studentID;
+	switch(request.query.name)
+	{
+		case 'raywu'	: 
+			studentID = '102062318';
+			break;
+		case 'willywu' 	:
+			studentID = '102062124';
+			break;
+	}
+  	response.send(studentID);
 });
 
 app.get('/willywu', function(request, response) {
@@ -52,7 +61,6 @@ function findCourses(request, response){
 	courses.find({course : {"$in":data.courses}},{_id:0}).toArray(function(err,callBack) 
 	{
 		answer.courses = callBack;
-		console.log(callBack + 'xxxxxxxxxxxxxxxxxxx');
 		response.send(answer);
 	});
 }
