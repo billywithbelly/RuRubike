@@ -49,17 +49,15 @@ app.get('/searchid', function(request, response) {
 });
 
 function findCourses(request, response){
-	var data = request.body;
-	console.log("input:" + data);
+	var data = request.query.course;
 	var answer = {};
 	var courses = db.collection("courses");
-	courses.find({course : {"$in":data.courses}},{_id:0}).toArray(function(err,callBack) 
+	courses.find(data,{_id:0}).toArray(function(err,callBack) 
 	{
 		answer.courses = callBack;
 		response.send(answer);
 	});
 }
 
-app.post('/raywu',findCourses);
-app.post('/willywu',findCourses);
+app.post('/searchCourse',findCourses);
 
