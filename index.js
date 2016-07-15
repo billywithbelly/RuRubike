@@ -54,7 +54,7 @@ function findCourses(request, response){
 	var courses = db.collection("courses");
 	courses.find({course : data.course},{_id:0}).toArray(function(err,callBack) 
 	{
-		answer = callBack;
+		answer = callBack['teacher'];
 		response.send(answer);
 	});
 }
