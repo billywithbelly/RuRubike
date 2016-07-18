@@ -61,16 +61,12 @@
   </div>
 </div>
 
-
 </body>
 <script type="text/javascript">
-  $.get("./searchid", function(data, status){
+  $.get("./searchId", function(data, status){
     console.log(data);
   });
-  $.post("./raywu",{courses : ["Compiler","Formal language"]},function(data,status){
-    console.log(data);
-  });
-  $.post("./willywu",{courses : ["Compiler","Formal language"]},function(data,status){
+  $.post("./searchCourse",function(data,status){
     console.log(data);
   });
 </script>
