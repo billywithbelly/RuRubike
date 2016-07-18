@@ -57,7 +57,7 @@ function findCourses(request, response){
 	courses.find({course : {$in :data}},{_id:0}).toArray(function(err,callBack) 
 	{
 		response.send(callBack);
-	})
+	});
 }
 
 app.post('/searchCourse',findCourses);
