@@ -52,9 +52,15 @@ function findCourses(request, response){
 	var data = request.query;
 	var answer = {};
 	var courses = db.collection("courses");
+	courses.find({course : data},{_id:0}).toArray(function(err,callBack) 
+	{
+		if(callBack != null)
+			answer = callBack;
+	});
 	courses.find({course : {"$in":data.course}},{_id:0}).toArray(function(err,callBack) 
 	{
-		answer = callBack;
+		if(callBack != null)
+			answer = callBack;
 		response.send(answer);
 	});
 }
