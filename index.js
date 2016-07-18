@@ -49,8 +49,7 @@ app.get('/searchid', function(request, response) {
 });
 
 function findCourses(request, response){
-	var data = [];
-	data = request.query.course;
+	var data = request.query.course;
 	var answer = {};
 	var courses = db.collection("courses");
 	
@@ -58,7 +57,7 @@ function findCourses(request, response){
 	{
 		answer = callBack;
 		response.send(answer);
-	})
+	});
 }
 
 app.post('/searchCourse',findCourses);
