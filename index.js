@@ -49,13 +49,13 @@ app.get('/searchid', function(request, response) {
 });
 
 function findCourses(request, response){
-	var data = request.query;
+	var data = request.query.course;
 	var answer = {};
 	var courses = db.collection("courses");
-	courses.find({"course" : {"$in":data.course}},{_id:0}).toArray(function(err,callBack) 
+	courses.find({course : {"$in":data}},{_id:0}).toArray(function(err,callBack) 
 	{
 		answer = callBack;
-		response.send(request);
+		response.send(data);
 	});
 }
 
