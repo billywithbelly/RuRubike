@@ -49,7 +49,7 @@ app.get('/searchid', function(request, response) {
 });
 
 function findCourses(request, response){
-	var data = request.query;
+	var data = request.body;
 	var answer = {};
 	var courses = db.collection("courses");
 	courses.find({course : {"$in":data.course}},{_id:0}).toArray(function(err,callBack) 
