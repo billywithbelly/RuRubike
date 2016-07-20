@@ -56,7 +56,7 @@ function findCourses(request, response){
 	{
 		if(callBack != null)
 			answer = callBack;
-		response.send(data.course);
+		response.send(answer);
 	});
 }
 
