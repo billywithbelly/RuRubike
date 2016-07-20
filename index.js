@@ -31,7 +31,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/testing');
+  response.render('pages/index');
 });
 
 app.get('/testing', function(request, response) {
