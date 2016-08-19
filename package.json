@@ -13,7 +13,11 @@
     "ejs": "2.4.1",
     "express": "4.13.3",
     "body-parser": "latest",
-    "mongodb": "latest"
+    "mongodb": "latest",
+    "cors":"latest",
+    "express-session":"latest",
+    "compression":"latest",
+    "htmlspecialchars":"latest"
   },
   "repository": {
     "type": "git",

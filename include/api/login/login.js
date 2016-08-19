@@ -1,3 +1,4 @@
+var htmlspecialchars = require('htmlspecialchars');
 var mongoDataBase;
 exports.bindDB = function(db) {
 	// body...
