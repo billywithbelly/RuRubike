@@ -1,4 +1,5 @@
 var htmlspecialchars = require('htmlspecialchars');
+var bodyParser = require('body-parser');
 var mongoDataBase;
 exports.bindDB = function(db) {
 	// body...
@@ -6,6 +7,7 @@ exports.bindDB = function(db) {
 }
 exports.bindApp = function(app) {
 	// body...
+	app.use(bodyParser.urlencoded({limit: '50mb',extended: true}));
 	app.post('/login',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
