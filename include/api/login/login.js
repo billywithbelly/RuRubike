@@ -86,7 +86,7 @@ var dberror =  function(){
 	});
 }
 
-var antiXss =  function(data) {
+var antiXSS =  function(data) {
     var ans = data;
     for(var key in ans){
         if(typeof(ans[key])=="string"){
