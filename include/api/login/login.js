@@ -3,7 +3,7 @@ var mongoDataBase;
 exports.bindDB = function(db) {
 	// body...
 	mongoDataBase = db;
-	mongoDataBase.toString();
+	console.log(db);
 }
 exports.bindApp = function(app) {
 	// body...

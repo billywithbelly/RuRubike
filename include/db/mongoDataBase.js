@@ -1,10 +1,6 @@
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var MongoDatabase;
-exports.toString = function() {
-	// body...
-	console.log("here");
-}
 exports.connect = function(url) {
 	// body...
 	MongoClient.connect(url, function (err, db) {
