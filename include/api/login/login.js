@@ -9,7 +9,6 @@ exports.bindApp = function(app) {
 	app.post('/login',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
-		console.log(data);
 		login(data.id,data.password,function(response) {
 			if(response.code==1){
 				req.session.account = data.id;
