@@ -1,6 +1,7 @@
 var http = require('http');
 var express = require('express');
 var session = require('express-session');
+var bodyParser = require('body-parser');
 var cors = require('cors');
 var compression = require('compression');
 
@@ -9,6 +10,7 @@ var httpServer = http.createServer(app);
 httpServer.listen(process.env.PORT || 5000);
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({limit: '50mb',extended: true}));
 app.use(cors());
 app.use(compression());
 app.use(session({

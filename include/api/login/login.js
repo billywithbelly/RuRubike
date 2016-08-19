@@ -1,5 +1,4 @@
 var htmlspecialchars = require('htmlspecialchars');
-var bodyParser = require('body-parser');
 var mongoDataBase;
 exports.bindDB = function(db) {
 	// body...
@@ -7,7 +6,6 @@ exports.bindDB = function(db) {
 }
 exports.bindApp = function(app) {
 	// body...
-	app.use(bodyParser.urlencoded({limit: '50mb',extended: true}));
 	app.post('/login',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
@@ -24,7 +22,6 @@ exports.bindApp = function(app) {
 	app.post('/register',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
-		console.log(data);
 		var uid = generateUUID();
 		register(data.id,data.password,data.email,uid,function(response) {
 			res.send(response);
@@ -55,19 +52,22 @@ var register = function(id,password,email,uid,callback) {
 	mongoDataBase.getAccount({id:id},function(err,res) {
 		// body...
 		var temp;
-		if(err)temp = dberror();
-		if(res.length!=0){
-			temp = result("this id have been registed.",-1);
-		}
+		if(err)callBack(dberror());
 		else{
-			mongoDataBase.register(id,password,email,uid,function(err,res) {
-				// body...
-				if(err)temp = dberror();
-				else{
-					temp = result("register success",1);
-				}
+			if(res.length!=0){
+				temp = result("this id have been registed.",-1);
 				callback(temp);
-			});
+			}
+			else{
+				mongoDataBase.register(id,password,email,uid,function(err,res) {
+					// body...
+					if(err)temp = dberror();
+					else{
+						temp = result("register success",1);
+					}
+					callback(temp);
+				});
+			}
 		}
 	});
 }
