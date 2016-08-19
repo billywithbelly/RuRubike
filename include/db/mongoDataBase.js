@@ -42,7 +42,7 @@ exports.getBikes = function(callback) {
 	MongoDatabase.collection('bike').find({}).toArray(callback);
 }
 
-exports.setBikes = function(id,status,batery,location,kid,callback) {
+exports.setBike = function(id,status,batery,location,kid,callback) {
 	// body...
 	MongoDatabase.collection('bike').insertOne(
 	{

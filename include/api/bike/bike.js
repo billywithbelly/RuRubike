@@ -25,9 +25,9 @@ var getBikes = function(callback) {
 	});
 }
 
-var setBikes = function(id,state,batery,location,kid,callback) {
+var setBike = function(id,state,batery,location,kid,callback) {
 	// body...
-	mongoDataBase.setBikes(id,state,batery,location,kid,function(err,data) {
+	mongoDataBase.setBike(id,state,batery,location,kid,function(err,data) {
 		callback(data);
 	});
 }
