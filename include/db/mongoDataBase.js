@@ -1,7 +1,7 @@
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var MongoDatabase;
-exports.connect = function(url) {
+exports.connect = function(url,callback) {
 	// body...
 	MongoClient.connect(url, function (err, db) {
 		if (err) {
@@ -12,6 +12,7 @@ exports.connect = function(url) {
 			console.log('Connection established to', url);
 			MongoDatabase = db;
             exports.MongoDatabase = MongoDatabase;
+            callback();
 		}
 	});
 }

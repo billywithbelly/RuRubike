@@ -18,9 +18,11 @@ app.use(session({
   cookie: { maxAge: 60 * 1000 }
 }));
 
-var mongoDataBase = require('./include/db/mongoDataBase.js').connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase');
 var rurubike = require('./include/api/ruruBikeAPI.js');
-rurubike.bindDBs(mongoDataBase);
+var mongoDataBase = require('./include/db/mongoDataBase.js')
+mongoDataBase.connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase',function (){
+	rurubike.bindDBs(mongoDataBase);
+});
 rurubike.bindApp(app);
 
 // views is directory for all template files
