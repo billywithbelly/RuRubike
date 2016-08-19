@@ -24,6 +24,7 @@ exports.bindApp = function(app) {
 }
 
 var updatePassword = function(id, password, newpassword, callback) {
+	
 	mongoDataBase.getAccount({ id : id }, function(err, res) {
 
 		if(err) 
@@ -52,6 +53,7 @@ var updatePassword = function(id, password, newpassword, callback) {
 }
 
 var updateEmail = function(id, password, newemail, callback) {
+	
 	mongoDataBase.getAccount({ id : id }, function(err, res) {
 
 		if(err) 
