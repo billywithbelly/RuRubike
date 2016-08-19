@@ -21,15 +21,41 @@ exports.bindApp = function(app) {
 
 var getBikes = function(callback) {
 	mongoDataBase.getBikes(function(err,data) {
-		callback(data);
+		if(err){
+			callback(dberror());
+		}
+		else{
+			callback(result(data,1));
+		}
 	});
 }
 
 var setBike = function(id,state,batery,location,kid,callback) {
 	// body...
 	mongoDataBase.setBike(id,state,batery,location,kid,function(err,data) {
-		callback(data);
+		if(err){
+			callback(dberror());
+		}
+		else{
+			callback(result('set success',1));
+		}
 	});
+}
+
+var dberror = function() {
+	// body...
+	var temp = {};
+	temp.result = "db error";
+	temp.code = -2;
+	return temp;
+}
+
+var result = function (result,code) {
+	// body...
+	var temp = {};
+	temp.result = result;
+	temp.code = code;
+	return temp;
 }
 
 var antiXSS =  function(data) {

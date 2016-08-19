@@ -31,44 +31,35 @@ exports.bindApp = function(app) {
 var login = function(id,password,callback) {
 	// body...
 	mongoDataBase.getAccount({id:id,password:password},function(err,res) {
-		// body...
-		var temp;
-		if(err)temp = dberror();
+		if(err)callback(dberror());
 		else{
 			if(res.length==0){
-				temp = result("no account",-1);
+				callback(result("no account",-1));
 			}
 			else{
-				temp = result(res[0],1);
+				callback(result(res[0],1));
 			}
 		}
-		callback(temp);
 	});
 }
 
 var register = function(id,password,email,uid,callback) {
-	// body...
 	mongoDataBase.getAccount({id:id},function(err,res) {
-		// body...
 		var temp;
 		if(err)callBack(dberror());
 		else{
 			if(res.length!=0){
-				temp = result("this id have been registed.",-1);
-				callback(temp);
+				callback(result("this id have been registed.",-1));
 			}
 			else{
 				mongoDataBase.register(id,password,email,uid,function(err,res) {
-					// body...
-					if(err)temp = dberror();
+					if(err)callback(dberror());
 					else{
-						temp = result("register success",1);
+						callback(result("register success",1));
 					}
-					callback(temp);
 				});
 			}
 		}
-		
 	});
 }
 
