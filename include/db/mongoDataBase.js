@@ -37,3 +37,21 @@ exports.register = function(id,password,email,uid,callback) {
     }
     ,callback);
 }
+
+exports.getBikes = function(callback) {
+	MongoDatabase.collection('bike').find({}).toArray(callback);
+}
+
+exports.setBikes = function(id,status,batery,location,kid,callback) {
+	// body...
+	MongoDatabase.collection('bike').insertOne(
+	{
+		id:id,
+		status:status,
+		batery:batery,
+		location:location,
+		kid:kid,
+		time: new Date()
+	}
+	,callback);
+}

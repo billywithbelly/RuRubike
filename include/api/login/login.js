@@ -1,14 +1,13 @@
 var md5 = require('js-md5');
 var htmlspecialchars = require('htmlspecialchars');
 var mongoDataBase;
+
 exports.bindDB = function(db) {
-	// body...
 	mongoDataBase = db;
 }
+
 exports.bindApp = function(app) {
-	// body...
 	app.post('/login',function(req,res) {
-		// body...
 		var data = antiXSS(req.body);
 		login(data.id,md5(data.password),function(response) {
 			if(response.code==1){
