@@ -32,18 +32,10 @@ var login = function(id,password) {
 		if(err)dberror();
 		else{
 			if(res.length==0){
-				return 
-				{
-					result : "no account",
-					type : "-1"
-				};
+				return result("no account",-1);
 			}
 			else{
-				return
-				{
-					result : res[0],
-					type : "1"
-				};
+				return result(res[0],1);
 			}
 		}
 		
@@ -56,34 +48,34 @@ var register = function(id,password,email,uid) {
 		// body...
 		if(err)dberror();
 		if(res.length!=0){
-			return
-			{
-				result : "this id have been registed.",
-				type : "-1"
-			};
+			return result("this id have been registed.",-1);
 		}
 		else{
 			mongoDataBase.insertAccount(id,password,email,function(err,res) {
 				// body...
 				if(err)dberror();
 				else{
-					return
-					{
-						result : "register success",
-						type : "1"
-					};
+					result("register success",1);
 				}
 			});
 		}
 	});
 }
 
-var dberror =  function(){
-	return
-	{
-		result : "db error",
-		type : "-2"
-	};
+var dberror = function() {
+	// body...
+	var temp = {};
+	temp.result = "db error";
+	temp.code = -2;
+	return temp;
+}
+
+var result = function (result,code) {
+	// body...
+	var temp = {};
+	temp.result = result;
+	temp.code = code;
+	return temp;
 }
 
 var antiXSS =  function(data) {
