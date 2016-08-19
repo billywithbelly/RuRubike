@@ -9,6 +9,7 @@ exports.bindApp = function(app) {
 	app.post('/login',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
+		console.log(data);
 		login(data.id,data.password,function(response) {
 			if(response.code==1){
 				req.session.account = data.id;
@@ -21,6 +22,7 @@ exports.bindApp = function(app) {
 	app.post('/register',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
+		console.log(data);
 		var uid = generateUUID();
 		register(data.id,data.password,data.email,uid,function(response) {
 			res.send(response);
