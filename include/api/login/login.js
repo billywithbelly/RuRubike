@@ -3,7 +3,6 @@ var mongoDataBase;
 exports.bindDB = function(db) {
 	// body...
 	mongoDataBase = db;
-	console.log(db);
 }
 exports.bindApp = function(app) {
 	// body...
@@ -34,17 +33,17 @@ var login = function(id,password) {
 		else{
 			if(res.length==0){
 				return 
-				JSON.parse({
+				{
 					result : "no account",
 					type : "-1"
-				});
+				};
 			}
 			else{
 				return
-				JSON.parse({
+				{
 					result : res[0],
 					type : "1"
-				});
+				};
 			}
 		}
 		
@@ -58,10 +57,10 @@ var register = function(id,password,email,uid) {
 		if(err)dberror();
 		if(res.length!=0){
 			return
-			JSON.parse({
+			{
 				result : "this id have been registed.",
 				type : "-1"
-			});
+			};
 		}
 		else{
 			mongoDataBase.insertAccount(id,password,email,function(err,res) {
@@ -69,10 +68,10 @@ var register = function(id,password,email,uid) {
 				if(err)dberror();
 				else{
 					return
-					JSON.parse({
+					{
 						result : "register success",
 						type : "1"
-					});
+					};
 				}
 			});
 		}
@@ -81,10 +80,10 @@ var register = function(id,password,email,uid) {
 
 var dberror =  function(){
 	return
-	JSON.parse({
+	{
 		result : "db error",
 		type : "-2"
-	});
+	};
 }
 
 var antiXSS =  function(data) {
