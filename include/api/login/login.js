@@ -60,7 +60,7 @@ var register = function(id,password,email,uid,callback) {
 				// body...
 				if(err)temp = dberror();
 				else{
-					temp = result({id:id,password:password,email,uid},1);
+					temp = result({id:id,password:password,email:email,uid:uid},1);
 				}
 				callback(temp);
 			});
