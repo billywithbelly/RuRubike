@@ -22,6 +22,20 @@ exports.getAccount = function (json,callback) {
 	MongoDatabase.collection('account').find(json).toArray(callback);
 }
 
+exports.updateAccountPassword = function(id, newpassword, callback) {
+	MongoDatabase.collection('account').updateOne(
+		{ id 	: id },
+		{ $set	: { password : newpassword } }
+	,callback);
+}
+
+exports.updateAccountEmail = function(id, newemail, callback) {
+	MongoDatabase.collection('account').updateOne(
+		{ id 	: id },
+		{ $set 	: { email : newemail } }
+	,callback);
+}
+
 exports.register = function(id,password,email,uid,callback) {
 	// body...
 	MongoDatabase.collection('account').insertOne(

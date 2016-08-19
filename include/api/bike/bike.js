@@ -1,8 +1,10 @@
 var htmlspecialchars = require('htmlspecialchars');
 var mongoDataBase;
+
 exports.bindDB = function(db) {
 	mongoDataBase = db;
 }
+
 exports.bindApp = function(app) {
 	app.get('/getBikes',function(req,res) {
 		getBikes(function(response) {
