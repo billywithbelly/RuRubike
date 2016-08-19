@@ -24,7 +24,7 @@ exports.bindApp = function(app) {
 }
 
 var updatePassword = function(id, password, newpassword, callback) {
-	
+	mongoDataBase.getAccount({ id : id }, function(err, res) {
 
 		if(err) 
 			callback(dberror());
