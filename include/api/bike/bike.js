@@ -13,7 +13,7 @@ exports.bindApp = function(app) {
 	app.post('/setBike',function(req,res) {
 		var data = antiXSS(req.body);
 		var kid = generateUUID();
-		setBikes(data.id,data.state,data.batery,data.location,kid,function(response) {
+		setBike(data.id,data.state,data.batery,data.location,kid,function(response) {
 			res.send(response);
 		});
 	});
