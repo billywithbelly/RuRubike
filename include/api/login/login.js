@@ -23,7 +23,6 @@ exports.bindApp = function(app) {
 		var data = antiXSS(req.body);
 		var uid = generateUUID();
 		register(data.id,data.password,data.email,uid,function(response) {
-			// body...
 			res.send(response);
 		});
 	});
@@ -61,7 +60,7 @@ var register = function(id,password,email,uid,callback) {
 				// body...
 				if(err)temp = dberror();
 				else{
-					temp = result("register success",1);
+					temp = result({id:id,password:password,email,uid},1);
 				}
 				callback(temp);
 			});
