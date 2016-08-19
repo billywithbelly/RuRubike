@@ -20,7 +20,7 @@ app.use(session({
 
 var mongoDataBase = require('./include/db/mongoDataBase.js').connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase');
 var rurubike = require('./include/api/ruruBikeAPI.js');
-rurubike.bindDBs({mongodb:mongoDataBase});
+rurubike.bindDBs(mongoDataBase);
 rurubike.bindApp(app);
 
 // views is directory for all template files
