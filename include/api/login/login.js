@@ -22,6 +22,7 @@ exports.bindApp = function(app) {
 		// body...
 		var data = antiXSS(req.body);
 		var uid = generateUUID();
+		console.log(data);
 		register(data.id,data.password,data.email,uid,function(response) {
 			res.send(response);
 		});
@@ -56,11 +57,14 @@ var register = function(id,password,email,uid,callback) {
 			temp = result("this id have been registed.",-1);
 		}
 		else{
+			console.log(id);
+			console.log(password);
+			console.log(email);
 			mongoDataBase.register(id,password,email,uid,function(err,res) {
 				// body...
 				if(err)temp = dberror();
 				else{
-					temp = result({id:id,password:password,email:email,uid:uid},1);
+					temp = result("register success",1);
 				}
 				callback(temp);
 			});
