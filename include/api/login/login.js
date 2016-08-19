@@ -22,7 +22,7 @@ exports.bindApp = function(app) {
 		// body...
 		var data = antiXSS(req.body);
 		var uid = generateUUID();
-		register(data.id,data.password,uid,data.email,function(response) {
+		register(data.id,data.password,data.email,uid,function(response) {
 			// body...
 			res.send(response);
 		});
@@ -57,7 +57,7 @@ var register = function(id,password,email,uid,callback) {
 			temp = result("this id have been registed.",-1);
 		}
 		else{
-			mongoDataBase.register(id,password,email,function(err,res) {
+			mongoDataBase.register(id,password,email,uid,function(err,res) {
 				// body...
 				if(err)temp = dberror();
 				else{
