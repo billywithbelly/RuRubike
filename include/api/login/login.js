@@ -9,54 +9,61 @@ exports.bindApp = function(app) {
 	app.post('/login',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
-		var json = login(data.id,data.password);
-		if(json.code=="1"){
-			req.session.account = data.id;
-	        req.session.password = data.password;
-		}
-		res.send(json);
+		login(data.id,data.password,function(response) {
+			if(response.code==1){
+				req.session.account = data.id;
+		        req.session.password = data.password;
+			}
+			res.send(response);
+		});
 	});
 
 	app.post('/register',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
 		var uid = generateUUID();
-		res.send(register(data.id,data.password,uid,data.email));
+		register(data.id,data.password,uid,data.email,function(response) {
+			// body...
+			res.send(response);
+		});
 	});
 }
 
-var login = function(id,password) {
+var login = function(id,password,callback) {
 	// body...
 	mongoDataBase.getAccount({id:id,password:password},function(err,res) {
 		// body...
-		if(err)dberror();
+		var temp;
+		if(err)temp = dberror();
 		else{
 			if(res.length==0){
-				return result("no account",-1);
+				temp = result("no account",-1);
 			}
 			else{
-				return result(res[0],1);
+				temp = result(res[0],1);
 			}
 		}
-		
+		callback(temp);
 	});
 }
 
-var register = function(id,password,email,uid) {
+var register = function(id,password,email,uid,callback) {
 	// body...
 	mongoDataBase.getAccount({id:id},function(err,res) {
 		// body...
-		if(err)dberror();
+		var temp;
+		if(err)temp = dberror();
 		if(res.length!=0){
-			return result("this id have been registed.",-1);
+			temp = result("this id have been registed.",-1);
 		}
 		else{
 			mongoDataBase.insertAccount(id,password,email,function(err,res) {
 				// body...
-				if(err)dberror();
+				if(err)temp = dberror();
 				else{
-					result("register success",1);
+					temp = result("register success",1);
 				}
+				callback(temp);
 			});
 		}
 	});
