@@ -30,8 +30,10 @@ exports.bindApp = function(app) {
 }
 
 var login = function(id,password,callback) {
-	var temp;
+	// body...
 	mongoDataBase.getAccount({id:id,password:password},function(err,res) {
+		// body...
+		var temp;
 		if(err)temp = dberror();
 		else{
 			if(res.length==0){
@@ -41,31 +43,33 @@ var login = function(id,password,callback) {
 				temp = result(res[0],1);
 			}
 		}
-	}).then(function() {
 		callback(temp);
 	});
 }
 
 var register = function(id,password,email,uid,callback) {
-	var temp;
+	// body...
 	mongoDataBase.getAccount({id:id},function(err,res) {
-		if(err)temp = dberror();
+		// body...
+		var temp;
+		if(err)callBack(dberror());
 		else{
 			if(res.length!=0){
 				temp = result("this id have been registed.",-1);
+				callback(temp);
 			}
 			else{
 				mongoDataBase.register(id,password,email,uid,function(err,res) {
+					// body...
 					if(err)temp = dberror();
 					else{
 						temp = result("register success",1);
 					}
+					callback(temp);
 				});
 			}
 		}
-	}).then(function() {
-		// body...
-		callback(temp);
+		
 	});
 }
 
