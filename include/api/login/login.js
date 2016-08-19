@@ -57,7 +57,7 @@ var register = function(id,password,email,uid,callback) {
 			temp = result("this id have been registed.",-1);
 		}
 		else{
-			mongoDataBase.insertAccount(id,password,email,function(err,res) {
+			mongoDataBase.register(id,password,email,function(err,res) {
 				// body...
 				if(err)temp = dberror();
 				else{
