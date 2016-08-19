@@ -1,3 +1,4 @@
+var md5 = require('js-md5');
 var htmlspecialchars = require('htmlspecialchars');
 var mongoDataBase;
 exports.bindDB = function(db) {
@@ -9,7 +10,7 @@ exports.bindApp = function(app) {
 	app.post('/login',function(req,res) {
 		// body...
 		var data = antiXSS(req.body);
-		login(data.id,data.password,function(response) {
+		login(data.id,md5(data.password),function(response) {
 			if(response.code==1){
 				req.session.account = data.id;
 		        req.session.password = data.password;
@@ -22,7 +23,7 @@ exports.bindApp = function(app) {
 		// body...
 		var data = antiXSS(req.body);
 		var uid = generateUUID();
-		register(data.id,data.password,data.email,uid,function(response) {
+		register(data.id,md5(data.password),data.email,uid,function(response) {
 			res.send(response);
 		});
 	});
