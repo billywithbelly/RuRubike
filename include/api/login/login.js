@@ -1,5 +1,4 @@
-var md5 = require('js-md5');
-var htmlspecialchars = require('htmlspecialchars');
+var func = require('../../function/function.js');
 var mongoDataBase;
 
 exports.bindDB = function(db) {
@@ -8,8 +7,8 @@ exports.bindDB = function(db) {
 
 exports.bindApp = function(app) {
 	app.post('/login',function(req,res) {
-		var data = antiXSS(req.body);
-		login(data.id,md5(data.password),function(response) {
+		var data = func.antiXSS(req.body);
+		login(data.id,func.md5(data.password),function(response) {
 			if(response.code==1){
 				req.session.account = data.id;
 		        req.session.password = data.password;
@@ -20,9 +19,9 @@ exports.bindApp = function(app) {
 
 	app.post('/register',function(req,res) {
 		// body...
-		var data = antiXSS(req.body);
-		var uid = generateUUID();
-		register(data.id,md5(data.password),data.email,uid,function(response) {
+		var data = func.antiXSS(req.body);
+		var uid = func.generateUUID();
+		register(data.id,func.md5(data.password),data.email,uid,function(response) {
 			res.send(response);
 		});
 	});
@@ -31,13 +30,13 @@ exports.bindApp = function(app) {
 var login = function(id,password,callback) {
 	// body...
 	mongoDataBase.getAccount({id:id,password:password},function(err,res) {
-		if(err)callback(dberror());
+		if(err)callback(func.dberror());
 		else{
 			if(res.length==0){
-				callback(result("no account",-1));
+				callback(func.result("no account",-1));
 			}
 			else{
-				callback(result(res[0],1));
+				callback(func.result(res[0],1));
 			}
 		}
 	});
@@ -46,55 +45,19 @@ var login = function(id,password,callback) {
 var register = function(id,password,email,uid,callback) {
 	mongoDataBase.getAccount({id:id},function(err,res) {
 		var temp;
-		if(err)callBack(dberror());
+		if(err)callBack(func.dberror());
 		else{
 			if(res.length!=0){
-				callback(result("this id have been registed.",-1));
+				callback(func.result("this id have been registed.",-1));
 			}
 			else{
 				mongoDataBase.register(id,password,email,uid,function(err,res) {
-					if(err)callback(dberror());
+					if(err)callback(func.dberror());
 					else{
-						callback(result("register success",1));
+						callback(func.result("register success",1));
 					}
 				});
 			}
 		}
 	});
 }
-
-var dberror = function() {
-	// body...
-	var temp = {};
-	temp.result = "db error";
-	temp.code = -2;
-	return temp;
-}
-
-var result = function (result,code) {
-	// body...
-	var temp = {};
-	temp.result = result;
-	temp.code = code;
-	return temp;
-}
-
-var antiXSS =  function(data) {
-    var ans = data;
-    for(var key in ans){
-        if(typeof(ans[key])=="string"){
-            ans[key] = htmlspecialchars(ans[key]);
-        }
-    }
-    return ans;
-}
-
-var generateUUID =  function() {
-    var d = new Date().getTime();
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-    });
-    return uuid;
-};
