@@ -12,17 +12,10 @@ exports.bindApp = function(app) {
 		});
 	});
 
-	app.post('/getbikebattery', function(req, res) {
-		var data = antiXSS(req.body);
-		getBikeBattery(data.id, function(response) {
-			res.send(response);
-		});
-	});
-
 	app.post('/setBike',function(req,res) {
 		var data = antiXSS(req.body);
 		var kid = generateUUID();
-		setBike(data.id,data.state,data.battery,data.location,kid,function(response) {
+		setBike(data.id,data.state,data.batery,data.location,kid,function(response) {
 			res.send(response);
 		});
 	});
@@ -39,19 +32,9 @@ var getBikes = function(callback) {
 	});
 }
 
-var getBikeBattery = function(id, callback) {
-	mongoDataBase.getOneBike({ id : id }, function(err, res) {
-		if(err) 
-			callback(dberror());
-		else {
-			callback(result('battery : '+res[0].battery+'%', 1));
-		}
-	});
-}
-
-var setBike = function(id,state,battery,location,kid,callback) {
+var setBike = function(id,state,batery,location,kid,callback) {
 	// body...
-	mongoDataBase.setBike(id,state,battery,location,kid,function(err,data) {
+	mongoDataBase.setBike(id,state,batery,location,kid,function(err,data) {
 		if(err){
 			callback(dberror());
 		}

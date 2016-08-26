@@ -56,19 +56,15 @@ exports.getBikes = function(callback) {
 	MongoDatabase.collection('bike').find({}).toArray(callback);
 }
 
-exports.getOneBike = function(json, callback) {
-	MongoDatabase.collection('bike').find(json).toArray(callback);
-}
-
-exports.setBike = function(id,status,battery,location,kid,callback) {
+exports.setBike = function(id,status,batery,location,kid,callback) {
 	// body...
 	MongoDatabase.collection('bike').insertOne(
 	{
-		id 		: id,
-		status 	: status,
-		battery : battery,
-		location: location,
-		kid		: kid,
+		id:id,
+		status:status,
+		batery:batery,
+		location:location,
+		kid:kid,
 		time: new Date()
 	}
 	,callback);
