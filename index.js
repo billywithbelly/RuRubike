@@ -32,3 +32,8 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
+
+app,get('/test',function(request, response)) {
+	var data = antiXSS(request.body);
+	if(data.id == 'ray') response.send('102062318');
+}
