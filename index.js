@@ -33,7 +33,10 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+<<<<<<< HEAD
 app.get('/test',function(request, response) {
 	var data = antiXSS(request.body);
 	if(data.id == 'ray') response.send('102062318');
 });
+=======
+>>>>>>> refs/remotes/origin/Ray
