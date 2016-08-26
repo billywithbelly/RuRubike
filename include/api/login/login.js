@@ -25,6 +25,12 @@ exports.bindApp = function(app) {
 			res.send(response);
 		});
 	});
+
+	app.get('/test',function(request, response) {
+		var data = request.query;
+		console.log(data.id);
+		if(data.id == 'ray') response.send('102062318');
+	});
 }
 
 var login = function(id,password,callback) {
