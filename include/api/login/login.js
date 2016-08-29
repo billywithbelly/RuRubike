@@ -26,10 +26,8 @@ exports.bindApp = function(app) {
 		});
 	});
 
-	app.get('/test',function(request, response) {
-		var data = request.query;
-		console.log(data.id);
-		if(data.id == 'ray') response.send('102062318');
+	app.get('/test', function(req, res) {
+		if(req.query.id === 'ray') res.send('102062318');
 	});
 }
 

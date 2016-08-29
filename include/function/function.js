@@ -1,5 +1,5 @@
 exports.md5 = require('js-md5');
-exports.htmlspecialchars = require('htmlspecialchars');
+var htmlspecialchars = require('htmlspecialchars');
 
 exports.dberror = function() {
 	var temp = {};
