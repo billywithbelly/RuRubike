@@ -12,12 +12,22 @@ exports.bindApp = function(app) {
 		});
 	});
 
+	app.get('/getBikeBattery', function(req, res) {
+		getBikeBattery(req.query.id, function(response) {
+			res.send(response);
+		});
+	});
+
 	app.post('/setBike',function(req,res) {
 		var data = func.antiXSS(req.body);
 		var kid = func.generateUUID();
-		setBike(data.id,data.state,data.batery,data.location,kid,function(response) {
+		setBike(data.id,data.state,data.battery,data.location,kid,function(response) {
 			res.send(response);
 		});
+	});
+
+	app.post('/update/bikeLocation',function(req, res) {
+		//var data = func.antiXSS(req.body);
 	});
 }
 
@@ -32,9 +42,26 @@ var getBikes = function(callback) {
 	});
 }
 
-var setBike = function(id,state,batery,location,kid,callback) {
+var getBikeBattery = function(id, callback) {
+	mongoDataBase.getOneBike({ id : id }, function(err, res) {
+
+		if(err) 
+			callback(func.dberror());
+		else {
+			if(res.length === 0) {
+				callback(func.result("no bike", -1));
+			}
+			else {
+				callback(func.result(res[0].battery, 1));
+			}
+		}
+
+	});
+};
+
+var setBike = function(id,state,battery,location,kid,callback) {
 	// body...
-	mongoDataBase.setBike(id,state,batery,location,kid,function(err,data) {
+	mongoDataBase.setBike(id,state,battery,location,kid,function(err,data) {
 		if(err){
 			callback(func.dberror());
 		}
