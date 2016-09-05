@@ -8,7 +8,7 @@ exports.bindDB = function(db) {
 exports.bindApp = function(app) {
 	app.post('/login',function(req,res) {
 		var data = func.antiXSS(req.body);
-		login(data.id,func.md5(data.password),function(response) {
+		login(data.id,data.password,function(response) {
 			if(response.code==1){
 				req.session.account = data.id;
 		        req.session.password = data.password;
@@ -33,7 +33,7 @@ exports.bindApp = function(app) {
 
 var login = function(id,password,callback) {
 	// body...
-	mongoDataBase.getAccount({id:id,password:password},function(err,res) {
+	mongoDataBase.getAccount({id:id,password:func.md5(password)},function(err,res) {
 		if(err)callback(func.dberror());
 		else{
 			if(res.length==0){
@@ -45,7 +45,7 @@ var login = function(id,password,callback) {
 		}
 	});
 }
-
+exports.login = login;
 var register = function(id,password,email,uid,callback) {
 	mongoDataBase.getAccount({id:id},function(err,res) {
 		var temp;

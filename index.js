@@ -4,6 +4,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var compression = require('compression');
+var requester = require('request');
 
 var app = express();
 var httpServer = http.createServer(app);
@@ -34,7 +35,9 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   if(request.session.account){
-  	response.render('pages/index',{logined:true});
+  	rurubike.apiAccess.login(request.session.account,request.session.password,function(res){
+  		response.render('pages/index',{logined:true,user:res});
+  	});
   }
   else{
   	response.render('pages/index',{logined:false});
