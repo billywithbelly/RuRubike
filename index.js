@@ -33,10 +33,5 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  if(request.session.account){
-  	response.render('pages/index',{logined:true});
-  }
-  else{
-  	response.render('pages/index',{logined:false});
-  }
+  response.render('pages/index');
 });

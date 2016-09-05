@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Suck My Dick</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h2>Input Courses:</h2>
+	<div class="well" id="inputPanel"></div>
+	<input type="text" class="form-control" id="usr" placeholder="Input Course Name"><br/>
+	<button type="button" class="btn btn-default" id="addCourseButton">Push in</button>
+	<button type="button" class="btn btn-default" id="clearCourseButton">Clear</button>
+	<button type="button" class="btn btn-default" id="showInputToConsole">Show Json in console</button>
+	<button type="button" class="btn btn-default" id="postToServer">Post</button><br/>
+	<h2>Output Teachers:</h2>
+	<div class="well" id="outputPanel"></div>
+</div>
+</body>
+<script type="text/javascript">
+	var dick = {};
+	dick.course = [];
+	$('#addCourseButton').click(function() {
+		// body...
+		var inputData = $('#usr').val();
+		if(inputData!=""){
+			dick.course.push(inputData);
+			pushDataInPanel('inputPanel',inputData);
+			$('#usr').val("");
+		}
+	});
+	$('#clearCourseButton').click(function() {
+		// body...
+		dick.course = [];
+		cleanDataInPanel('inputPanel');
+	});
+	$('#showInputToConsole').click(function() {
+		// body...
+		console.log(dick);
+	});
+	$('#postToServer').click(function() {
+		// body...
+		$.post('/searchCourse',dick,function(response) {
+			// body...
+			parseJsonToOutput(response);
+		});
+	});
+	function parseJsonToOutput(response) {
+		// body...
+		cleanDataInPanel('outputPanel');
+		for (var i = 0; i < response.length; i++) {
+			var value =  response[i];
+			var outputData = '<h4>Course: ' + value.course + " / " + 'Teacher: ' + value.teacher + "</sh4>";
+			pushDataInPanel('outputPanel',outputData);
+		}
+	}
+	function pushDataInPanel(id,text) {
+		// body...
+		var temp = $('#'+id).html();
+		$('#'+id).html(temp+text+"<br/>");
+	}
+	function cleanDataInPanel(id) {
+		// body...
+		$('#'+id).html("");
+	}
+</script>
+</html>
