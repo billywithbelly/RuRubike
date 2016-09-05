@@ -19,7 +19,8 @@
     "compression":"latest",
     "htmlspecialchars":"latest",
     "js-md5":"latest",
-    "socket.io":"latest"
+    "socket.io":"latest",
+    "request":"latest"
   },
   "repository": {
     "type": "git",

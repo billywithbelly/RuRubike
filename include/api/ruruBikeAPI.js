@@ -15,3 +15,7 @@ exports.bindApp = function(app) {
 	account.bindApp(app)
 }
 
+exports.apiAccess = {};
+exports.apiAccess.login = function(id,password,callback) {
+	login.login(id,password,callback);
+}
