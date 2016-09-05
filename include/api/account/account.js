@@ -21,6 +21,7 @@ exports.bindApp = function(app) {
 			res.send(response);
 		});
 	});
+
 }
 
 var updatePassword = function(id, password, newpassword, callback) {
