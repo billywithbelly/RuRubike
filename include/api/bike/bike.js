@@ -21,13 +21,16 @@ exports.bindApp = function(app) {
 	app.post('/setBike',function(req,res) {
 		var data = func.antiXSS(req.body);
 		var kid = func.generateUUID();
-		setBike(data.id,data.state,data.battery,data.location,kid,function(response) {
+		setBike(data.id,data.state,data.battery,kid,function(response) {
 			res.send(response);
 		});
 	});
 
 	app.post('/update/bikeLocation',function(req, res) {
-		//var data = func.antiXSS(req.body);
+		var data = func.antiXSS(req.body);
+		updateLocation(data.id, data.latitude, data.longitude, function(response) {
+			res.send(response);
+		});
 	});
 }
 
@@ -59,14 +62,34 @@ var getBikeBattery = function(id, callback) {
 	});
 };
 
-var setBike = function(id,state,battery,location,kid,callback) {
-	// body...
-	mongoDataBase.setBike(id,state,battery,location,kid,function(err,data) {
+var setBike = function(id,state,battery,kid,callback) {
+	console.log("87")
+	mongoDataBase.setBike(id,state,battery,kid,function(err,data) {
 		if(err){
 			callback(func.dberror());
 		}
 		else{
 			callback(func.result('set success',1));
+		}
+	});
+}
+
+var updateLocation = function(id, latitude, longitude, callback) {
+
+	mongoDataBase.getOneBike({ id : id }, function(err, res) {
+		if(err) {
+			callback(func.dberror());
+		}
+		else if(res.length === 0) {
+			callback(func.result("no bike", -1));
+		}
+		else {
+			mongoDataBase.updateBikeLocation(id, latitude, longitude, function(err, res) {
+				if(err)
+					callback(func.dberror());
+				else
+					callback(func.result("update location success", 1));
+			});
 		}
 	});
 }
