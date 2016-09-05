@@ -18,8 +18,7 @@
     "express-session":"latest",
     "compression":"latest",
     "htmlspecialchars":"latest",
-    "js-md5":"latest",
-    "socket.io":"latest"
+    "js-md5":"latest"
   },
   "repository": {
     "type": "git",
