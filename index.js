@@ -21,7 +21,7 @@ app.use(session({
 var rurubike = require('./include/api/ruruBikeAPI.js');
 var mongoDataBase = require('./include/db/mongoDataBase.js')
 mongoDataBase.connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase',function (){
-	rurubike.bindDBs(mongoDataBase);
+	rurubike.bindMongoDB(mongoDataBase);
 });
 rurubike.bindApp(app);
 
