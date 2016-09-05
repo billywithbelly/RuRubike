@@ -19,11 +19,14 @@ app.use(session({
 }));
 
 var rurubike = require('./include/api/ruruBikeAPI.js');
-var mongoDataBase = require('./include/db/mongoDataBase.js')
+var mongoDataBase = require('./include/db/mongoDataBase.js');
+var socket = require('./include/socket/socket.js');
 mongoDataBase.connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase',function (){
 	rurubike.bindMongoDB(mongoDataBase);
+	socket.bindMongoDB(mongoDataBase);
 });
 rurubike.bindApp(app);
+socket.bindHttpServer(httpServer);
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
