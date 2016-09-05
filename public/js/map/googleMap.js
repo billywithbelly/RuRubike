@@ -22,7 +22,7 @@ function initialize() {
     position:{ lat: 24.792081, lng: 120.992631},
     icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
   });
-  //setOriginLocation();
+  setOriginLocation();
 }
 
 map.setOriginLocation = function() {
