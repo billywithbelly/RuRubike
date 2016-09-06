@@ -1,5 +1,6 @@
 var md5 = require('js-md5');
 var htmlspecialchars = require('htmlspecialchars');
+var func = require('../../function/function.js');
 var mongoDataBase;
 
 exports.bindDB = function(db) {
@@ -21,6 +22,7 @@ exports.bindApp = function(app) {
 			res.send(response);
 		});
 	});
+	
 
 }
 
