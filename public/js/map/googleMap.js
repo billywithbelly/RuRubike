@@ -4,6 +4,7 @@ var googleMap;
 var directionsService;
 var directionsDisplay;
 var ownMarker;
+var target;
 
 function initialize() {
   var mapOptions = {
@@ -56,7 +57,7 @@ map.setBikes = function(bikes) {
 }
 
 map.setNearestBikePath = function() {
-  var target = -1;
+  target = -1;
   var minDis = 200000;
   for(var i=0;i<rubikes.length;i++){
     if(rubikes[i].bike.status=="ok"){
@@ -76,6 +77,7 @@ map.setNearestBikePath = function() {
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
+      rubikes[target].marker.setAnimation(google.maps.Animation.BOUNCE);
     } else {
       window.alert('Directions request failed due to ' + status);
     }
@@ -84,6 +86,8 @@ map.setNearestBikePath = function() {
 
 map.clearPath = function(){
   directionsDisplay.setDirections({routes: []});
+  rubikes[target].marker.setAnimation(null);
+  target = -1;
 }
 
 function setOriginLocation() {
