@@ -5,7 +5,7 @@ var directionsService;
 var directionsDisplay;
 var ownMarker;
 var target;
-
+var infowindow = new google.maps.InfoWindow();
 function initialize() {
   var mapOptions = {
     center: { lat: 24.792081, lng: 120.992631},
@@ -42,8 +42,10 @@ map.setBikes = function(bikes) {
       obj.marker = new google.maps.Marker({
         map: googleMap,
         position: {lat: parseFloat(obj.bike.location.latitude), lng: parseFloat(obj.bike.location.longitude)},
-        icon: icon
+        icon: icon,
+        customInfo: i
       });
+      attachSecretMessage(obj);
       rubikes.push(obj);
     }
   }
@@ -98,6 +100,26 @@ function setOriginLocation() {
       ownMarker.setPosition(initialLocation);
     });
   }
+}
+var panorama;
+var currentInfowindow;
+function attachSecretMessage(obj) {
+  $.post('/view',{action:'bikeInfo',json:obj.bike},function (Content) {
+    var infowindow = new google.maps.InfoWindow({
+      content: Content
+    });
+    obj.marker.addListener('click', function() {
+      if(currentInfowindow!=undefined)currentInfowindow.close();
+      infowindow.open(obj.marker.get('map'), obj.marker);
+      currentInfowindow = infowindow;
+      panorama = googleMap.getStreetView();
+      panorama.setPosition({ lat: obj.marker.getPosition().lat(), lng: obj.marker.getPosition().lng()});
+      panorama.setPov(({
+        heading: 265,
+        pitch: 0
+      }));
+      });
+  });
 }
 
 function  main() {

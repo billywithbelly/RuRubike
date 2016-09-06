@@ -29,7 +29,6 @@ mongoDataBase.connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/lulud
 rurubike.bindApp(app);
 socket.bindHttpServer(httpServer);
 
-// views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
