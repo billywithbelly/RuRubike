@@ -11,6 +11,9 @@
       left: 0;
       z-index: -999;
     }
+    .modal-header{
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -34,12 +37,14 @@
   </ul>
 </div>
 <!-- Modal Structure -->
-<div id="contactUs" class="modal">
+<div id="contactUs" class="modal yellow lighten-2">
   <div class="modal-content">
-    <h4>Contact Us</h4>
-    <% include ./contact/contact.ejs %>
+    <div class="modal-header">
+      <h4>Contact Us</h4>
+    </div>
+    <%- include('./contact/contact.ejs',{master:master,contact:contact}); %>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer yellow darken-2">
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
   </div>
 </div>
@@ -47,8 +52,10 @@
 <!-- Modal Structure -->
 <div id="health" class="modal">
   <div class="modal-content">
-    <h4>Health Manager</h4>
-    <% include ./health/health.ejs %>
+    <div class="modal-header">
+      <h4>Health Manager</h4>
+    </div>
+    <%- include('./health/health.ejs',{}); %>
   </div>
   <div class="modal-footer">
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -57,8 +64,10 @@
 <!-- Modal Structure -->
 <div id="account" class="modal">
   <div class="modal-content">
-    <h4>Account</h4>
-    <% include ./account/account.ejs %>
+    <div class="modal-header">
+      <h4>Account</h4>
+    </div>
+    <%- include('./account/account.ejs',{}); %>
   </div>
   <div class="modal-footer">
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -68,7 +77,9 @@
 <!-- Modal Structure -->
 <div id="login" class="modal">
   <div class="modal-content">
-    <h4>Login</h4>
+    <div class="modal-header">
+      <h4>Login</h4>
+    </div>
     <div class="row">
       <div class="input-field col s12">
         <input id="accountInput" type="text" class="validate">
