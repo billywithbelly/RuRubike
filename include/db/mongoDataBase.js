@@ -83,3 +83,16 @@ exports.updateBikeLocation = function(id, lat, long, callback) {
 		{ $set : { location : { latitude : lat, longitude : long } } },
 		callback);
 }
+
+exports.insertContact = function(data,callback) {
+	MongoDatabase.collection('contact').insertOne(
+    {
+        data: data,
+        time: new Date()
+    }
+    ,callback);
+}
+
+exports.getContact = function(callback) {
+	MongoDatabase.collection('contact').find({}).toArray(callback);
+}

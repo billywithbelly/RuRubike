@@ -4,6 +4,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var compression = require('compression');
+var requester = require('request');
 
 var app = express();
 var httpServer = http.createServer(app);
@@ -28,15 +29,24 @@ mongoDataBase.connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/lulud
 rurubike.bindApp(app);
 socket.bindHttpServer(httpServer);
 
-// views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   if(request.session.account){
-  	response.render('pages/index',{logined:true});
+  	rurubike.apiAccess.login(request.session.account,request.session.password,function(res){
+  		if(res.result.master=='yes'){
+  			rurubike.apiAccess.getContact(function(res) {
+  				response.render('pages/index',{logined:true,user:res.result,master:true,contact:res});
+  			});
+  		}
+  		else{
+  			response.render('pages/index',{logined:true,user:res.result,master:false,contact:{}});
+  		}
+  		
+  	});
   }
   else{
-  	response.render('pages/index',{logined:false});
+  	response.render('pages/index',{logined:false,master:false,contact:{}});
   }
 });

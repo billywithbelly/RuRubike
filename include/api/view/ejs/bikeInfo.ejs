@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col s12" id="infoinfo">
+    <ul class="collection">
+      <li class="collection-item avatar">
+        <i class="material-icons circle green">grade</i>
+        <span class="title">Id</span>
+        <p><%= id %></p>
+      </li>
+      <li class="collection-item avatar">
+        <img src="http://www.eliya.com.tw/images/progroup140301262453141.png" alt="" class="circle">
+        <span class="title">Battery</span>
+        <p><%= battery %></p>
+      </li>
+      <li class="collection-item avatar">
+        <i class="material-icons circle">polymer</i>
+        <span class="title">Status</span>
+        <p><%= status %></p>
+      </li>
+      <li class="collection-item avatar">
+        <i class="material-icons circle red">query_builder</i>
+        <span class="title">Last location time</span>
+        <p><%= new Date(time) %></p>
+      </li>
+    </ul>
+    <a class="waves-effect waves-light btn" onclick="panorama.setVisible(true);">Street View</a>
+    <a class="waves-effect waves-light btn" onclick="currentInfowindow.close();">Close</a>
+  </div>
+</div>

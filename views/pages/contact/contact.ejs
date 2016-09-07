@@ -1,4 +1,26 @@
-contact
+<div class="container" id="contactPanel">
+    <div class="row">
+      <div id="contactContent" class="col s12 orange lighten-2" contenteditable="true" style="border-radius:10px;min-height: 200px;">
+      	
+      </div>
+    </div>
+    <div class="row" style="text-align:center;">
+      <a onclick="sendContact();" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Send</a>
+    </div>
+    <% if(master){ %>
+    <% for(var i=0;i<contact.result.length;i++){ %>
+    <div class="row">
+		<div id="contactContent" class="col s12 orange lighten-2" style="border-radius:10px;">
+			<div style="margin:5px;"><%= contact.result[i].data.content%></div>
+		</div>
+    </div>
+    <% } %>
+    <% } %>
+</div>
 <script>
-	//here
+	function sendContact() {
+		$.post('/sendContact',{content:$('#contactContent').html()},function(response) {
+			$('#contactContent').html("");
+		});
+	}
 </script>

@@ -20,7 +20,8 @@
     "htmlspecialchars":"latest",
     "js-md5":"latest",
     "socket.io":"latest",
-    "request":"latest"
+    "request":"latest",
+    "fs":"latest"
   },
   "repository": {
     "type": "git",
