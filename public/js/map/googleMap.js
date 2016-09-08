@@ -10,6 +10,7 @@ function initialize() {
   var mapOptions = {
     center: { lat: 24.792081, lng: 120.992631},
     zoom: 18,
+    heading: 0,
     disableDefaultUI: true
   };
   googleMap = new google.maps.Map(
@@ -147,7 +148,7 @@ function handleOrientation(event) {
       '-ms-transform': rotate,
       'transform': rotate 
   });
-  googleMap.setHeading(alpha);
+  googleMap.setHeading(googleMap.getHeading()+alpha);
 }
 
 function  main() {
