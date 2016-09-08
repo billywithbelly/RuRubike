@@ -156,7 +156,7 @@ function  main() {
   window, 'load', initialize);
   $('#compass').css('top','50%');
   $('#compass').css('left','50%');
-  $('#compass').css('margin-top',"-75px");
+  $('#compass').css('margin-top',"-100px");
   $('#compass').css('margin-left',"-75px");
 }
 
