@@ -28,7 +28,6 @@ function initialize() {
     icon: icon
   });
   setOriginLocation();
-  window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
 map.lockMove = function () {
@@ -134,30 +133,11 @@ function attachSecretMessage(obj) {
       });
   });
 }
-var init = -1;
-var offset = 0;
-function handleOrientation(event) {
-  var alpha    = event.alpha;
-  if(init==-1)init = alpha;
-  else offset = alpha-init;
-  var rotate = 'rotate(' + offset + 'deg)';
-  $('#compass').css({ 
-      '-webkit-transform': rotate,
-      '-moz-transform': rotate,
-      '-o-transform': rotate,
-      '-ms-transform': rotate,
-      'transform': rotate 
-  });
-}
 
 function  main() {
   // body...
   google.maps.event.addDomListener(
   window, 'load', initialize);
-  $('#compass').css('top','50%');
-  $('#compass').css('left','50%');
-  $('#compass').css('margin-top',"-100px");
-  $('#compass').css('margin-left',"-75px");
 }
 
 main();
