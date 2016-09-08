@@ -28,7 +28,6 @@ function initialize() {
     icon: icon
   });
   setOriginLocation();
-  window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
 map.lockMove = function () {
@@ -132,20 +131,6 @@ function attachSecretMessage(obj) {
         pitch: 0
       }));
       });
-  });
-}
-
-function handleOrientation(event) {
-  var alpha    = event.alpha;
-  $('#dick').val(alpha);
-  var rotate = 'rotate(' + alpha + 'deg)';
-  $('#compass').show();
-  $('#googleMapDiv').css({ 
-      '-webkit-transform': rotate,
-      '-moz-transform': rotate,
-      '-o-transform': rotate,
-      '-ms-transform': rotate,
-      'transform': rotate 
   });
 }
 
