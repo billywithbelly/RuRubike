@@ -134,28 +134,20 @@ function attachSecretMessage(obj) {
       });
   });
 }
-var initOrientation = -1;
-var offset;
+var init = -1;
+var offset = 0;
 function handleOrientation(event) {
   var alpha    = event.alpha;
-  $('#dick').val(offset);
-  if(initOrientation==-1){
-    initOrientation = alpha;
-    offset = 0;
-  }
-  else{
-    offset = alpha - initOrientation;
-  }
-  var iconA = {
-    url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
-    scaledSize: new google.maps.Size(40, 40), // scaled size
-    rotation: offset
-  };
-  var temlocation = ownMarker.getPosition();
-  ownMarker = new google.maps.Marker({
-    map:googleMap,
-    position:temlocation,
-    icon: iconA
+  if(init==-1)init = alpha;
+  else offset = alpha-init;
+  var rotate = 'rotate(' + offset + 'deg)';
+  $('#compass').show();
+  $('#compass').css({ 
+      '-webkit-transform': rotate,
+      '-moz-transform': rotate,
+      '-o-transform': rotate,
+      '-ms-transform': rotate,
+      'transform': rotate 
   });
 }
 
