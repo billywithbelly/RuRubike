@@ -24,7 +24,7 @@
       <div class="input-field col s4">
         <input placeholder="Placeholder" id="dick" type="text" class="validate">
       </div>
-      <img id="compass" src="http://www.freeiconspng.com/uploads/maps-north-direction-icon-13.png" alt="" style="width:100px;float:right;margin:10px;">
+      <img id="compass" src="http://www.freeiconspng.com/uploads/maps-north-direction-icon-13.png" alt="" style="width:150px;float:right;margin:10px;display:none;opacity: 0.4;position:fixed;">
     </div>
   </form>
 </div>
@@ -140,6 +140,7 @@
       if(locationOriginToggle){
         locationOriginToggle = false;
         map.unLockMove();
+        $('#compass').hide();
         clearInterval(locationOriginInterval);
         $('#centerLocationBut i').html("my_location");
       }
@@ -147,6 +148,7 @@
         locationOriginToggle = true;
         map.lockMove();
         map.setOriginLocation();
+        $('#compass').show();
         locationOriginInterval = setInterval(function() {
           map.setOriginLocation();
         },1000);

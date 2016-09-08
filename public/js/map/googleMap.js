@@ -141,7 +141,6 @@ function handleOrientation(event) {
   if(init==-1)init = alpha;
   else offset = alpha-init;
   var rotate = 'rotate(' + offset + 'deg)';
-  $('#compass').show();
   $('#compass').css({ 
       '-webkit-transform': rotate,
       '-moz-transform': rotate,
@@ -155,6 +154,10 @@ function  main() {
   // body...
   google.maps.event.addDomListener(
   window, 'load', initialize);
+  $('#compass').css('top','50%');
+  $('#compass').css('left','50%');
+  $('#compass').css('margin-top',(-$('#compass').height()/2)+'px');
+  $('#compass').css('margin-left',(-$('#compass').width()/2)+'px');
 }
 
 main();
