@@ -146,7 +146,7 @@ function handleOrientation(event) {
   else{
     offset = alpha - initOrientation;
   }
-  var icon = {
+  var iconA = {
     url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
     scaledSize: new google.maps.Size(40, 40), // scaled size
     rotation: offset
@@ -155,7 +155,7 @@ function handleOrientation(event) {
   ownMarker = new google.maps.Marker({
     map:googleMap,
     position:temlocation,
-    icon: icon
+    icon: iconA
   });
 }
 
