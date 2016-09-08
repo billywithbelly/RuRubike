@@ -28,6 +28,7 @@ function initialize() {
     icon: icon
   });
   setOriginLocation();
+  window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
 map.lockMove = function () {
@@ -132,6 +133,24 @@ function attachSecretMessage(obj) {
       }));
       });
   });
+}
+var initOrientation = -1;
+var offset;
+function handleOrientation(event) {
+  var alpha    = event.alpha;
+  if(initOrientation==-1){
+    initOrientation = alpha;
+    offset = 0;
+  }
+  else{
+    offset = alpha - initOrientation;
+  }
+  var icon = {
+    url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+    rotation: offset;
+  };
+  ownMarker.setIcon(icon);
 }
 
 function  main() {
