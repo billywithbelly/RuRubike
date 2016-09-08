@@ -108,6 +108,9 @@ function setOriginLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      googleMap.setOptions({
+        zoom: 18
+      });
       googleMap.setCenter(initialLocation);
       ownMarker.setPosition(initialLocation);
     });
