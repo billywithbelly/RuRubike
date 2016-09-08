@@ -151,7 +151,12 @@ function handleOrientation(event) {
     scaledSize: new google.maps.Size(40, 40), // scaled size
     rotation: offset
   };
-  ownMarker.setIcon(icon);
+  var temlocation = ownMarker.getPosition();
+  ownMarker = new google.maps.Marker({
+    map:googleMap,
+    position:temlocation,
+    icon: icon
+  });
 }
 
 function  main() {
