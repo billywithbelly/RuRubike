@@ -148,7 +148,7 @@ function handleOrientation(event) {
   var icon = {
     url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
     scaledSize: new google.maps.Size(40, 40), // scaled size
-    rotation: offset;
+    rotation: offset
   };
   ownMarker.setIcon(icon);
 }
