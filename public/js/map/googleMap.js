@@ -133,11 +133,19 @@ function attachSecretMessage(obj) {
       });
   });
 }
-
+var init = -1;
+var offset;
 function handleOrientation(event) {
   var alpha    = event.alpha;
-  $('#dick').val(alpha);
-  var rotate = 'rotate(' + (alpha+67.5) + 'deg)';
+  if(init==-1){
+    init = alpha;
+    offset = 0;
+  }
+  else{
+    offset = alpha-init;
+    init = alpha;
+  }
+  var rotate = 'rotate(' + offset + 'deg)';
   $('#compass').show();
   $('#compass').css({ 
       '-webkit-transform': rotate,
