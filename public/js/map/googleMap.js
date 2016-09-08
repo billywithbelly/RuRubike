@@ -10,7 +10,8 @@ function initialize() {
   var mapOptions = {
     center: { lat: 24.792081, lng: 120.992631},
     zoom: 18,
-    disableDefaultUI: true
+    disableDefaultUI: true,
+    rotateControl: true
   };
   googleMap = new google.maps.Map(
     document.getElementById('googleMapDiv'),
@@ -18,10 +19,14 @@ function initialize() {
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
   directionsDisplay.setMap(googleMap);
+  var icon = {
+    url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+  };
   ownMarker = new google.maps.Marker({
     map:googleMap,
     position:{ lat: 24.792081, lng: 120.992631},
-    icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    icon: icon
   });
   setOriginLocation();
 }
