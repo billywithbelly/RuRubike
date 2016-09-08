@@ -138,6 +138,7 @@ var initOrientation = -1;
 var offset;
 function handleOrientation(event) {
   var alpha    = event.alpha;
+  $('#dick').val(offset);
   if(initOrientation==-1){
     initOrientation = alpha;
     offset = 0;
@@ -148,7 +149,7 @@ function handleOrientation(event) {
   var icon = {
     url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
     scaledSize: new google.maps.Size(40, 40), // scaled size
-    rotation: alpha
+    rotation: offset
   };
   ownMarker.setIcon(icon);
 }
