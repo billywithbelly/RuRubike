@@ -28,6 +28,7 @@ function initialize() {
     icon: icon
   });
   setOriginLocation();
+  window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
 map.lockMove = function () {
@@ -146,13 +147,13 @@ function handleOrientation(event) {
       '-ms-transform': rotate,
       'transform': rotate 
   });
+  googleMap.setHeading(alpha);
 }
 
 function  main() {
   // body...
   google.maps.event.addDomListener(
   window, 'load', initialize);
-  window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
 main();
