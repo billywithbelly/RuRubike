@@ -137,6 +137,14 @@ function attachSecretMessage(obj) {
 function handleOrientation(event) {
   var alpha    = event.alpha;
   $('#dick').val(alpha);
+  var rotate = 'rotate(' + alpha + 'deg)';
+  $('#compass').css({ 
+      '-webkit-transform': rotate,
+      '-moz-transform': rotate,
+      '-o-transform': rotate,
+      '-ms-transform': rotate,
+      'transform': rotate 
+  });
 }
 
 function  main() {
