@@ -109,6 +109,8 @@
 <script>
   $(document).ready(function(){
     var navigationButToggle = false;
+    var locationOriginToggle = false;
+    var locationOriginInterval;
     $('.modal-trigger').leanModal();
     $('#centerLocationBut').click(myLocation);
     $('#navigationBut').click(getNearestBike);
@@ -125,7 +127,14 @@
     }
     <%}%>
     function myLocation() {
-      map.setOriginLocation();
+      if(locationOriginToggle){
+        locationOriginToggle = false;
+        clearInterval(locationOriginInterval);
+      }
+      else{
+        locationOriginToggle = true;
+        locationOriginInterval = setInterval(map.setOriginLocation(),1000);
+      }
     }
     function getNearestBike() {
       if(navigationButToggle){
