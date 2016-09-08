@@ -156,8 +156,8 @@ function  main() {
   window, 'load', initialize);
   $('#compass').css('top','50%');
   $('#compass').css('left','50%');
-  //$('#compass').css('margin-top',(-$('#compass').height()/2)+'px');
-  //$('#compass').css('margin-left',(-$('#compass').width()/2)+'px');
+  $('#compass').css('margin-top',(-$('#compass').height()/2)+'px');
+  $('#compass').css('margin-left',(-$('#compass').width()/2)+'px');
 }
 
 main();
