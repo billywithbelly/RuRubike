@@ -10,7 +10,10 @@ function initialize() {
   var mapOptions = {
     center: { lat: 24.792081, lng: 120.992631},
     zoom: 18,
-    disableDefaultUI: true,
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: true,
+    streetViewControl: false,
     rotateControl: true
   };
   googleMap = new google.maps.Map(
