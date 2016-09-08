@@ -10,11 +10,7 @@ function initialize() {
   var mapOptions = {
     center: { lat: 24.792081, lng: 120.992631},
     zoom: 18,
-    zoomControl: true,
-    mapTypeControl: false,
-    scaleControl: true,
-    streetViewControl: false,
-    rotateControl: true
+    disableDefaultUI: true
   };
   googleMap = new google.maps.Map(
     document.getElementById('googleMapDiv'),
@@ -32,6 +28,14 @@ function initialize() {
     icon: icon
   });
   setOriginLocation();
+}
+
+map.lockMove = function () {
+  googleMap.setOptions({draggable: false});
+}
+
+map.unLockMove = function () {
+  googleMap.setOptions({draggable: true});
 }
 
 map.setOriginLocation = function() {
@@ -130,10 +134,16 @@ function attachSecretMessage(obj) {
   });
 }
 
+function handleOrientation(event) {
+  var alpha    = event.alpha;
+  $('#dick').val(alpha);
+}
+
 function  main() {
   // body...
   google.maps.event.addDomListener(
   window, 'load', initialize);
+  window.addEventListener("deviceorientation", handleOrientation, true);
 }
 
 main();
