@@ -39,7 +39,7 @@
     <% } %>
   </ul>
 </div>
-<footer id="searchPanel" class="page-footer" style="left:0;bottom:-60vh;position:fixed;width:100%">
+<footer id="searchPanel" class="page-footer" style="left:0;top:100vh;position:fixed;width:100%">
   <div class="container">
     <div class="row">
       <div class="col s12">
@@ -139,13 +139,13 @@
     $('#searchBut').click(function() {
       if(searchButToggle){
         searchButToggle=false;
-        $("#searchPanel").animate({bottom: '-60vh'});
+        $("#searchPanel").animate({top: '100vh'});
         $("#buts").animate({bottom: '10px'});
         $('#searchBut i').html("search");
       }
       else{
         searchButToggle=true;
-        $("#searchPanel").animate({bottom: '-35vh'});
+        $("#searchPanel").animate({top: '80vh'});
         $("#buts").animate({bottom: '20vh'});
         $('#searchBut i').html("stop");
       }
