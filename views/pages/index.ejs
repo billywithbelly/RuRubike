@@ -23,34 +23,29 @@
     <i class="material-icons">menu</i>
   </a>
   <ul>
-    <li><a class="btn-floating modal-trigger tooltipped"  data-position="left" data-delay="50" data-tooltip="Contact Us" href="#contactUs"><i class="material-icons">supervisor_account</i></a></li>
-    <li><a class="btn-floating lime accent-2 tooltipped"  data-position="left" data-delay="50" data-tooltip="Search" id="searchBut"><i class="material-icons">search</i></a></li>
-    <li><a class="btn-floating red tooltipped"  data-position="left" data-delay="50" data-tooltip="Locate My Place" id="centerLocationBut"><i class="material-icons">my_location</i></a></li>
-    <li><a class="btn-floating yellow darken-1 tooltipped"  data-position="left" data-delay="50" data-tooltip="Find Bike" id="navigationBut"><i class="material-icons">navigation</i></a></li>
+    <li><a class="btn-floating modal-trigger" href="#contactUs"><i class="material-icons">supervisor_account</i></a></li>
+    <li><a class="btn-floating lime accent-2" id="searchBut"><i class="material-icons">search</i></a></li>
+    <li><a class="btn-floating red" id="centerLocationBut"><i class="material-icons">my_location</i></a></li>
+    <li><a class="btn-floating yellow darken-1" id="navigationBut"><i class="material-icons">navigation</i></a></li>
 
     <% if(logined==true){ %>
-    <li><a class="btn-floating modal-trigger green tooltipped"  data-position="left" data-delay="50" data-tooltip="Healthy Manager" href="#health"><i class="material-icons">perm_identity</i></a></li>
-    <li><a class="btn-floating modal-trigger blue tooltipped"  data-position="left" data-delay="50" data-tooltip="Account" href="#account"><i class="material-icons">settings</i></a></li>
+    <li><a class="btn-floating modal-trigger green" href="#health"><i class="material-icons">perm_identity</i></a></li>
+    <li><a class="btn-floating modal-trigger blue" href="#account"><i class="material-icons">settings</i></a></li>
     <%} else{%>
-    <li><a class="btn-floating modal-trigger blue tooltipped"  data-position="left" data-delay="50" data-tooltip="Login" href="#login"><i class="material-icons">vpn_key</i></a></li>
+    <li><a class="btn-floating modal-trigger blue" href="#login"><i class="material-icons">vpn_key</i></a></li>
     <% } %>
   </ul>
 </div>
-<footer id="searchPanel" class="page-footer" style="left:0;bottom:-25vh;position:fixed;height:25vh;width:100%">
+<footer id="searchPanel" class="page-footer" style="left:0;bottom:-25vh;position:fixed;width:100%">
   <div class="container">
     <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Footer Content</h5>
-        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      <div class="col s12">
+        <a class="waves-effect waves-light btn">button</a>
       </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Links</h5>
-        <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-        </ul>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <a class="waves-effect waves-light btn">button</a>
       </div>
     </div>
   </div>
@@ -144,7 +139,7 @@
       else{
         searchButToggle=true;
         $("#searchPanel").animate({bottom: '0'});
-        $("#buts").animate({bottom: '25vh'});
+        $("#buts").animate({bottom: $('#searchPanel').height()});
         $('#searchBut i').html("stop");
       }
     });
