@@ -14,6 +14,9 @@
     .modal-header{
       text-align: center;
     }
+    .carousel-item{
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -36,7 +39,7 @@
     <% } %>
   </ul>
 </div>
-<footer id="searchPanel" class="page-footer" style="left:0;bottom:-25vh;position:fixed;width:100%">
+<footer id="searchPanel" class="page-footer" style="left:0;bottom:-60vh;position:fixed;width:100%">
   <div class="container">
     <div class="row">
       <div class="col s12">
@@ -44,8 +47,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="col s12">
-        <a class="waves-effect waves-light btn">button</a>
+      <div class="carousel carousel-slider">
+        <a class="carousel-item" href="#one!"><button class="waves-effect waves-light btn">button</button></a>
+        <a class="carousel-item" href="#two!"><button class="waves-effect waves-light btn">button</button></a>
+        <a class="carousel-item" href="#three!"><button class="waves-effect waves-light btn">button</button></a>
+        <a class="carousel-item" href="#four!"><button class="waves-effect waves-light btn">button</button></a>
       </div>
     </div>
   </div>
@@ -122,6 +128,7 @@
 <script src="./js/socket/socket.js"></script>
 <script>
   $(document).ready(function(){
+    $('.carousel.carousel-slider').carousel({full_width: true});
     var navigationButToggle = false;
     var locationOriginToggle = false;
     var searchButToggle = false;
@@ -132,14 +139,14 @@
     $('#searchBut').click(function() {
       if(searchButToggle){
         searchButToggle=false;
-        $("#searchPanel").animate({bottom: '-25vh'});
-        $("#buts").animate({bottom: '0'});
+        $("#searchPanel").animate({bottom: '-60vh'});
+        $("#buts").animate({bottom: '10px'});
         $('#searchBut i').html("search");
       }
       else{
         searchButToggle=true;
-        $("#searchPanel").animate({bottom: '0'});
-        $("#buts").animate({bottom: $('#searchPanel').height()});
+        $("#searchPanel").animate({bottom: '-35vh'});
+        $("#buts").animate({bottom: '20vh'});
         $('#searchBut i').html("stop");
       }
     });
