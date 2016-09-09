@@ -3,6 +3,7 @@ var rubikes = [];
 var googleMap;
 var directionsService;
 var directionsDisplay;
+var placeDirDisplay;
 var ownMarker;
 var target;
 var infowindow = new google.maps.InfoWindow();
@@ -17,7 +18,13 @@ function initialize() {
   mapOptions);
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
+  placeDirDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: "red"
+    }
+  });
   directionsDisplay.setMap(googleMap);
+  placeDirDisplay.setMap(googleMap);
   var icon = {
     url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
     scaledSize: new google.maps.Size(40, 40), // scaled size
@@ -82,16 +89,22 @@ map.setNearestBikePath = function() {
       }
     }
   }
+  findPath(ownMarker.getPosition(),rubikes[target].marker.getPosition(),directionsDisplay,function(){
+    rubikes[target].marker.setAnimation(google.maps.Animation.BOUNCE);
+  });
+}
+
+function findPath(origin,destination,display,callback){
   directionsService.route({
-    origin: ownMarker.getPosition(),
-    destination: rubikes[target].marker.getPosition(),
+    origin: origin,
+    destination: destination,
     waypoints: [],
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.WALKING
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      rubikes[target].marker.setAnimation(google.maps.Animation.BOUNCE);
+      display.setDirections(response);
+      callback();
     } else {
       window.alert('Directions request failed due to ' + status);
     }
@@ -102,6 +115,15 @@ map.clearPath = function(){
   directionsDisplay.setDirections({routes: []});
   rubikes[target].marker.setAnimation(null);
   target = -1;
+}
+
+map.findPlacePath = function(lat,lng) {
+  findPath(ownMarker.getPosition(),{ lat: lat, lng: lng},placeDirDisplay,function(){
+  });
+}
+
+map.clearPlacePath = function(){
+  placeDirDisplay.setDirections({routes: []});
 }
 
 function setOriginLocation() {

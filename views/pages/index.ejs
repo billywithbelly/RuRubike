@@ -40,15 +40,8 @@
   </ul>
 </div>
 <footer id="searchPanel" class="page-footer" style="left:0;top:100vh;position:fixed;width:100%">
-  <div class="container">
-    <div class="row">
-      <div class="carousel carousel-slider">
-        <a class="carousel-item" href="#one!"><button class="waves-effect waves-light btn">button</button></a>
-        <a class="carousel-item" href="#two!"><button class="waves-effect waves-light btn">button</button></a>
-        <a class="carousel-item" href="#three!"><button class="waves-effect waves-light btn">button</button></a>
-        <a class="carousel-item" href="#four!"><button class="waves-effect waves-light btn">button</button></a>
-      </div>
-    </div>
+  <div class="container" id="placeContainer">
+    
   </div>
 </footer>
 <!-- Modal Structure -->
@@ -123,7 +116,6 @@
 <script src="./js/socket/socket.js"></script>
 <script>
   $(document).ready(function(){
-    $('.carousel.carousel-slider').carousel({full_width: true});
     var navigationButToggle = false;
     var locationOriginToggle = false;
     var searchButToggle = false;
@@ -134,19 +126,23 @@
     $('#searchBut').click(function() {
       if(searchButToggle){
         searchButToggle=false;
-        $("#searchPanel").animate({top: '100vh'});
-        $("#buts").animate({bottom: '10px'});
-        $('#searchBut i').html("search");
+        hideSearchPanel();
       }
       else{
         searchButToggle=true;
-        $("#searchPanel").animate({top: '70vh'});
-        $("#buts").animate({bottom: '30vh'});
-        $('#searchBut i').html("stop");
+        showSearchPanel();
       }
     });
+
+    $.get('/place',function(response) {
+      $.post('/view',{action:'placeContainer',json:response},function(content) {
+        $('#placeContainer').html(content);
+      });
+    });
+
     <% if(logined==false){ %>
     $('#loginBut').click(loginButHendler);
+
     function loginButHendler() {
       var acint = $('#accountInput').val();
       var psint = $('#passwordInput').val();
@@ -157,6 +153,7 @@
       }
     }
     <%}%>
+
     function myLocation() {
       if(locationOriginToggle){
         locationOriginToggle = false;
@@ -174,6 +171,7 @@
         $('#centerLocationBut i').html("stop");
       }
     }
+
     function getNearestBike() {
       if(navigationButToggle){
         navigationButToggle = false;
@@ -186,6 +184,7 @@
         $('#navigationBut i').html("stop");
       }
     }
+
     socket.run(map);
   });
 </script>
