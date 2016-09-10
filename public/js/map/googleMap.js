@@ -3,6 +3,7 @@ var rubikes = [];
 var googleMap;
 var directionsService;
 var directionsDisplay;
+var placeDirDisplay;
 var ownMarker;
 var target;
 var infowindow = new google.maps.InfoWindow();
@@ -17,13 +18,31 @@ function initialize() {
   mapOptions);
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
+  placeDirDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: "red"
+    }
+  });
   directionsDisplay.setMap(googleMap);
+  placeDirDisplay.setMap(googleMap);
+  var icon = {
+    url: 'https://freeiconshop.com/files/edd/person-flat.png', // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+  };
   ownMarker = new google.maps.Marker({
     map:googleMap,
     position:{ lat: 24.792081, lng: 120.992631},
-    icon:'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    icon: icon
   });
   setOriginLocation();
+}
+
+map.lockMove = function () {
+  googleMap.setOptions({draggable: false});
+}
+
+map.unLockMove = function () {
+  googleMap.setOptions({draggable: true});
 }
 
 map.setOriginLocation = function() {
@@ -70,16 +89,22 @@ map.setNearestBikePath = function() {
       }
     }
   }
+  findPath(ownMarker.getPosition(),rubikes[target].marker.getPosition(),directionsDisplay,function(){
+    rubikes[target].marker.setAnimation(google.maps.Animation.BOUNCE);
+  });
+}
+
+function findPath(origin,destination,display,callback){
   directionsService.route({
-    origin: ownMarker.getPosition(),
-    destination: rubikes[target].marker.getPosition(),
+    origin: origin,
+    destination: destination,
     waypoints: [],
     optimizeWaypoints: true,
     travelMode: google.maps.TravelMode.WALKING
   }, function(response, status) {
     if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-      rubikes[target].marker.setAnimation(google.maps.Animation.BOUNCE);
+      display.setDirections(response);
+      callback();
     } else {
       window.alert('Directions request failed due to ' + status);
     }
@@ -92,10 +117,22 @@ map.clearPath = function(){
   target = -1;
 }
 
+map.findPlacePath = function(lat,lng) {
+  findPath(ownMarker.getPosition(),{ lat: lat, lng: lng},placeDirDisplay,function(){
+  });
+}
+
+map.clearPlacePath = function(){
+  placeDirDisplay.setDirections({routes: []});
+}
+
 function setOriginLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      googleMap.setOptions({
+        zoom: 18
+      });
       googleMap.setCenter(initialLocation);
       ownMarker.setPosition(initialLocation);
     });

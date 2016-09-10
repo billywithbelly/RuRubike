@@ -96,3 +96,16 @@ exports.insertContact = function(data,callback) {
 exports.getContact = function(callback) {
 	MongoDatabase.collection('contact').find({}).toArray(callback);
 }
+
+exports.insertPlace = function(data,callback) {
+	MongoDatabase.collection('place').insertOne(
+    {
+        data: data,
+        time: new Date()
+    }
+    ,callback);
+}
+
+exports.getPlace = function(callback) {
+	MongoDatabase.collection('place').find({}).toArray(callback);
+}
