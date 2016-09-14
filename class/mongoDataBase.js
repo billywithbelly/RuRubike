@@ -1,6 +1,6 @@
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-module.exports = class
+class Mongo
 {
 	constructor(url)
 	{
@@ -119,3 +119,5 @@ module.exports = class
 		this.MongoDatabase.collection('place').find({}).toArray(callback);
 	}
 }
+
+module.exports = Mongo;

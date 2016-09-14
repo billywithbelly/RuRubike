@@ -1,7 +1,7 @@
 var fs = require('fs');
 var ejs = require('ejs');
 var func = require('../function.js');
-module.exports = class
+class View
 {
 	constructor(app)
 	{
@@ -27,3 +27,5 @@ module.exports = class
 		});
 	}
 }
+
+module.exports = View;

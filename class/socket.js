@@ -1,5 +1,5 @@
 var func = require('./function.js');
-module.exports = class
+class SocketIO
 {
 	constructor(httpServer,mongodb)
 	{
@@ -29,3 +29,5 @@ module.exports = class
 		});
 	}
 }
+
+module.exports = SocketIO;

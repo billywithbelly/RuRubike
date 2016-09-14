@@ -1,5 +1,5 @@
 var func = require('../function.js');
-module.exports = class
+class Login
 {
 	constructor(app,db)
 	{
@@ -42,6 +42,7 @@ module.exports = class
 			}
 		});
 	}
+
 	register(id,password,email,uid,callback) {
 		this.mongoDataBase.getAccount({id:id},function(err,res) {
 			var temp;
@@ -62,3 +63,5 @@ module.exports = class
 		});
 	}
 }
+
+module.exports = Login;

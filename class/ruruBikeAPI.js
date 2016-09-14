@@ -2,7 +2,7 @@ var Login = require('./login/login.js');
 var View = require('./view/view.js');
 var Contact = require('./contact/contact.js');
 
-module.exports = class
+class ruruBikeApi
 {
 	constructor(app,mongodb)
 	{
@@ -21,3 +21,5 @@ module.exports = class
 		}
 	}
 }
+
+module.exports = ruruBikeApi;

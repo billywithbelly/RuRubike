@@ -1,5 +1,5 @@
 var func = require('../function.js');
-module.exports = class
+class Contact
 {
 	constructor(app,db)
 	{
@@ -71,3 +71,5 @@ module.exports = class
 		});
 	}
 }
+
+module.exports = Contact;
