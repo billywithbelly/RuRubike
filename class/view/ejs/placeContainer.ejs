@@ -63,6 +63,7 @@
   function placeBtnHendler(lat,lng) {
     map.findPlacePath(parseFloat(lat),parseFloat(lng));
     hideSearchPanel();
+    searchButToggle=false;
   }
   function showSearchPanel() {
     $("#searchPanel").animate({top: '70vh'});

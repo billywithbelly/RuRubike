@@ -19,15 +19,12 @@ app.use(session({
   cookie: { maxAge: 60 * 1000 }
 }));
 
-var rurubike = require('./include/api/ruruBikeAPI.js');
-var mongoDataBase = require('./include/db/mongoDataBase.js');
-var socket = require('./include/socket/socket.js');
-mongoDataBase.connect('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase',function (){
-	rurubike.bindMongoDB(mongoDataBase);
-	socket.bindMongoDB(mongoDataBase);
-});
-rurubike.bindApp(app);
-socket.bindHttpServer(httpServer);
+var RurubikeAPI = require('./class/ruruBikeAPI.js');
+var MongoDataBase = require('./class/mongoDataBase.js');
+var SocketIO = require('./class/socket.js');
+var mongoDataBase = new MongoDataBase('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase');
+var rurubike = new RurubikeAPI(app,mongoDataBase);
+var socket = new SocketIO(httpServer,mongoDataBase);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
