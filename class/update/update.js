@@ -19,9 +19,9 @@ class Update
 			});
 		});
 
-		app.post('/update/location', function(req, res) {
+		app.post('/update/bike', function(req, res) {
 			var data = func.antiXSS(req.body);
-				that.updateLocation(data.id, data.latitude, data.longitude, function(response) {
+				that.updateLocation(data.id, data.latitude, data.longitude, data.state, data.battery, function(response) {
 				res.send(response);
 			});
 		});
@@ -83,7 +83,7 @@ class Update
 		});
 	}
 
-	updateLocation(id, latitude, longitude, callback) {
+	updateLocation(id, latitude, longitude, state, battery, callback) {
 		var that = this;
 		that.mongoDataBase.getOneBike({ id : id }, function(err, res) {
 			if(err) {
@@ -93,7 +93,7 @@ class Update
 				callback(func.result("no bike", -1));
 			}
 			else {
-				that.mongoDataBase.updateBikeLocation(id, latitude, longitude, function(err, res) {
+				that.mongoDataBase.updateBikeLocation(id, latitude, longitude, state, battery, function(err, res) {
 					if(err)
 						callback(func.dberror());
 					else

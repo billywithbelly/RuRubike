@@ -81,11 +81,13 @@ class Mongo
 		,callback);
 	}
 
-	updateBikeLocation(id, lat, long, callback) 
+	updateBikeLocation(id, lat, long, state, battery, callback) 
 	{
 		this.MongoDatabase.collection('bike').updateOne(
 			{ id : id },
-			{ $set : { location : { latitude : lat, longitude : long } } },
+			{ $set : { location : { latitude : lat, longitude : long },
+					   state    : state,
+					   battery  : battery } },
 			callback);
 	}
 
