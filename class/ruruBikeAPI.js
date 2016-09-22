@@ -1,6 +1,8 @@
 var Login = require('./login/login.js');
 var View = require('./view/view.js');
 var Contact = require('./contact/contact.js');
+var Update = require('./update/update.js');
+var Bike = require('./bike/bike.js');
 
 class ruruBikeApi
 {
@@ -8,6 +10,8 @@ class ruruBikeApi
 	{
 		var that = this;
 		this.login = new Login(app,mongodb);
+		this.update = new Update(app,mongodb);
+		this.bike = new Bike(app,mongodb);
 		this.view = new View(app,mongodb);
 		this.contact = new Contact(app,mongodb);
 		this.apiAccess = {};
