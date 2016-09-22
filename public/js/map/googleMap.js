@@ -81,7 +81,7 @@ map.setNearestBikePath = function() {
   target = -1;
   var minDis = 200000;
   for(var i=0;i<rubikes.length;i++){
-    if(rubikes[i].bike.status=="ok"){
+    if(rubikes[i].bike.state=='1'){
       var dis = google.maps.geometry.spherical.computeDistanceBetween (ownMarker.getPosition(), rubikes[i].marker.getPosition());
       if(dis<minDis){
         target = i;
