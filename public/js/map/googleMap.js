@@ -106,6 +106,9 @@ class Map{
     this.googleMap = new google.maps.Map(
       document.getElementById('googleMapDiv'),
     this.mapOptions);;
+    this.person = new Person(this);
+    this.bikeDirections = new Directions(this,'blue');
+    this.placeDirections = new Directions(this,'red');
     this.lockMove = this.lockMove.bind(this);
     this.unLockMove = this.unLockMove.bind(this);
     this.setOriginLocation = this.setOriginLocation.bind(this);
@@ -150,46 +153,40 @@ class Map{
     var minDis = 200000;
     for(var i=0;i<this.rubikes.length;i++){
       if(this.rubikes[i].bike.state=='1'){
-        var dis = google.maps.geometry.spherical.computeDistanceBetween (person.getPosition(), this.rubikes[i].marker.getPosition());
+        var dis = google.maps.geometry.spherical.computeDistanceBetween (this.person.getPosition(), this.rubikes[i].marker.getPosition());
         if(dis<minDis){
           this.target = i;
-          minDis = google.maps.geometry.spherical.computeDistanceBetween (person.getPosition(), this.rubikes[i].marker.getPosition());
+          minDis = google.maps.geometry.spherical.computeDistanceBetween (this.person.getPosition(), this.rubikes[i].marker.getPosition());
         }
       }
     }
-    bikeDirections.findPath(person.getPosition(),this.rubikes[this.target].marker.getPosition(),function(){
+    this.bikeDirections.findPath(this.person.getPosition(),this.rubikes[this.target].marker.getPosition(),function(){
       this.rubikes[this.target].marker.setAnimation(google.maps.Animation.BOUNCE);
     }.bind(this));
   }
 
   clearPath(){
-    bikeDirections.clearPath();
+    this.bikeDirections.clearPath();
     this.rubikes[this.target].marker.setAnimation(null);
     this.target = -1;
   }
 
   findPlacePath(lat,lng) {
-    placeDirections.findPath(person.getPosition(),{ lat: lat, lng: lng},function(){
+    this.placeDirections.findPath(this.person.getPosition(),{ lat: lat, lng: lng},function(){
     });
   }
 
   clearPlacePath(){
-    placeDirections.clearPath();
+    this.placeDirections.clearPath();
   }
 
 }
 
 var map;
-var person;
-var bikeDirections;
-var placeDirDisplay;
 var panorama = null;
 var currentInfowindow = null;
 function initialize() {
   map = new Map();
-  person = new Person(map);
-  bikeDirections = new Directions(map,'blue');
-  placeDirections = new Directions(map,'red');
   setOriginLocation();
 }
 
@@ -201,7 +198,7 @@ function setOriginLocation() {
         zoom: 18
       });
       map.googleMap.setCenter(initialLocation);
-      person.setPosition(initialLocation);
+      map.person.setPosition(initialLocation);
     });
   }
 }
@@ -213,3 +210,4 @@ function  main() {
 }
 
 main();
+
