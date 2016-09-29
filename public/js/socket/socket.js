@@ -1,5 +1,5 @@
 var socket = {};
-socket.run = function(map) {
+socket.run = function() {
 	var socketIo = io.connect();
 	socketIo.on('log', function (log) {
 		console.log(log);
