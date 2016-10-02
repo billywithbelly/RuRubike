@@ -47,3 +47,7 @@ app.get('/', function(request, response) {
   	response.render('pages/index',{logined:false,master:false,contact:{}});
   }
 });
+
+app.get('/react', function(request, response) {
+  response.render('pages/react/index');
+});
