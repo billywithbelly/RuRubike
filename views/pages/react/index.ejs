@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+  <style>
+    #googleMapDiv{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      z-index: -999;
+    }
+    .modal-header{
+      text-align: center;
+    }
+    .carousel-item{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div id="googleMapDiv"></div>
+<div id="app"></div>
+</body>
+<script type="text/javascript" src="js/react/index_bundle.js"></script>
+</html>
