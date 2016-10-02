@@ -26,6 +26,20 @@ class Update
 			});
 		});
 
+		app.post('/loraDick',function(req,res) {
+			var data = func.antiXSS(req.body);
+			
+			var lat = (parseInt(data.data.substr(14, 8), 16) / 1000000 + 24.7).toFixed(6).toString();
+			var lon = (parseInt(data.data.substr(6, 8), 16) / 1000000 + 120.9).toFixed(6).toString();
+			var state = (parseInt((parseInt(data.data.substr(0, 6), 16).toString(2).substr(1,2)), 2)).toString();
+			var bat = (parseInt((parseInt(data.data.substr(0, 6), 16).toString(2).substr(3,3)), 2)*25).toString();
+			var id = (parseInt((parseInt(data.data.substr(0, 6), 16).toString(2).substr(0,1)), 2)).toString();
+
+			that.updateBikeAll(id, lat, lon, state, bat, function (response) {
+				res.send(response);
+			})
+			
+		});
 	}
 
 	updatePassword(id, password, newpassword, callback) {
