@@ -1,7 +1,7 @@
 var func = require('../function.js');
 class Login
 {
-	constructor(app,db)
+	constructor(app,db,rurubike)
 	{
 		var that = this;
 		this.mongoDataBase = db;
@@ -27,6 +27,25 @@ class Login
 		app.get('/test', function(req, res) {
 			if(req.query.id === 'ray') res.send('102062318');
 		});
+
+		app.post('/isLogin',function(request, response){
+			if(request.session.account){
+				this.login(request.session.account,request.session.password,function(loginRes){
+					if(loginRes.result.master=='yes'){
+						rurubike.apiAccess.getContact(function(contactRes) {
+							response.send({contact:contactRes,login:'yes',data:loginRes});
+						});
+					}
+					else{
+						response.send({contact:{},login:'yes',data:loginRes});
+					}
+				});
+			}
+			else{
+				response.send({contact:{},login:'no'});
+			}
+		}.bind(this));
+
 	}
 
 	login(id,password,callback) {

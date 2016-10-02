@@ -9,7 +9,7 @@ class ruruBikeApi
 	constructor(app,mongodb)
 	{
 		var that = this;
-		this.login = new Login(app,mongodb);
+		this.login = new Login(app,mongodb,this);
 		this.update = new Update(app,mongodb);
 		this.bike = new Bike(app,mongodb);
 		this.view = new View(app,mongodb);

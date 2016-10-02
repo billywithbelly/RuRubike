@@ -30,24 +30,5 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  if(request.session.account){
-  	rurubike.apiAccess.login(request.session.account,request.session.password,function(res){
-  		if(res.result.master=='yes'){
-  			rurubike.apiAccess.getContact(function(res) {
-  				response.render('pages/index',{logined:true,user:res.result,master:true,contact:res});
-  			});
-  		}
-  		else{
-  			response.render('pages/index',{logined:true,user:res.result,master:false,contact:{}});
-  		}
-  		
-  	});
-  }
-  else{
-  	response.render('pages/index',{logined:false,master:false,contact:{}});
-  }
-});
-
-app.get('/react', function(request, response) {
   response.render('pages/react/index');
 });

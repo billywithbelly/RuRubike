@@ -14,7 +14,6 @@ export default class PlaceBox extends Component {
   loadComments () {
     $.get(this.props.url,function(response){
       this.setState({data:response.result});
-      console.log(response);
     }.bind(this));
   }
 

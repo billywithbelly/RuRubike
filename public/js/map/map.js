@@ -26,6 +26,8 @@ export default class Map{
     this.clearPath = this.clearPath.bind(this);
     this.findPlacePath = this.findPlacePath.bind(this);
     this.clearPlacePath = this.clearPlacePath.bind(this);
+    this.setOriginLocation = this.setOriginLocation.bind(this);
+    this.setOriginLocation();
   }
 
   lockMove() {
@@ -34,10 +36,6 @@ export default class Map{
 
   unLockMove() {
     this.googleMap.setOptions({draggable: true});
-  }
-
-  setOriginLocation() {
-    setOriginLocation();
   }
 
   setBikes(bikes) {
@@ -87,6 +85,19 @@ export default class Map{
 
   clearPlacePath(){
     this.placeDirections.clearPath();
+  }
+
+  setOriginLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        this.googleMap.setOptions({
+          zoom: 18
+        });
+        this.googleMap.setCenter(initialLocation);
+        this.person.setPosition(initialLocation);
+      }.bind(this));
+    }
   }
 
 }

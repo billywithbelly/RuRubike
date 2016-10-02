@@ -1,6 +1,7 @@
 'use strict'
 
 import React, { Component,PropTypes } from 'react'
+import {ui} from '../react/index'
 
 export default class Place extends Component {
 	constructor (props) {
@@ -9,7 +10,7 @@ export default class Place extends Component {
 	}
 
 	onClickHendler(){
-		placeBtnHendler(this.props.data.lat,this.props.data.lng);
+		ui.placeBtnHendler(this.props.data.lat,this.props.data.lng);
 	}
 
 	render(){
