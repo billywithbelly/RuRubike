@@ -4,7 +4,6 @@ class Bike
 {
 	constructor(app,db)
 	{
-		console.log("in");
 		var that = this;
 		this.mongoDataBase = db;
 
@@ -26,6 +25,11 @@ class Bike
 			that.setBike(data.id,data.state,data.battery,kid,function(response) {
 				res.send(response);
 			});
+		});
+		app.post('/loraDick',function(req,res) {
+			var data = func.antiXSS(req.body);
+			console.log(data.data);
+			res.send("OK");
 		});
 	}
 
