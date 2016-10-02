@@ -31,10 +31,11 @@ class Update
 			
 			var lat = (parseInt(data.data.substr(14, 8), 16) / 1000000 + 24.7).toFixed(6).toString();
 			var lon = (parseInt(data.data.substr(6, 8), 16) / 1000000 + 120.9).toFixed(6).toString();
-			var state = (parseInt((parseInt(data.data.substr(0, 6), 16).toString(2).substr(1,2)), 2)).toString();
-			var bat = (parseInt((parseInt(data.data.substr(0, 6), 16).toString(2).substr(3,3)), 2)*25).toString();
-			var id = (parseInt((parseInt(data.data.substr(0, 6), 16).toString(2).substr(0,1)), 2)).toString();
-
+			var idstatebat = parseInt(data.data.substr(0, 6), 16).toString(2);
+			var state = (parseInt(idstatebat.substr(idstatebat.length-5,2), 2)).toString();
+			var bat = (parseInt(idstatebat.substr(idstatebat.length-3,3), 2)*25).toString();
+			var id = (parseInt(idstatebat.substr(0,idstatebat.length-5), 2)).toString();
+			console.log(id +'|'+ state +'|'+ bat);
 			that.updateBikeAll(id, lat, lon, state, bat, function (response) {
 				res.send(response);
 			})
