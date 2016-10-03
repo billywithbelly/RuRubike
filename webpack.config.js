@@ -1,3 +1,4 @@
+var ClosureCompilerPlugin = require('webpack-closure-compiler');
 module.exports = {
   // 檔案起始點從 entry 進入，因為是陣列所以也可以是多個檔案
   entry: [
@@ -25,5 +26,15 @@ module.exports = {
   devServer: {
     inline: true,
     port: 8008,
-  }
+  },
+  plugins: [
+        new ClosureCompilerPlugin({
+          compiler: {
+            language_in: 'ECMASCRIPT6',
+            language_out: 'ECMASCRIPT5',
+            compilation_level: 'WHITESPACE_ONLY'
+          },
+          concurrency: 3,
+        })
+    ]
 };
