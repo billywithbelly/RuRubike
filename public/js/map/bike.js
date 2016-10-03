@@ -1,3 +1,5 @@
+import {map} from '../react/index'
+
 export default class Bike{
   constructor(map,bike,index){
     this.bike = bike;
@@ -20,16 +22,21 @@ export default class Bike{
         content: Content
       });
       this.marker.addListener('click', function() {
-        if(currentInfowindow!=undefined)currentInfowindow.close();
-        infowindow.open(this.marker.get('map'), this.marker);
-        currentInfowindow = infowindow;
-        panorama = map.googleMap.getStreetView();
-        panorama.setPosition({ lat: this.marker.getPosition().lat(), lng: this.marker.getPosition().lng()});
-        panorama.setPov(({
-          heading: 265,
-          pitch: 0
-        }));
+          if(Bike.currentInfowindow!=undefined)Bike.currentInfowindow.close();
+          infowindow.open(this.marker.get('map'), this.marker);
+          Bike.currentInfowindow = infowindow;
+          Bike.panorama = map.googleMap.getStreetView();
+          Bike.panorama.setPosition({ lat: this.marker.getPosition().lat(), lng: this.marker.getPosition().lng()});
+          Bike.panorama.setPov(({
+            heading: 265,
+            pitch: 0
+          }));
+          $('#streetview').click(()=>{Bike.panorama.setVisible(true);});
+          $('#closebut').click(()=>{Bike.currentInfowindow.close();});
         }.bind(this));
     }.bind(this));
   }
 }
+
+Bike.panorama = null;
+Bike.currentInfowindow = null;

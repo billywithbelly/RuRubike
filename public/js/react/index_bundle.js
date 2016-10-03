@@ -81,8 +81,6 @@
 	var ui;
 	var map;
 	var socket;
-	var panorama = null;
-	var currentInfowindow = null;
 	function initialize() {
 		exports.map = map = new _map2.default('googleMapDiv');
 		socket = new _socket2.default(map);
@@ -21707,7 +21705,7 @@
 
 /***/ },
 /* 176 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -21716,6 +21714,8 @@
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _index = __webpack_require__(1);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21744,14 +21744,20 @@
 	          content: Content
 	        });
 	        this.marker.addListener('click', function () {
-	          if (currentInfowindow != undefined) currentInfowindow.close();
+	          if (Bike.currentInfowindow != undefined) Bike.currentInfowindow.close();
 	          infowindow.open(this.marker.get('map'), this.marker);
-	          currentInfowindow = infowindow;
-	          panorama = map.googleMap.getStreetView();
-	          panorama.setPosition({ lat: this.marker.getPosition().lat(), lng: this.marker.getPosition().lng() });
-	          panorama.setPov({
+	          Bike.currentInfowindow = infowindow;
+	          Bike.panorama = _index.map.googleMap.getStreetView();
+	          Bike.panorama.setPosition({ lat: this.marker.getPosition().lat(), lng: this.marker.getPosition().lng() });
+	          Bike.panorama.setPov({
 	            heading: 265,
 	            pitch: 0
+	          });
+	          $('#streetview').click(function () {
+	            Bike.panorama.setVisible(true);
+	          });
+	          $('#closebut').click(function () {
+	            Bike.currentInfowindow.close();
 	          });
 	        }.bind(this));
 	      }.bind(this));
@@ -21762,6 +21768,10 @@
 	}();
 
 	exports.default = Bike;
+
+
+	Bike.panorama = null;
+	Bike.currentInfowindow = null;
 
 /***/ },
 /* 177 */
