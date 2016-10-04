@@ -129,7 +129,8 @@ export default class UI extends Component {
 			left:'0',
 			top:'100vh',
 			position:'fixed',
-			width:'100%'
+			width:'100%',
+			overflow:'auto'
 		};
 
 		return (

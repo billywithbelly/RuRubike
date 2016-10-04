@@ -24,7 +24,7 @@ export default class PlaceBox extends Component {
 
   render () {
     var rowStyle={
-      height:'30vh'
+      height:'25vh'
     };
     return (
       <div className='row' style={rowStyle}>
