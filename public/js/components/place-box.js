@@ -23,8 +23,11 @@ export default class PlaceBox extends Component {
   }
 
   render () {
+    var rowStyle={
+      height:'30vh'
+    };
     return (
-      <div className='row'>
+      <div className='row' style={rowStyle}>
         <div className='carousel carousel-slider'>
           <PlaceList data={this.state.data} type='1' name='Education' />
           <PlaceList data={this.state.data} type='2' name='Dome' />

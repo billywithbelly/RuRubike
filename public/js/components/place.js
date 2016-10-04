@@ -15,7 +15,7 @@ export default class Place extends Component {
 
 	render(){
 		return (
-		    <button className="waves-effect waves-light btn" onClick={this.onClickHendler}>{this.props.data.name}</button>
+		    <button className="waves-effect waves-light btn" onClick={this.onClickHendler} style={{margin:'5px'}}>{this.props.data.name}</button>
 		);
 	}
 }
