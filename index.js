@@ -32,3 +32,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   response.render('pages/react/index');
 });
+
+app.get('/badge', function(request, response) {
+  response.sendFile(__dirname + '/views/pages/main.html');
+});

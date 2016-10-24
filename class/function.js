@@ -39,6 +39,10 @@ class func
         });
         return uuid;
     };
+
+    static quickReturn(data){
+        return data;
+    };
 }
 
 module.exports = func;
