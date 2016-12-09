@@ -7,13 +7,20 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
     <style>
-        #faceDetectVideo{
-            height: 50vh;
-        }
+      .screen{
+        border: 1px;
+      }
+      #faceDetectVideo{
+          height: 50vh;
+      }
+      #screenShotVideo{
+          height: 50vh;
+      }
     </style>
   </head>
   <body>
-    <video id="faceDetectVideo"></video>
+    <video id="faceDetectVideo" class="screen"></video>
+    <canvas id="screenShotVideo" class="screen"></canvas>
   </body>
   <script type="text/javascript" src="./js/face.js"></script>
 </html>
