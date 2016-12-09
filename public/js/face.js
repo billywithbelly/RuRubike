@@ -50,14 +50,14 @@ function sendFaceButHendler(){
   var data = canvas.toDataURL('image/png');
   var img = data.replace("data:image/png;base64,","");
   $.ajax({
-    url: 'https://api.imgur.com/3/upload',
+    url: 'https://api.imgur.com/3/image',
     type: 'post',
     headers: {
         Authorization: 'Client-ID dcfc7de7c1e957b'
     },
     data: {
         type: 'base64',
-        image: img
+        image: data
     },
     dataType: 'json',
     success: function(response) {
