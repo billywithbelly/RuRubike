@@ -133,8 +133,7 @@ function getFaceList(){
       console.log(data);
       var rowPersistedFaces = data.persistedFaces;
       var persistedFaces = rowPersistedFaces.map(function(item){
-        console.log(eval("(" + item.userData + ")"))
-        return 1;
+        return eval("(" + item.userData + ")");
       });
       console.log(persistedFaces);
   })
