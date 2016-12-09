@@ -147,4 +147,11 @@ function getFaceList(){
 function OutputConclusion(persistedFaceId){
   var data = FaceMap[persistedFaceId];
   console.log(data);
+  var url = data.url;
+  var img = document.createElement('img');
+  img.src = url;
+  img.onload = function(){
+    $("#OutputFaceImg").append(img);
+    $('#OutputModal').modal('open');
+  }
 }
