@@ -99,7 +99,7 @@ function findSimilar(faceId){
       beforeSend: function(xhrObj){
           // Request headers
           xhrObj.setRequestHeader("Content-Type","application/json");
-          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
       },
       type: "POST",
       // Request body
