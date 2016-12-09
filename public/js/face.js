@@ -53,7 +53,7 @@ function sendFaceButHendler(){
     url: 'https://api.imgur.com/3/image',
     type: 'post',
     headers: {
-        Authorization: 'c482b7cba1c2d17'
+        Authorization: 'Client-ID dcfc7de7c1e957b'
     },
     data: {
         image: img
