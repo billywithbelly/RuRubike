@@ -57,6 +57,7 @@ function sendFaceButHendler(){
         Authorization: 'Client-ID dcfc7de7c1e957b'
     },
     data: {
+        type: 'base64',
         image: img
     },
     dataType: 'json',
