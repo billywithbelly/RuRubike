@@ -4,10 +4,10 @@ var imgur = require('imgur');
 class Imgur{
 
     constructor(app){
-        app.post = app.post.bind(this);
+        var that = this;
         app.post('/upload',function(req,res) {
             var data = func.antiXSS(req.body);
-			this.upload(data.url,function(response) {
+			that.upload(data.url,function(response) {
 				res.send(response.data.link);
 			});
 		});
