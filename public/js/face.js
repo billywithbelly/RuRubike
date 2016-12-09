@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('#screenShotBut').click(screenShotButHendler);
     $('#sendFaceBut').click(sendFaceButHendler);
     videoInit();
+    getFaceList();
 });
 
 var video;
@@ -107,6 +108,29 @@ function findSimilar(faceId){
   })
   .done(function(data) {
       $("#Console").val("Finishing");
+      console.log(data);
+  })
+  .fail(function() {
+      alert("error");
+  });
+}
+
+function getFaceList(){
+  var params = {
+      // Request parameters
+  };
+
+  $.ajax({
+      url: "https://api.projectoxford.ai/face/v1.0/facelists/{faceListId}?" + $.param(params),
+      beforeSend: function(xhrObj){
+          // Request headers
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+      },
+      type: "GET",
+      // Request body
+      data: "{}",
+  })
+  .done(function(data) {
       console.log(data);
   })
   .fail(function() {
