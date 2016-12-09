@@ -21,3 +21,5 @@ class Imgur{
         });
     }
 }
+
+module.exports = Imgur;
