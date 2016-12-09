@@ -8,8 +8,9 @@ function videoInit() {
   navigator.getUserMedia = navigator.getUserMedia ||  navigator.webkitGetUserMedia ||  navigator.mozGetUserMedia;
 
   if (navigator.getUserMedia) {
+    var rect = document.getElementById('faceDetectVideo').getBoundingClientRect();
     navigator.getUserMedia(
-      { audio: false, video: true },
+      { audio: false, video: { width: rect.width, height: rect.height } },
       function(stream) {
         var video = document.querySelector('video');
         video.src = window.URL.createObjectURL(stream);
