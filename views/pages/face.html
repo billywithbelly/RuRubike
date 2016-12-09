@@ -13,9 +13,6 @@
       .motherBody{
         width:100vw;
       }
-      .screen{
-        border: 1px solid;
-      }
       #faceDetectVideo{
           height: 50vh;
       }
@@ -46,21 +43,21 @@
           <input placeholder="Process Console" id="Console" type="text" class="validate">
           <label for="Console">Console</label>
         </div>
-        <a class="waves-effect waves-light btn" id="screenShotBut">Screen Shot</a>
-        <a class="waves-effect waves-light btn" id="sendFaceBut">Send Photo</a>
+        <a class="waves-effect waves-light btn" id="screenShotBut">拍照截圖</a>
+        <a class="waves-effect waves-light btn" id="sendFaceBut">開始推測</a>
       </div>
     </div>
     <!-- Modal Structure -->
     <div id="OutputModal" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <h4>You are most like...</h4>
+        <h4>你看起來最像...</h4>
         <div class="container">
           <div class="row" style="text-align:center;" id="OutputFaceImg">
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">關閉</a>
       </div>
     </div>
   </body>

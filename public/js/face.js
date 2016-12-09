@@ -50,11 +50,11 @@ function screenShotButHendler(){
 }
 
 function sendFaceButHendler(){
-  $("#Console").val("Uploading...");
+  $("#Console").val("上傳圖片...");
   var data = canvas.toDataURL('image/jpeg',0.5);
   var img = data.replace("data:image/jpeg;base64,","");
   $.post('/upload',{url:img},function(res){
-    $("#Console").val("Detecting...");
+    $("#Console").val("正在推測...");
     faceDetect(res);
   });
 }
@@ -79,7 +79,7 @@ function faceDetect(url){
         data: JSON.stringify(body)
     })
     .done(function(data) {
-        $("#Console").val("Searching...");
+        $("#Console").val("搜尋圖庫...");
         var faceId = data[0].faceId;
         findSimilar(faceId);
     })
@@ -109,7 +109,7 @@ function findSimilar(faceId){
       data: JSON.stringify(body)
   })
   .done(function(data) {
-      $("#Console").val("Finishing");
+      $("#Console").val("已完成");
       var persistedFaceId = data[0].persistedFaceId;
       OutputConclusion(persistedFaceId);
   })
