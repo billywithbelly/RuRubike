@@ -26,7 +26,7 @@ function videoInit() {
           width = video.videoWidth;
           video.setAttribute('width', width);
           canvas.setAttribute('width', width);
-          canvas.setAttribute('height', document.getElementById("faceDetectVideo").height);
+          canvas.setAttribute('height', '50vh');
         }, false);
       },
       function(err) {
