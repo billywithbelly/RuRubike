@@ -10,7 +10,7 @@ function videoInit() {
   if (navigator.getUserMedia) {
     var rect = document.getElementById('faceDetectVideo').getBoundingClientRect();
     navigator.getUserMedia(
-      { audio: false, video: { width: rect.width, height: rect.height } },
+      { audio: false, video: { width: rect.height, height: rect.height } },
       function(stream) {
         var video = document.querySelector('video');
         video.src = window.URL.createObjectURL(stream);
