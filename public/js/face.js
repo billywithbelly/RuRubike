@@ -31,7 +31,7 @@ function videoInit() {
 function screenShotButHendler(){
   var canvas = document.getElementById('screenShotVideo');
   var ctx = canvas.getContext('2d');
-  var rect = document.getElementById('faceDetectVideo').getBoundingClientRect();
+  var rect = document.getElementById('screenShotVideo').getBoundingClientRect();
   var video = document.querySelector('video');
   ctx.drawImage(video, 0, 0,rect.width,rect.height);
 }
