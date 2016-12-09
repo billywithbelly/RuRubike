@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('screenShotBut').click(screenShotButHendler);
     videoInit();
 });
 
@@ -28,6 +29,9 @@ function videoInit() {
 }
 
 function canvasFeetVideo(){
-  console.log($('#faceDetectVideo')[0].getBoundingClientRect());
-  $('#screenShotVideo')[0].width = $('#faceDetectVideo')[0].getBoundingClientRect().width;
+  
+}
+
+function screenShotButHendler(){
+
 }
