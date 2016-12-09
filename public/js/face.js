@@ -9,6 +9,7 @@ var video;
 var canvas;
 var width;
 var streaming;
+var FaceMap={};
 
 function videoInit() {
 
@@ -130,12 +131,12 @@ function getFaceList(){
       data: "{}",
   })
   .done(function(data) {
-      console.log(data);
-      var rowPersistedFaces = data.persistedFaces;
-      var persistedFaces = rowPersistedFaces.map(function(item){
-        return eval("(" + item.userData + ")");
-      });
-      console.log(persistedFaces);
+      var persistedFaces = data.persistedFaces;
+      for(var i in persistedFaces){
+        var temp = persistedFaces[i];
+        FaceMap[temp.persistedFaceId] = eval("("+temp.userData+")");
+      }
+      console.log(FaceMap);
   })
   .fail(function() {
       alert("error");
