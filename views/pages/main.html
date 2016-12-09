@@ -170,6 +170,7 @@
 </body>
 <script type="text/javascript">
   $(document).ready(function(){
+    var pageLock = false;
     var badgeProcess = 0;
     var careerValue = -1;
     var first_name,last_name;
@@ -249,18 +250,22 @@
     }
 
     function nextPage(val){
-      $("#processBar li:eq("+badgeProcess+")").toggleClass('active');
-      $('#'+processName[badgeProcess]).animateCss('bounceOutLeft',function(){
-        $('#'+processName[badgeProcess]).hide();
-        badgeProcess = badgeProcess+val;
-        pageIn(badgeProcess);
+      if(!pageLock){
+        pageLock = true;
         $("#processBar li:eq("+badgeProcess+")").toggleClass('active');
-      });
+        $('#'+processName[badgeProcess]).animateCss('bounceOutLeft',function(){
+          $('#'+processName[badgeProcess]).hide();
+          badgeProcess = badgeProcess+val;
+          pageIn(badgeProcess);
+          $("#processBar li:eq("+badgeProcess+")").toggleClass('active');
+        });
+      }
     }
 
     function pageIn(page){
       $('#'+processName[page]).show();
       $('#'+processName[page]).animateCss('bounceInRight');
+      pageLock = false;
     }
 
   });

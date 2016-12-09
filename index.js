@@ -36,3 +36,7 @@ app.get('/', function(request, response) {
 app.get('/badge', function(request, response) {
   response.sendFile(__dirname + '/views/pages/main.html');
 });
+
+app.get('/face', function(request, response) {
+  response.sendFile(__dirname + '/views/pages/face.html');
+});
