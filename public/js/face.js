@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 var video;
 var canvas;
-var height;
+var width;
 var streaming;
 
 function videoInit() {
@@ -23,10 +23,10 @@ function videoInit() {
         };
         video.addEventListener('canplay', function(ev){
           canvas = document.getElementById('screenShotVideo');
-          video.setAttribute('width', video.videoWidth);
-          video.setAttribute('height', video.videoheight);
-          canvas.setAttribute('width', video.videoWidth);
-          canvas.setAttribute('height', video.videoheight);
+          width = video.videoWidth;
+          console.log(width);
+          video.setAttribute('width', width);
+          canvas.setAttribute('width', width);
         }, false);
       },
       function(err) {
