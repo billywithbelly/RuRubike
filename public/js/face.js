@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $('#screenShotBut').click(screenShotButHendler);
+    $('#sendFaceBut').click(sendFaceButHendler);
     videoInit();
 });
 
@@ -43,4 +44,9 @@ function screenShotButHendler(){
   var context = canvas.getContext('2d');
   console.log(width);
   context.drawImage(video, 0, 0, width, canvas.height);
+}
+
+function sendFaceButHendler(){
+  var data = canvas.toDataURL('image/png');
+  window.location = data;
 }
