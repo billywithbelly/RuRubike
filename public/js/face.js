@@ -52,9 +52,18 @@ function sendFaceButHendler(){
   var img = data.replace("data:image/jpeg;base64,","");
   $.post('/upload',{url:img},function(res){
     $("#Console").val("Detecting...");
+    faceDetect(res);
+  });
+}
+
+function faceDetect(url){
     var params = {
         "returnFaceId": "true",
         "returnFaceLandmarks": "false"
+    };
+
+    var body = {
+      url:url
     };
       
     $.ajax({
@@ -64,13 +73,41 @@ function sendFaceButHendler(){
             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
         },
         type: "POST",
-        data: "{url:\""+res+"\"}",
+        data: JSON.stringify(body)
     })
     .done(function(data) {
-        console.log(data);
+        $("#Console").val("Searching...");
+        var faceId = data[0].faceId;
+        findSimilar(faceId);
     })
     .fail(function() {
         console.log("Error");
     });
+}
+
+function findSimilar(faceId){
+  var body = {    
+    "faceId":faceId,
+    "faceListId":"findjobexhibit2017",  
+    "maxNumOfCandidatesReturned":5,
+    "mode": "matchFace"
+  }
+  $.ajax({
+      url: "https://api.projectoxford.ai/face/v1.0/findsimilars?" + $.param(params),
+      beforeSend: function(xhrObj){
+          // Request headers
+          xhrObj.setRequestHeader("Content-Type","application/json");
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","{subscription key}");
+      },
+      type: "POST",
+      // Request body
+      data: JSON.stringify(body)
+  })
+  .done(function(data) {
+      $("#Console").val("Finishing");
+      console.log(data);
+  })
+  .fail(function() {
+      alert("error");
   });
 }
