@@ -132,8 +132,8 @@ function getFaceList(){
   .done(function(data) {
       console.log(data);
       var persistedFaces = data.persistedFaces;
-      for(var a in persistedFaces){
-        console.log(a.userData);
+      for(var i in persistedFaces){
+        console.log(persistedFaces[i].userData);
       }
       console.log(persistedFaces);
   })
