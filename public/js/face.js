@@ -134,7 +134,7 @@ function getFaceList(){
       var rowPersistedFaces = data.persistedFaces;
       var persistedFaces = rowPersistedFaces.map(function(item){
         console.log(item)
-        return jQuery.parseJSON(item.userData);
+        return JSON.parse(eval("(" + item.userData + ")"));
       });
       console.log(persistedFaces);
   })
