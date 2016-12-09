@@ -86,6 +86,8 @@ function faceDetect(url){
 }
 
 function findSimilar(faceId){
+  var params = {
+  };
   var body = {    
     "faceId":faceId,
     "faceListId":"findjobexhibit2017",  
