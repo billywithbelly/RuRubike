@@ -151,6 +151,7 @@ function OutputConclusion(persistedFaceId){
   var url = data.url;
   var img = document.createElement('img');
   img.src = url;
+  img.width = 500;
   img.onload = function(){
     $("#OutputFaceImg").append(img);
     $('#OutputModal').modal('open');
