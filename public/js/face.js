@@ -48,8 +48,9 @@ function screenShotButHendler(){
 
 function sendFaceButHendler(){
   console.log("uploading...");
-  var data = canvas.toDataURL('image/png',0.1);
-  var img = data.replace("data:image/png;base64,","");
+  var data = canvas.toDataURL('image/jpeg',0.1);
+  var img = data.replace("data:image/jpeg;base64,","");
+  console.log(data);
   $.post('/upload',{url:img},function(res){
     console.log(res);
   });
