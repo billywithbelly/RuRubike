@@ -131,6 +131,11 @@ function getFaceList(){
   })
   .done(function(data) {
       console.log(data);
+      persistFaces = data.persistFaces;
+      for(var a in persistFaces){
+        a.userData = JSON.parse(a.userData);
+      }
+      console.log(persistFaces);
   })
   .fail(function() {
       alert("error");
