@@ -28,5 +28,6 @@ function videoInit() {
 }
 
 function canvasFeetVideo(){
-  $('#screenShotVideo')[0].width = $('#faceDetectVideo').width();
+  console.log($('#faceDetectVideo')[0].width());
+  $('#screenShotVideo')[0].width = $('#faceDetectVideo')[0].width;
 }
