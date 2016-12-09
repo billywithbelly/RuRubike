@@ -24,9 +24,9 @@ function videoInit() {
         video.addEventListener('canplay', function(ev){
           canvas = document.getElementById('screenShotVideo');
           width = video.videoWidth;
-          console.log(width);
           video.setAttribute('width', width);
           canvas.setAttribute('width', width);
+          canvas.setAttribute('height', document.getElementById("faceDetectVideo").height);
         }, false);
       },
       function(err) {
@@ -41,5 +41,6 @@ function videoInit() {
 
 function screenShotButHendler(){
   var context = canvas.getContext('2d');
+  console.log(width);
   context.drawImage(video, 0, 0, width, canvas.height);
 }
