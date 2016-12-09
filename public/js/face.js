@@ -41,5 +41,5 @@ function videoInit() {
 
 function screenShotButHendler(){
   var context = canvas.getContext('2d');
-  context.drawImage(video, 0, 0, video.videoWidth, video.videoheight);
+  context.drawImage(video, 0, 0, width, canvas.height);
 }
