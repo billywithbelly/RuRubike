@@ -47,28 +47,22 @@ function screenShotButHendler(){
 }
 
 function sendFaceButHendler(){
-  var data = canvas.toDataURL('image/png');
-  var params = {
-            // Request parameters
-            "returnFaceId": "true",
-            "returnFaceLandmarks": "false"
-        };
+  var data = canvas.toDataURL('image/jpeg');
+  var img = data.split(',')[1];
   $.ajax({
-            url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
-            beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Content-Type","application/json");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
-            },
-            type: "POST",
-            // Request body
-            data: "{url:"+data+"}",
-        })
-        .done(function(data) {
-            console.log(data);
-            alert("success");
-        })
-        .fail(function() {
-            alert("error");
-        });
+    url: 'https://api.imgur.com/3/image',
+    type: 'post',
+    headers: {
+        Authorization: 'c482b7cba1c2d17'
+    },
+    data: {
+        image: img
+    },
+    dataType: 'json',
+    success: function(response) {
+        if(response.success) {
+            window.location = response.data.link;
+        }
+    }
+  });
 }
