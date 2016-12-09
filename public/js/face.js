@@ -17,12 +17,12 @@ function videoInit() {
       { audio: false, video: true },
       function(stream) {
         video = document.querySelector('video');
-        canvas = document.getElementById('canvas');
         video.src = window.URL.createObjectURL(stream);
         video.onloadedmetadata = function(e) {
           video.play();
         };
         video.addEventListener('canplay', function(ev){
+          canvas = document.getElementById('screenShotVideo');
           video.setAttribute('width', video.videoWidth);
           video.setAttribute('height', video.videoheight);
           canvas.setAttribute('width', video.videoWidth);
