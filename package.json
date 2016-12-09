@@ -24,7 +24,8 @@
     "react-dom": "^15.3.2",
     "react-google-maps": "^4.11.0",
     "request": "latest",
-    "socket.io": "latest"
+    "socket.io": "latest",
+    "imgur": "latest"
   },
   "repository": {
     "type": "git",
