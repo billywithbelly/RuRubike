@@ -16,7 +16,7 @@ function videoInit() {
     navigator.getUserMedia(
       { audio: false, video: true },
       function(stream) {
-        video = document.getElementById('video');
+        video = document.querySelector('video');
         canvas = document.getElementById('canvas');
         video.src = window.URL.createObjectURL(stream);
         video.onloadedmetadata = function(e) {
