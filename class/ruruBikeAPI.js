@@ -3,6 +3,7 @@ var View = require('./view/view.js');
 var Contact = require('./contact/contact.js');
 var Update = require('./update/update.js');
 var Bike = require('./bike/bike.js');
+var imgur = require('./imgur/imgur.js');
 
 class ruruBikeApi
 {
@@ -14,6 +15,7 @@ class ruruBikeApi
 		this.bike = new Bike(app,mongodb);
 		this.view = new View(app,mongodb);
 		this.contact = new Contact(app,mongodb);
+		this.imgur = new imgur(app);
 		this.apiAccess = {};
 		this.apiAccess.login = function(id,password,callback) 
 		{
