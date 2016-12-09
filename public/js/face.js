@@ -17,7 +17,6 @@ function videoInit() {
         video.onloadedmetadata = function(e) {
           video.play();
         };
-        canvasFeetVideo();
       },
       function(err) {
         console.log("The following error occurred: " + err.name);
