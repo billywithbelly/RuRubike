@@ -131,10 +131,11 @@ function getFaceList(){
   })
   .done(function(data) {
       console.log(data);
-      var persistedFaces = data.persistedFaces;
-      for(var i in persistedFaces){
-        console.log(persistedFaces[i].userData);
-      }
+      var rowPersistedFaces = data.persistedFaces;
+      var persistedFaces = rowPersistedFaces.map(function(item){
+        console.log(item)
+        return jQuery.parseJSON(item.userData);
+      });
       console.log(persistedFaces);
   })
   .fail(function() {
