@@ -153,6 +153,7 @@ function OutputConclusion(persistedFaceId){
   img.src = url;
   img.width = 500;
   img.onload = function(){
+    $("#OutputFaceImg").html("");
     $("#OutputFaceImg").append(img);
     $('#OutputModal').modal('open');
   }
