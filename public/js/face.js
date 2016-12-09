@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('screenShotBut').click(screenShotButHendler);
+    $('#screenShotBut').click(screenShotButHendler);
     videoInit();
 });
 
