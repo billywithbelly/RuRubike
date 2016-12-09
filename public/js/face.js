@@ -119,9 +119,8 @@ function getFaceList(){
   var params = {
       // Request parameters
   };
-
   $.ajax({
-      url: "https://api.projectoxford.ai/face/v1.0/facelists/{faceListId}?" + $.param(params),
+      url: "https://api.projectoxford.ai/face/v1.0/facelists/findjobexhibit2017?" + $.param(params),
       beforeSend: function(xhrObj){
           // Request headers
           xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
