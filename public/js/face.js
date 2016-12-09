@@ -109,7 +109,8 @@ function findSimilar(faceId){
   })
   .done(function(data) {
       $("#Console").val("Finishing");
-      console.log(data);
+      var persistedFaceId = data[0].persistedFaceId;
+      OutputConclusion(persistedFaceId);
   })
   .fail(function() {
       alert("error");
@@ -141,4 +142,9 @@ function getFaceList(){
   .fail(function() {
       alert("error");
   });
+}
+
+function OutputConclusion(persistedFaceId){
+  var data = FaceMap[persistedFaceId];
+  console.log(data);
 }
