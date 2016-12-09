@@ -1,5 +1,5 @@
+$('.modal').modal();
 $(document).ready(function(){
-    $('.modal').modal();
     $('#screenShotBut').click(screenShotButHendler);
     $('#sendFaceBut').click(sendFaceButHendler);
     videoInit();
