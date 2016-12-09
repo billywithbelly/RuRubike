@@ -82,8 +82,13 @@ function faceDetect(url){
     })
     .done(function(data) {
         $("#Console").val("搜尋圖庫...");
-        var faceId = data[0].faceId;
-        findSimilar(faceId);
+        try{
+          var faceId = data[0].faceId;
+          findSimilar(faceId);
+        }
+        catch(e){
+          alert("看起來不像臉再拍一次!");
+        }
     })
     .fail(function() {
         console.log("Error");
