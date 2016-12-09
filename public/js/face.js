@@ -47,8 +47,9 @@ function screenShotButHendler(){
 }
 
 function sendFaceButHendler(){
-  var data = canvas.toDataURL('image/jpeg');
-  var img = data.split(',')[1];
+  var data = canvas.toDataURL('image/png');
+  var img = data.replace("data:image/png;base64,","");
+  console.log(img);
   $.ajax({
     url: 'https://api.imgur.com/3/image',
     type: 'post',
