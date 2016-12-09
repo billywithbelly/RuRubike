@@ -2,6 +2,7 @@ $(document).ready(function(){
     $('.modal').modal();
     $('#screenShotBut').click(screenShotButHendler);
     $('#sendFaceBut').click(sendFaceButHendler);
+    $("#sendFaceBut").hide();
     videoInit();
     getFaceList();
 });
@@ -47,6 +48,7 @@ function screenShotButHendler(){
   var context = canvas.getContext('2d');
   console.log(width);
   context.drawImage(video, 0, 0, width, canvas.height);
+  $("#sendFaceBut").show();
 }
 
 function sendFaceButHendler(){
