@@ -47,11 +47,31 @@ function screenShotButHendler(){
 }
 
 function sendFaceButHendler(){
-  console.log("uploading...");
+  $("#Console").val("Uploading...");
   var data = canvas.toDataURL('image/jpeg',0.5);
   var img = data.replace("data:image/jpeg;base64,","");
   console.log(data);
   $.post('/upload',{url:img},function(res){
-    console.log(res);
+    $("#Console").val("Detecting...");
+    var params = {
+        "returnFaceId": "true",
+        "returnFaceLandmarks": "false"
+    };
+      
+    $.ajax({
+        url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader("Content-Type","application/json");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+        },
+        type: "POST",
+        data: "{url:"+res+"}",
+    })
+    .done(function(data) {
+        alert("success");
+    })
+    .fail(function() {
+        alert("error");
+    });
   });
 }
