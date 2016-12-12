@@ -270,11 +270,12 @@ function OutputConclusion(persistedFaceId){
   var id = data.id;
   var sid = ""+id;
   var manData = FaceDatas[sid];
-  var h2 = document.createElement('h2');
+  var h2 = document.createElement('h3');
   h2.innerHTML = manData['job']+"  "+manData['name']+'('+manData['movie']+')';
   $('#OutputName').append(h2);
   if(manData.isHide){
-
+    var h4 = document.createElement('h4');
+    h4.innerHTML = "也許你可以取櫃檯領一杯咖啡喝喔(恭喜中獎) :)";
   }
   else{
     var h4 = document.createElement('h4');
