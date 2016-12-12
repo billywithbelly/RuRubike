@@ -219,6 +219,7 @@ function findSimilar(faceId,gender){
         var row_persistedFaceId = row.persistedFaceId;
         var face_to_id = FaceMap[row_persistedFaceId].id;
         var row_gender = FaceDatas[face_to_id]['gender'];
+        console.log(gender,row_gender)
         if(gender==row_gender){
           break;
         }
