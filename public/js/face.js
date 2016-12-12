@@ -277,6 +277,7 @@ function OutputConclusion(persistedFaceId){
   if(manData.isHide){
     var h4 = document.createElement('h4');
     h4.innerHTML = "也許你可以取櫃檯領一杯咖啡喝喔(恭喜中獎) :)";
+    $('#OutputSuggest').append( h4);
   }
   else{
     var h4 = document.createElement('h4');
