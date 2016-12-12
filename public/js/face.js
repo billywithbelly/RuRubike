@@ -266,4 +266,11 @@ function OutputConclusion(persistedFaceId){
     $("#InputFaceImg").html("");
     $("#InputFaceImg").append(inputImg);
   }
+
+  var id = data.id;
+  var manData = FaceDatas[str(id)];
+  var strong = document.createElement('strong');
+  strong.innerHTML = manData.job+"  "+manData.name;
+  var span = document.createElement('span');
+  span.innerHTML = '('+manData.movie+')';
 }
