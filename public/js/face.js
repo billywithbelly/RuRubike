@@ -158,7 +158,7 @@ function faceDetect(url){
     var params = {
         "returnFaceId": "true",
         "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "{age,gender}"
+        "returnFaceAttributes": "age,gender"
     };
 
     var body = {
