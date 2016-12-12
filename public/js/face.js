@@ -105,6 +105,7 @@ var canvas;
 var width;
 var streaming;
 var FaceMap={};
+var gender;
 
 function videoInit() {
 
@@ -179,8 +180,8 @@ function faceDetect(url){
         $("#Console").val("搜尋圖庫...");
         try{
           var faceId = data[0].faceId;
-          var gender = data[0].gender;
-          findSimilar(faceId,gender);
+          gender = data[0].gender;
+          findSimilar(faceId);
         }
         catch(e){
           alert("看起來不像臉再拍一次!");
@@ -191,7 +192,7 @@ function faceDetect(url){
     });
 }
 
-function findSimilar(faceId,gender){
+function findSimilar(faceId){
   var params = {
   };
   var body = {    
@@ -219,13 +220,13 @@ function findSimilar(faceId,gender){
         var row_persistedFaceId = row.persistedFaceId;
         var face_to_id = FaceMap[row_persistedFaceId].id;
         var row_gender = FaceDatas[face_to_id]['gender'];
-        console.log(gender,row_gender)
+        console.log(gender,row_gender);
         if(gender==row_gender){
           break;
         }
       }
       OutputConclusion(row_persistedFaceId);
-  }.bind(gender))
+  })
   .fail(function() {
       alert("error");
   });
