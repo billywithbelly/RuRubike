@@ -225,7 +225,7 @@ function findSimilar(faceId,gender){
         }
       }
       OutputConclusion(row_persistedFaceId);
-  })
+  }.bind(gender))
   .fail(function() {
       alert("error");
   });
