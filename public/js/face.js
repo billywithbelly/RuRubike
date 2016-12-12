@@ -255,6 +255,15 @@ function OutputConclusion(persistedFaceId){
   img.onload = function(){
     $("#OutputFaceImg").html("");
     $("#OutputFaceImg").append(img);
+  }
+
+  var inputUrl = canvas.toDataURL();
+  var inputImg = document.createElement('img');
+  inputImg.src = inputUrl;
+  inputImg.width = 500;
+  inputImg.onload = function(){
+    $("#OutputFaceImg").html("");
+    $("#OutputFaceImg").append(inputImg);
     $('#OutputModal').modal('open');
   }
 }
