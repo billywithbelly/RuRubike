@@ -270,10 +270,24 @@ function OutputConclusion(persistedFaceId){
   var id = data.id;
   var sid = ""+id;
   var manData = FaceDatas[sid];
-  var strong = document.createElement('strong');
-  strong.innerHTML = manData['job']+"  "+manData['name'];
-  var span = document.createElement('span');
-  span.innerHTML = '('+manData['movie']+')';
-  $('#OutputName').append(strong);
-  $('#OutputName').append(span);
+  var h2 = document.createElement('h2');
+  h2.innerHTML = manData['job']+"  "+manData['name'];
+  var h3 = document.createElement('h3');
+  h3.innerHTML = '('+manData['movie']+')';
+  $('#OutputName').append(h2);
+  $('#OutputName').append(h3);
+  if(manData.isHide){
+
+  }
+  else{
+    var h4 = document.createElement('h4');
+    h4.innerHTML = "也許你可以來這些攤位看看";
+    $('#OutputSuggest').append(h4);
+    for(var i in manData.suggest){
+      var vand = manData.suggest[i];
+      var h5 = document.createElement('h5');
+      h5.innerHTML = vand;
+      $('#OutputSuggest').append( h5);
+    }
+  }
 }
