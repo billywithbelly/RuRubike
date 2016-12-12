@@ -179,7 +179,8 @@ function faceDetect(url){
         $("#Console").val("搜尋圖庫...");
         try{
           var faceId = data[0].faceId;
-          findSimilar(faceId);
+          var gender = data[0].gender;
+          findSimilar(faceId,gender);
         }
         catch(e){
           alert("看起來不像臉再拍一次!");
@@ -190,7 +191,7 @@ function faceDetect(url){
     });
 }
 
-function findSimilar(faceId){
+function findSimilar(faceId,gender){
   var params = {
   };
   var body = {    
@@ -212,6 +213,7 @@ function findSimilar(faceId){
   })
   .done(function(data) {
       $("#Console").val("已完成");
+      console.log(data);
       var persistedFaceId = data[0].persistedFaceId;
       OutputConclusion(persistedFaceId);
   })
