@@ -157,7 +157,8 @@ function sendFaceButHendler(){
 function faceDetect(url){
     var params = {
         "returnFaceId": "true",
-        "returnFaceLandmarks": "false"
+        "returnFaceLandmarks": "false",
+        "returnFaceAttributes": "{age,gender}"
     };
 
     var body = {
@@ -174,6 +175,7 @@ function faceDetect(url){
         data: JSON.stringify(body)
     })
     .done(function(data) {
+        console.log(data);
         $("#Console").val("搜尋圖庫...");
         try{
           var faceId = data[0].faceId;
