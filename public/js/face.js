@@ -271,11 +271,8 @@ function OutputConclusion(persistedFaceId){
   var sid = ""+id;
   var manData = FaceDatas[sid];
   var h2 = document.createElement('h2');
-  h2.innerHTML = manData['job']+"  "+manData['name'];
-  var h3 = document.createElement('h3');
-  h3.innerHTML = '('+manData['movie']+')';
+  h2.innerHTML = manData['job']+"  "+manData['name']+'('+manData['movie']+')';
   $('#OutputName').append(h2);
-  $('#OutputName').append(h3);
   if(manData.isHide){
 
   }
