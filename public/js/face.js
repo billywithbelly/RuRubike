@@ -251,7 +251,7 @@ function OutputConclusion(persistedFaceId){
   var url = data.url;
   var img = document.createElement('img');
   img.src = url;
-  img.width = $("#OutputFaceImg")[0].getBoundingClientRect().width;
+  img.width = $("#OutputModal")[0].getBoundingClientRect().width/3;
   img.onload = function(){
     $("#OutputFaceImg").html("");
     $("#OutputFaceImg").append(img);
@@ -260,7 +260,7 @@ function OutputConclusion(persistedFaceId){
   var inputUrl = canvas.toDataURL();
   var inputImg = document.createElement('img');
   inputImg.src = inputUrl;
-  inputImg.width = $("#InputFaceImg")[0].getBoundingClientRect().width;
+  inputImg.width = $("#OutputModal")[0].getBoundingClientRect().width/3;
   inputImg.onload = function(){
     $("#InputFaceImg").html("");
     $("#InputFaceImg").append(inputImg);
