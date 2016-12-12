@@ -6,7 +6,7 @@ var FaceDatas = {
     'industry':'傳播',
     'suggest':['壹傳媒(C-4) '],
     'job':'記者',
-    'gender':'女'
+    'gender':'female'
   },
   '2':{
     'isHide':true,
@@ -15,7 +15,7 @@ var FaceDatas = {
     'industry':'',
     'suggest':[],
     'job':'派遣幫傭',
-    'gender':'女'
+    'gender':'female'
   },
   '3':{
     'isHide':false,
@@ -24,7 +24,7 @@ var FaceDatas = {
     'industry':'科技',
     'suggest':['微軟(A-1)','Acer(C-3)'],
     'job':'工程師',
-    'gender':'男'
+    'gender':'male'
   },
   '4':{
     'isHide':false,
@@ -33,7 +33,7 @@ var FaceDatas = {
     'industry':'餐飲',
     'suggest':['王品(A-2)','春水堂(B-1)'],
     'job':'廚師',
-    'gender':'男'
+    'gender':'male'
   },
   '5':{
     'isHide':false,
@@ -42,7 +42,7 @@ var FaceDatas = {
     'industry':'餐飲',
     'suggest':['王品(A-2)','春水堂(B-1)'],
     'job':'咖啡師',
-    'gender':'女'
+    'gender':'female'
   },
   '6':{
     'isHide':true,
@@ -51,7 +51,7 @@ var FaceDatas = {
     'industry':'',
     'suggest':[],
     'job':'魔法師',
-    'gender':'男'
+    'gender':'male'
   },
   '7':{
     'isHide':false,
@@ -60,7 +60,7 @@ var FaceDatas = {
     'industry':'服飾/時尚/美妝/出版',
     'suggest':['屈臣氏(C-1)','86小舖(C-5)'],
     'job':'助理',
-    'gender':'女'
+    'gender':'female'
   },
   '8':{
     'isHide':true,
@@ -69,7 +69,7 @@ var FaceDatas = {
     'industry':'',
     'suggest':[],
     'job':'特務',
-    'gender':'女'
+    'gender':'female'
   },
   '9':{
     'isHide':true,
@@ -78,7 +78,7 @@ var FaceDatas = {
     'industry':'',
     'suggest':[],
     'job':'特務',
-    'gender':'男'
+    'gender':'male'
   },
   '10':{
     'isHide':false,
@@ -87,7 +87,7 @@ var FaceDatas = {
     'industry':'金融',
     'suggest':['台新金控(A-5)','康健人壽(C-2)'],
     'job':'銀行員',
-    'gender':'男'
+    'gender':'male'
   }
 };
 console.log(FaceDatas);
