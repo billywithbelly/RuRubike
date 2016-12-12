@@ -197,7 +197,7 @@ function findSimilar(faceId,gender){
   var body = {    
     "faceId":faceId,
     "faceListId":"findjobexhibit2017",  
-    "maxNumOfCandidatesReturned":5,
+    "maxNumOfCandidatesReturned":10,
     "mode": "matchFace"
   }
   $.ajax({
@@ -213,8 +213,16 @@ function findSimilar(faceId,gender){
   })
   .done(function(data) {
       $("#Console").val("已完成");
-      console.log(data);
-      var persistedFaceId = data[0].persistedFaceId;
+      //var persistedFaceId = data[0].persistedFaceId;
+      for(var i in data){
+        var row = data[i];
+        var row_persistedFaceId = row.persistedFaceId;
+        var face_to_id = FaceMap[row_persistedFaceId].id;
+        var row_gender = FaceDatas[face_to_id]['gender'];
+        if(gender==row_gender){
+          break;
+        }
+      }
       OutputConclusion(persistedFaceId);
   })
   .fail(function() {
