@@ -268,8 +268,9 @@ function OutputConclusion(persistedFaceId){
   }
 
   var id = data.id;
-  console.log(id);
-  var manData = FaceDatas.id;
+  var sid = ""+id;
+  var manData = FaceDatas[sid];
+  console.log(manData);
   var strong = document.createElement('strong');
   strong.innerHTML = manData['job']+"  "+manData['name'];
   var span = document.createElement('span');
