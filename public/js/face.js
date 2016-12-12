@@ -180,7 +180,7 @@ function faceDetect(url){
         $("#Console").val("搜尋圖庫...");
         try{
           var faceId = data[0].faceId;
-          gender = data[0].gender;
+          gender = data[0].faceAttributes.gender;
           findSimilar(faceId);
         }
         catch(e){
