@@ -262,8 +262,8 @@ function OutputConclusion(persistedFaceId){
   inputImg.src = inputUrl;
   inputImg.width = 500;
   inputImg.onload = function(){
-    $("#OutputFaceImg").html("");
-    $("#OutputFaceImg").append(inputImg);
+    $("#InputFaceImg").html("");
+    $("#InputFaceImg").append(inputImg);
     $('#OutputModal').modal('open');
   }
 }
