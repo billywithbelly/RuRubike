@@ -266,7 +266,8 @@ function OutputConclusion(persistedFaceId){
     $("#InputFaceImg").html("");
     $("#InputFaceImg").append(inputImg);
   }
-
+  $('#OutputName').html("");
+  $('#OutputSuggest').html("");
   var id = data.id;
   var sid = ""+id;
   var manData = FaceDatas[sid];
