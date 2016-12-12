@@ -223,7 +223,7 @@ function findSimilar(faceId,gender){
           break;
         }
       }
-      OutputConclusion(persistedFaceId);
+      OutputConclusion(row_persistedFaceId);
   })
   .fail(function() {
       alert("error");
