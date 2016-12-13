@@ -270,6 +270,7 @@ function OutputConclusion(persistedFaceId){
   img.onload = function(){
     $("#OutputFaceImg").html("");
     $("#OutputFaceImg").append(img);
+    img.width = $("#OutputFaceImg").width();
     $('#OutputModal').modal('open');
   }
 
@@ -281,6 +282,7 @@ function OutputConclusion(persistedFaceId){
   inputImg.onload = function(){
     $("#InputFaceImg").html("");
     $("#InputFaceImg").append(inputImg);
+    inputImg.width = $("#InputFaceImg").width();
   }
   $('#OutputName').html("");
   $('#OutputSuggest').html("");
