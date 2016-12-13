@@ -266,7 +266,7 @@ function OutputConclusion(persistedFaceId){
   var img = document.createElement('img');
   img.src = url;
   img.id = "inputAImg";
-  $("#inputAImg").css("width","20vw");
+  img.style = "width:20vw;";
   img.onload = function(){
     $("#OutputFaceImg").html("");
     $("#OutputFaceImg").append(img);
@@ -277,7 +277,7 @@ function OutputConclusion(persistedFaceId){
   var inputImg = document.createElement('img');
   inputImg.src = inputUrl;
   inputImg.id = "inputImg";
-  $("#inputImg").css("width","20vw");
+  inputImg.style = "width:20vw;";
   inputImg.onload = function(){
     $("#InputFaceImg").html("");
     $("#InputFaceImg").append(inputImg);
