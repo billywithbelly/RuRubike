@@ -266,11 +266,10 @@ function OutputConclusion(persistedFaceId){
   var img = document.createElement('img');
   img.src = url;
   img.id = "inputAImg";
-  img.style = "width:15vw;";
+  img.style = "width:100%;";
   img.onload = function(){
     $("#OutputFaceImg").html("");
     $("#OutputFaceImg").append(img);
-    img.width = $("#OutputFaceImg").width();
     $('#OutputModal').modal('open');
   }
 
@@ -278,11 +277,10 @@ function OutputConclusion(persistedFaceId){
   var inputImg = document.createElement('img');
   inputImg.src = inputUrl;
   inputImg.id = "inputImg";
-  inputImg.style = "width:15vw;";
+  inputImg.style = "width:100%;";
   inputImg.onload = function(){
     $("#InputFaceImg").html("");
     $("#InputFaceImg").append(inputImg);
-    inputImg.width = $("#InputFaceImg").width();
   }
   $('#OutputName').html("");
   $('#OutputSuggest').html("");
