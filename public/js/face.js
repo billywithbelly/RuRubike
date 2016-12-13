@@ -125,6 +125,7 @@ function videoInit() {
           width = video.videoWidth;
           video.setAttribute('width', width);
           canvas.setAttribute('width', width);
+          canvas.setAttribute('height', video.videoHeight );
         }, false);
       },
       function(err) {
