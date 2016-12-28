@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NTHU LoRa IOT Lab</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/animate.css" media="screen,projection"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <style>
+    body{
+      background: url('http://www.tibco.com/blog/wp-content/uploads/2016/02/rsz_bigstock-internet-of-things-concept-87751055.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100%;
+    }
+    .section{
+      background-color: rgba(255, 255, 255, 0.7);
+      margin: 10px;
+      border-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="row bounceInDown animated" style="background-color: rgba(255, 185, 15, 1);text-align: center;border-radius: 20px;margin: 20px;">
+        <h2 style="margin:0%;">IOT Lab Data Demo</h2>
+      </div>
+      <div class="row">
+        <div id="dataContainer" style="text-align: center;">
+        </div>
+      </div>
+    </div>
+</body>
+<script>
+$.get('/getIOT',function(res){
+  console.log(res);
+  for(var i in res)
+  {
+    var row = res[i];
+    var temp = document.createElement('div');
+    temp.className = 'section bounceIn animated';
+    var h5 = document.createElement('h5');
+    h5.innerHTML = row.data.uid;
+    var p = document.createElement('p');
+    p.innerHTML = row.data.data;
+    temp.appendChild(h5);
+    temp.appendChild(p);
+    document.getElementById('dataContainer').appendChild(temp);
+  }
+});
+</script>
+</html>

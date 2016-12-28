@@ -120,6 +120,21 @@ class Mongo
 	{
 		this.MongoDatabase.collection('place').find({}).toArray(callback);
 	}
+
+	postIOTData(data,callback)
+	{
+		this.MongoDatabase.collection('iot').insertOne(
+	    {
+	        data: data,
+	        time: new Date()
+	    }
+	    ,callback);
+	}
+
+	getIOTData(callback) 
+	{
+		this.MongoDatabase.collection('iot').find({}).toArray(callback);
+	}
 }
 
 module.exports = Mongo;

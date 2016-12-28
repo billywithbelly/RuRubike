@@ -40,3 +40,25 @@ app.get('/badge', function(request, response) {
 app.get('/face', function(request, response) {
   response.sendFile(__dirname + '/views/pages/face.html');
 });
+
+
+
+//IOT
+app.get('/IOT', function(request, response) {
+  response.render('pages/react/iot');
+});
+
+app.post('/postIOT',function(req,res){
+  var data = req.body
+  mongoDataBase.postIOTData(data,function(err,response){
+    res.send(response);
+  });
+});
+
+app.get('/getIOT',function(req,res) {
+  mongoDataBase.getIOTData(function(err,response) {
+    res.send(response);
+  });
+});
+
+
