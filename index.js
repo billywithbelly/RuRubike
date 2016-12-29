@@ -12,6 +12,7 @@ httpServer.listen(process.env.PORT || 5000);
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({limit: '50mb',extended: true}));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(compression());
 app.use(session({
@@ -60,5 +61,3 @@ app.get('/getIOT',function(req,res) {
     res.send(response);
   });
 });
-
-
