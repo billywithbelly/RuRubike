@@ -149,7 +149,7 @@ function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
   var data = canvas.toDataURL('image/jpeg',0.5);
   var img = data.replace("data:image/jpeg;base64,","");
-  var test = data.replace("data:image/jpeg;base64,","application/octet-stream");
+  var test = data.replace("data:image/jpeg","application/octet-stream");
   console.log(test);
   $.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
