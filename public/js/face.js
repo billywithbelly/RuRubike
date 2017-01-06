@@ -149,7 +149,12 @@ function sendFaceButHendler(){
   canvas.toBlob(function(blob){
       console.log(blob);
       $("#Console").val("正在推測...");
-      var oReq = new XMLHttpRequest();
+      faceDetect(blob);
+  }, "image/jpeg", 0.5);
+}
+
+function faceDetect(blob){
+    var oReq = new XMLHttpRequest();
       oReq.open("POST", 'https://api.projectoxford.ai/face/v1.0/detect?returnFaceAttributes=age,gender', true);
       oReq.setRequestHeader("Content-Type", "application/octet-stream");
       oReq.setRequestHeader("Ocp-Apim-Subscription-Key", "8f7a031e5133417aa8b1f1ab525efec1");
@@ -162,54 +167,14 @@ function sendFaceButHendler(){
         findSimilar(faceId);
       };
       oReq.send(blob);
-  }, "image/jpeg", 0.5);
 }
-
-/*
-function faceDetect(url){
-    var params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "age,gender"
-    };
-
-    var body = {
-      url:url
-    };
-      
-    $.ajax({
-        url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
-        beforeSend: function(xhrObj){
-            xhrObj.setRequestHeader("Content-Type","application/json");
-            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
-        },
-        type: "POST",
-        data: JSON.stringify(body)
-    })
-    .done(function(data) {
-        console.log(data);
-        $("#Console").val("搜尋圖庫...");
-        try{
-          var faceId = data[0].faceId;
-          gender = data[0].faceAttributes.gender;
-          findSimilar(faceId);
-        }
-        catch(e){
-          alert("看起來不像臉再拍一次!");
-        }
-    })
-    .fail(function(e) {
-        console.log(e);
-    });
-}
-*/
 
 function findSimilar(faceId){
   var params = {
   };
   var body = {    
     "faceId":faceId,
-    "faceListId":"8f9eea30-b243-49be-81da-dbacf606f598",  
+    "faceListId":"findjobexhibit2017",  
     "maxNumOfCandidatesReturned":10,
     "mode": "matchFace"
   }
