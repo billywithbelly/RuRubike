@@ -149,6 +149,8 @@ function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
   var data = canvas.toDataURL('image/jpeg',0.5);
   var img = data.replace("data:image/jpeg;base64,","");
+  var test = data.replace("data:image/jpeg;base64,","application/octet-stream");
+  console.log(test);
   $.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
     faceDetect(res);
@@ -227,8 +229,8 @@ function findSimilar(faceId){
       }
       OutputConclusion(row_persistedFaceId);
   })
-  .fail(function() {
-      alert("error");
+  .fail(function(e) {
+      alert(e);
   });
 }
 
@@ -254,8 +256,8 @@ function getFaceList(){
       }
       console.log(FaceMap);
   })
-  .fail(function() {
-      alert("error");
+  .fail(function(e) {
+      alert(e);
   });
 }
 
