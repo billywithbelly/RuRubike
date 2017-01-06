@@ -147,10 +147,8 @@ function screenShotButHendler(){
 
 function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
-  var data = canvas.toDataURL('image/png',0.5);
-  var img = data.replace("data:image/png;base64,","");
-  var test = img.replace(/^data:image\/png/,'data:application/octet-stream');
-  console.log(test);
+  var data = canvas.toDataURL('image/jpeg',0.5);
+  var img = data.replace("data:image/jpeg;base64,","");
   $.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
     faceDetect(res);
