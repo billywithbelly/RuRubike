@@ -167,7 +167,7 @@ function sendFaceButHendler(){
       .fail(function(e) {
           console.log(e);
       });
-  }, "image/jpeg", 0.5);
+  }.bind($), "image/jpeg", 0.5);
 
   /*$.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
