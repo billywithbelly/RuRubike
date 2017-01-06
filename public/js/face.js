@@ -147,8 +147,8 @@ function screenShotButHendler(){
 
 function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
-  var data = canvas.toDataURL('image/jpeg',0.5);
-  var img = data.replace("data:image/jpeg;base64,","");
+  var data = canvas.toDataURL('image/png',0.5);
+  var img = data.replace("data:image/png;base64,","");
   
   var params = {
         "returnFaceId": "true",
@@ -164,7 +164,7 @@ function sendFaceButHendler(){
             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
         },
         type: "POST",
-        data: img
+        data: data
     })
     .done(function(data) {
         console.log(data);
