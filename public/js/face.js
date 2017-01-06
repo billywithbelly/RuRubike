@@ -208,7 +208,7 @@ function findSimilar(faceId){
       beforeSend: function(xhrObj){
           // Request headers
           xhrObj.setRequestHeader("Content-Type","application/json");
-          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","c7ab5ae9cc9441a295444160feb18499");
       },
       type: "POST",
       // Request body
@@ -242,7 +242,7 @@ function getFaceList(){
       url: "https://api.projectoxford.ai/face/v1.0/facelists/findjobexhibit2017?" + $.param(params),
       beforeSend: function(xhrObj){
           // Request headers
-          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","c7ab5ae9cc9441a295444160feb18499");
       },
       type: "GET",
       // Request body
