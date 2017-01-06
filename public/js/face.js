@@ -146,28 +146,23 @@ function screenShotButHendler(){
 }
 
 function sendFaceButHendler(){
-  $("#Console").val("上傳圖片...");
-  var data = canvas.toDataURL('image/png',0.5);
-  var img = data.replace("data:image/png;base64,","");
-
   canvas.toBlob(function(blob){
       console.log(blob);
+      $("#Console").val("正在推測...");
       var oReq = new XMLHttpRequest();
-      oReq.open("POST", 'https://api.projectoxford.ai/face/v1.0/detect', true);
+      oReq.open("POST", 'https://api.projectoxford.ai/face/v1.0/detect?returnFaceAttributes=age,gender', true);
       oReq.setRequestHeader("Content-Type", "application/octet-stream");
       oReq.setRequestHeader("Ocp-Apim-Subscription-Key", "8f7a031e5133417aa8b1f1ab525efec1");
       oReq.onload = function (oEvent) {
         // Uploaded.
-        console.log(JSON.parse(oEvent.target.responseText));
-        
+        var data = JSON.parse(oEvent.target.responseText);
+        console.log(data);
+        var faceId = data[0].faceId;
+        gender = data[0].faceAttributes.gender;
+        findSimilar(faceId);
       };
       oReq.send(blob);
   }, "image/jpeg", 0.5);
-
-  /*$.post('/upload',{url:img},function(res){
-    $("#Console").val("正在推測...");
-    faceDetect(res);
-  });*/
 }
 
 function faceDetect(url){
