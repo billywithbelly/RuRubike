@@ -149,16 +149,11 @@ function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
   var data = canvas.toDataURL('image/png',0.5);
   var img = data.replace("data:image/png;base64,","");
-  
-  var params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "age,gender"
-  };
+
   canvas.toBlob(function(blob){
       console.log(blob);
       $.ajax({
-          url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
+          url: "https://api.projectoxford.ai/face/v1.0/detect",
           beforeSend: function(xhrObj){
               xhrObj.setRequestHeader("Content-Type","application/octet-stream");
               xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
