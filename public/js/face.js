@@ -147,15 +147,30 @@ function screenShotButHendler(){
 
 function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
-  var data = canvas.toDataURL('image/png',0.5);
-  var img = data.replace("data:image/png;base64,","");
-  /*var test = data.replace("data:image/png","application/octet-stream");
-  console.log(test);
-  faceDetect(test);*/
-  $.post('/upload',{url:img},function(res){
+  var data = canvas.toDataURL('image/jpeg',0.5);
+  var img = data.replace("data:image/jpeg;base64,","");
+  
+  $.ajax({
+        url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
+        beforeSend: function(xhrObj){
+            xhrObj.setRequestHeader("cache-control","no-cache");
+            xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+        },
+        type: "POST",
+        data: img
+    })
+    .done(function(data) {
+        console.log(data);
+    })
+    .fail(function(e) {
+        console.log(e);
+    });
+
+  /*$.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
     faceDetect(res);
-  });
+  });*/
 }
 
 function faceDetect(url){
