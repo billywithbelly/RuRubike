@@ -150,6 +150,12 @@ function sendFaceButHendler(){
   var data = canvas.toDataURL('image/jpeg',0.5);
   var img = data.replace("data:image/jpeg;base64,","");
   
+  var params = {
+        "returnFaceId": "true",
+        "returnFaceLandmarks": "false",
+        "returnFaceAttributes": "age,gender"
+  };
+
   $.ajax({
         url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
         beforeSend: function(xhrObj){
