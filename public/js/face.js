@@ -164,7 +164,7 @@ function sendFaceButHendler(){
             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
         },
         type: "POST",
-        data: data
+        data: canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "")
     })
     .done(function(data) {
         console.log(data);
