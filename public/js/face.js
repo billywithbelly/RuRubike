@@ -155,23 +155,24 @@ function sendFaceButHendler(){
         "returnFaceLandmarks": "false",
         "returnFaceAttributes": "age,gender"
   };
-
-  $.ajax({
-        url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
-        beforeSend: function(xhrObj){
-            xhrObj.setRequestHeader("cache-control","no-cache");
-            xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
-        },
-        type: "POST",
-        data: canvas.toDataURL().replace(/^data:image\/(png|jpg);base64,/, "")
-    })
-    .done(function(data) {
-        console.log(data);
-    })
-    .fail(function(e) {
-        console.log(e);
-    });
+  canvas.toBlob(function(blob){
+      console.log(blob);
+      $.ajax({
+          url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
+          beforeSend: function(xhrObj){
+              xhrObj.setRequestHeader("Content-Type","application/octet-stream");
+              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+          },
+          type: "POST",
+          data: blob
+      })
+      .done(function(data) {
+          console.log(data);
+      })
+      .fail(function(e) {
+          console.log(e);
+      });
+  }, "image/jpeg", 0.5);
 
   /*$.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
