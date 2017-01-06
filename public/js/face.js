@@ -147,14 +147,15 @@ function screenShotButHendler(){
 
 function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
-  var data = canvas.toDataURL('image/jpeg',0.5);
-  var img = data.replace("data:image/jpeg;base64,","");
-  var test = data.replace("data:image/jpeg","application/octet-stream");
+  var data = canvas.toDataURL('image/png',0.5);
+  var img = data.replace("data:image/png;base64,","");
+  var test = data.replace("data:image/png","application/octet-stream");
   console.log(test);
-  $.post('/upload',{url:img},function(res){
+  faceDetect(test);
+  /*$.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
     faceDetect(res);
-  });
+  });*/
 }
 
 function faceDetect(url){
