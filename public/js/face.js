@@ -152,7 +152,7 @@ function sendFaceButHendler(){
 
   canvas.toBlob(function(blob){
       console.log(blob);
-      $.ajax({
+      /*$.ajax({
           url: "https://api.projectoxford.ai/face/v1.0/detect",
           beforeSend: function(xhrObj){
               xhrObj.setRequestHeader("Content-Type","application/octet-stream");
@@ -166,7 +166,7 @@ function sendFaceButHendler(){
       })
       .fail(function(e) {
           console.log(e);
-      });
+      });*/
   }, "image/jpeg", 0.5);
 
   /*$.post('/upload',{url:img},function(res){
