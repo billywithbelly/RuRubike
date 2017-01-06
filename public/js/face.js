@@ -190,8 +190,8 @@ function faceDetect(url){
           alert("看起來不像臉再拍一次!");
         }
     })
-    .fail(function() {
-        console.log("Error");
+    .fail(function(e) {
+        console.log(e);
     });
 }
 
