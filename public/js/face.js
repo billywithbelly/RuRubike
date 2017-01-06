@@ -149,7 +149,7 @@ function sendFaceButHendler(){
   $("#Console").val("上傳圖片...");
   var data = canvas.toDataURL('image/jpeg',0.5);
   var img = data.replace("data:image/jpeg;base64,","");
-  var test = data.replace("data:image/jpeg;base64,","application/octet-stream");
+  var test = data.replace("data:image/jpeg","application/octet-stream");
   console.log(test);
   $.post('/upload',{url:img},function(res){
     $("#Console").val("正在推測...");
@@ -172,7 +172,7 @@ function faceDetect(url){
         url: "https://api.projectoxford.ai/face/v1.0/detect?" + $.param(params),
         beforeSend: function(xhrObj){
             xhrObj.setRequestHeader("Content-Type","application/json");
-            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
+            xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","d94a28b415ff473ebe4b302dbfcbc4b1");
         },
         type: "POST",
         data: JSON.stringify(body)
@@ -208,7 +208,7 @@ function findSimilar(faceId){
       beforeSend: function(xhrObj){
           // Request headers
           xhrObj.setRequestHeader("Content-Type","application/json");
-          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","c7ab5ae9cc9441a295444160feb18499");
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","d94a28b415ff473ebe4b302dbfcbc4b1");
       },
       type: "POST",
       // Request body
@@ -242,7 +242,7 @@ function getFaceList(){
       url: "https://api.projectoxford.ai/face/v1.0/facelists/findjobexhibit2017?" + $.param(params),
       beforeSend: function(xhrObj){
           // Request headers
-          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","c7ab5ae9cc9441a295444160feb18499");
+          xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","d94a28b415ff473ebe4b302dbfcbc4b1");
       },
       type: "GET",
       // Request body
