@@ -165,6 +165,7 @@ function sendFaceButHendler(){
   }, "image/jpeg", 0.5);
 }
 
+/*
 function faceDetect(url){
     var params = {
         "returnFaceId": "true",
@@ -201,13 +202,14 @@ function faceDetect(url){
         console.log(e);
     });
 }
+*/
 
 function findSimilar(faceId){
   var params = {
   };
   var body = {    
     "faceId":faceId,
-    "faceListId":"findjobexhibit2017",  
+    "faceListId":"8f9eea30-b243-49be-81da-dbacf606f598",  
     "maxNumOfCandidatesReturned":10,
     "mode": "matchFace"
   }
