@@ -158,24 +158,10 @@ function sendFaceButHendler(){
       oReq.setRequestHeader("Ocp-Apim-Subscription-Key", "8f7a031e5133417aa8b1f1ab525efec1");
       oReq.onload = function (oEvent) {
         // Uploaded.
-        console.log(oEvent);
+        console.log(JSON.parse(oEvent.target.responseText));
+        
       };
       oReq.send(blob);
-      /*$.ajax({
-          url: "https://api.projectoxford.ai/face/v1.0/detect",
-          beforeSend: function(xhrObj){
-              xhrObj.setRequestHeader("Content-Type","application/octet-stream");
-              xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","8f7a031e5133417aa8b1f1ab525efec1");
-          },
-          type: "POST",
-          data: URL.createObjectURL(blob)
-      })
-      .done(function(data) {
-          console.log(data);
-      })
-      .fail(function(e) {
-          console.log(e);
-      });*/
   }, "image/jpeg", 0.5);
 
   /*$.post('/upload',{url:img},function(res){
