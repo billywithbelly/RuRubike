@@ -152,6 +152,15 @@ function sendFaceButHendler(){
 
   canvas.toBlob(function(blob){
       console.log(blob);
+      var oReq = new XMLHttpRequest();
+      oReq.open("POST", 'https://api.projectoxford.ai/face/v1.0/detect', true);
+      oReq.setRequestHeader("Content-Type", "application/octet-stream");
+      oReq.setRequestHeader("Ocp-Apim-Subscription-Key", "8f7a031e5133417aa8b1f1ab525efec1");
+      oReq.onload = function (oEvent) {
+        // Uploaded.
+        console.log(oEvent);
+      };
+      oReq.send(blob);
       /*$.ajax({
           url: "https://api.projectoxford.ai/face/v1.0/detect",
           beforeSend: function(xhrObj){
