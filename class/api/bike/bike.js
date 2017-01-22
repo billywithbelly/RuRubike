@@ -16,7 +16,7 @@ class Bike
 		app.get('/getBikeBattery', function(req, res) {
 			that.getBikeBattery(req.query.id, function(response) {
 				res.send(response);
-			});
+			});	
 		});
 
 		app.post('/setBike',function(req,res) {
