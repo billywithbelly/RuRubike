@@ -1,4 +1,4 @@
-var func = require('./function.js');
+var tool = require('../tool.js');
 class SocketIO
 {
 	constructor(httpServer,mongodb)
@@ -18,12 +18,12 @@ class SocketIO
 					{
 						if(err)
 						{
-							socket.emit('bikes',func.dberror());
+							socket.emit('bikes',tool.dberror());
 						}
 						else
 						{
 							//success and transport the data to the front-end
-							socket.emit('bikes',func.result(data,1));
+							socket.emit('bikes',tool.result(data,1));
 						}
 					});
 				}

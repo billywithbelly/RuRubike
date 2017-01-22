@@ -1,13 +1,13 @@
 var fs = require('fs');
 var ejs = require('ejs');
-var func = require('../function.js');
+var tool = require('../../tool.js');
 class View
 {
 	constructor(app)
 	{
 		var that = this;
-		app.post('/view',function (req,res) {
-			var data = func.antiXSS(req.body);
+		app.post('/viewOfBikeInfo',function (req,res) {
+			var data = tool.antiXSS(req.body);
 			that.getView(data.action,data.json,function(content) {
 				res.send(content);
 			});

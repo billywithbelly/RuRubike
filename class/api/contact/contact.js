@@ -1,4 +1,4 @@
-var func = require('../function.js');
+var tool = require('../../tool.js');
 class Contact
 {
 	constructor(app,db)
@@ -6,7 +6,7 @@ class Contact
 		var that = this;
 		this.mongoDataBase = db;
 		app.post('/sendContact',function(req,res) {
-			var data = func.antiXSS(req.body);
+			var data = tool.antiXSS(req.body);
 			if(data.content!=""){
 				that.sendContact(data,function(response) {
 					res.send(response);
@@ -20,7 +20,7 @@ class Contact
 		});
 
 		app.post('/addPlace',function(req,res) {
-			var data = func.antiXSS(req.body);
+			var data = tool.antiXSS(req.body);
 			if(data.name!=""&&data.lat!=""&&data.lng!=""){
 				that.addPlace(data,function(response) {
 					res.send(response);
@@ -37,36 +37,36 @@ class Contact
 
 	sendContact(data,callback) {
 		this.mongoDataBase.insertContact(data,function(err,res){
-			if(err)callBack(func.dberror());
+			if(err)callBack(tool.dberror());
 			else{
-				callback(func.result("contact success",1));
+				callback(tool.result("contact success",1));
 			}
 		});
 	}
 
 	addPlace(data,callback) {
 		this.mongoDataBase.insertPlace(data,function(err,res){
-			if(err)callBack(func.dberror());
+			if(err)callBack(tool.dberror());
 			else{
-				callback(func.result("addPlace success",1));
+				callback(tool.result("addPlace success",1));
 			}
 		});
 	}
 
 	getContact(callback) {
 		this.mongoDataBase.getContact(function(err,res){
-			if(err)callBack(func.dberror());
+			if(err)callBack(tool.dberror());
 			else{
-				callback(func.result(res,1));
+				callback(tool.result(res,1));
 			}
 		});
 	}
 
 	getPlace(callback) {
 		this.mongoDataBase.getPlace(function(err,res){
-			if(err)callBack(func.dberror());
+			if(err)callBack(tool.dberror());
 			else{
-				callback(func.result(res,1));
+				callback(tool.result(res,1));
 			}
 		});
 	}
