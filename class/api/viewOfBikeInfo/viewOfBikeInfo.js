@@ -1,7 +1,7 @@
 var fs = require('fs');
 var ejs = require('ejs');
 var tool = require('../../tool.js');
-class View
+class ViewOfBikeInfo
 {
 	constructor(app)
 	{
@@ -28,4 +28,4 @@ class View
 	}
 }
 
-module.exports = View;
+module.exports = ViewOfBikeInfo;
