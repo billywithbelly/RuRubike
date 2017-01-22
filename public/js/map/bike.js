@@ -17,7 +17,6 @@ export default class Bike{
   }
 
   attachSecretMessage() {
-    console.log("A");
     $.post('/viewOfBikeInfo',{action:'bikeInfo',json:this.bike},function (Content) {
       var infowindow = new google.maps.InfoWindow({
         content: Content
