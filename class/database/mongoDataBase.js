@@ -22,22 +22,6 @@ class Mongo
 		this.MongoDatabase.collection('account').find(json).toArray(callback);
 	}
 
-	updateAccountPassword(id, newpassword, callback) 
-	{
-		this.MongoDatabase.collection('account').updateOne(
-			{ id 	: id },
-			{ $set	: { password : newpassword } }
-		,callback);
-	}
-
-	updateAccountEmail(id, newemail, callback) 
-	{
-		this.MongoDatabase.collection('account').updateOne(
-			{ id 	: id },
-			{ $set 	: { email : newemail } }
-		,callback);
-	}
-
 	register(id,password,email,uid,callback) 
 	{
 		this.MongoDatabase.collection('account').insertOne(
