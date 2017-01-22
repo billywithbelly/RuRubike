@@ -1,4 +1,4 @@
-var tool = require('../function.js');
+var tool = require('../../tool.js');
 
 class Bike
 {

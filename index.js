@@ -21,7 +21,7 @@ app.use(session({
 
 var RurubikeAPI = require('./class/api/rubikeAPI.js');
 var MongoDB = require('./class/database/mongoDataBase.js');
-var SocketIO = require('./class/socket.js');
+var SocketIO = require('./class/socket/socket.js');
 var mongoDataBase = new MongoDB(process.env.MONGODB_ADDRESS);
 var rurubike = new RurubikeAPI(app,mongoDataBase);
 var socket = new SocketIO(httpServer,mongoDataBase);
