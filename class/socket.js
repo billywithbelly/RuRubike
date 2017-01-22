@@ -10,20 +10,27 @@ class SocketIO
 
 			socket.emit("log","connection success");
 
-			var getBikesInterval =  setInterval(function() {
-				if(that.mongoDataBase.MongoDatabase!=null){
-					that.mongoDataBase.getBikes(function(err,data) {
-						if(err){
+			var getBikesInterval =  setInterval(function() 
+			{
+				if(that.mongoDataBase.MongoDatabase != null)
+				{
+					that.mongoDataBase.getBikes(function(err,data) 
+					{
+						if(err)
+						{
 							socket.emit('bikes',func.dberror());
 						}
-						else{
+						else
+						{
+							//success and transport the data to the front-end
 							socket.emit('bikes',func.result(data,1));
 						}
 					});
 				}
 			},1000);
 
-			socket.on('disconnect',function() {
+			socket.on('disconnect',function() 
+			{
 				clearInterval(getBikesInterval);
 			});
 		});

@@ -1,7 +1,7 @@
 var Login = require('./login/login.js');
 var View = require('./view/view.js');
 var Contact = require('./contact/contact.js');
-var Update = require('./update/update.js');
+var Update = require('./update.js');
 var Bike = require('./bike/bike.js');
 var Imgur = require('./imgur/imgur.js');
 

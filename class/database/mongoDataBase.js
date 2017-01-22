@@ -6,14 +6,11 @@ class Mongo
 	{
 		var temp = this;
 		temp.MongoDatabase = null;
-		MongoClient.connect(url, function (err, db) 
-		{
-			if (err) 
-			{
+		MongoClient.connect(url, function (err, db) {
+			if (err) {
 				console.log('Unable to connect to the mongoDB server. Error:', err);
 			} 
-			else 
-			{
+			else {
 				console.log('Connection established to', url);
 				temp.MongoDatabase = db;
 			}
@@ -45,25 +42,23 @@ class Mongo
 	{
 		this.MongoDatabase.collection('account').insertOne(
 	    {
-	        id 		:id,
+	        id:id,
 	        password:password,
-	        NFC		:"none",
-	        status 	:"node",
-	        email 	:email,
-	        log 	:[],
-	        uid 	:uid,
-	        time 	: new Date()
+	        NFC:"none",
+	        status:"node",
+	        email:email,
+	        log:[],
+	        uid:uid,
+	        time: new Date()
 	    }
 	    ,callback);
 	}
 
-	//get all bikes
 	getBikes(callback) 
 	{
 		this.MongoDatabase.collection('bike').find({}).toArray(callback);
 	}
 
-	//only get a bike
 	getOneBike(json, callback) 
 	{
 		this.MongoDatabase.collection('bike').find(json).toArray(callback);
@@ -141,4 +136,5 @@ class Mongo
 		this.MongoDatabase.collection('iot').find({}).toArray(callback);
 	}
 }
+
 module.exports = Mongo;

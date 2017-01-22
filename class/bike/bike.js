@@ -26,11 +26,6 @@ class Bike
 				res.send(response);
 			});
 		});
-		app.post('/loraDick',function(req,res) {
-			var data = func.antiXSS(req.body);
-			console.log(data.data);
-			res.send("OK");
-		});
 	}
 
 	getBikes(callback) {
@@ -58,6 +53,7 @@ class Bike
 			}
 		});
 	}
+
 	setBike(id, state, battery, kid, callback) {
 		this.mongoDataBase.setBike(id, state, battery, kid, function(err, data) {
 			if(err){

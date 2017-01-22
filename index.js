@@ -4,7 +4,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var compression = require('compression');
-var requester = require('request');
 
 var app = express();
 var httpServer = http.createServer(app);
@@ -16,33 +15,24 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(compression());
 app.use(session({
-  secret: '12345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678',
+  secret: process.env.SESSION_SECRET,
   cookie: { maxAge: 60 * 1000 }
 }));
 
-var RurubikeAPI = require('./class/ruruBikeAPI.js');
-var MongoDataBase = require('./class/mongoDataBase.js');
+var RurubikeAPI = require('./class/api/rubikeAPI.js');
+var MongoDB = require('./class/database/mongoDataBase.js');
 var SocketIO = require('./class/socket.js');
-var mongoDataBase = new MongoDataBase('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase');
+var mongoDataBase = new MongoDB(process.env.MONGODB_ADDRESS);
 var rurubike = new RurubikeAPI(app,mongoDataBase);
 var socket = new SocketIO(httpServer,mongoDataBase);
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+//nthu rurubike main page
 app.get('/', function(request, response) {
   response.render('pages/react/index');
 });
-
-app.get('/badge', function(request, response) {
-  response.sendFile(__dirname + '/views/pages/main.html');
-});
-
-app.get('/face', function(request, response) {
-  response.sendFile(__dirname + '/views/pages/face.html');
-});
-
-
 
 //IOT
 app.get('/IOT', function(request, response) {
