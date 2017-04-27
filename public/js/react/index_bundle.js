@@ -742,13 +742,12 @@ this.findPath.bind(this);this.clearPath=this.clearPath.bind(this)}_createClass(D
 value:function clearPath(){this.display.setDirections({routes:[]})}}]);return Directions}();exports.default=Directions},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,
 descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor}}();var _index=__webpack_require__(1);function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}
 
-/*
 var Bike=function(){function Bike(map,bike,index){_classCallCheck(this,Bike);
-this.bike=bike;this.icon={url:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/magic-marker-icons-transport-travel/116392-magic-marker-icon-transport-travel-transportation-bicycle.png",scaledSize:new google.maps.Size(40,40)};this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:parseFloat(bike.location.latitude),lng:parseFloat(bike.location.longitude)},icon:this.icon,customInfo:this.index});
+this.bike=bike;this.icon={url:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/glossy-black-icons-signs/092080-glossy-black-icon-signs-z-parking-sc49.png",scaledSize:new google.maps.Size(40,40)};this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:parseFloat(bike.location.latitude),lng:parseFloat(bike.location.longitude)},icon:this.icon,customInfo:this.index});
 this.attachSecretMessage=this.attachSecretMessage.bind(this)}_createClass(Bike,[{key:"attachSecretMessage",
 value:function attachSecretMessage(){$.post("/viewOfBikeInfo",{action:"bikeInfo",json:this.bike},function(Content){var infowindow=new google.maps.InfoWindow({content:Content});this.marker.addListener("click",function(){if(Bike.currentInfowindow!=undefined)Bike.currentInfowindow.close();infowindow.open(this.marker.get("map"),this.marker);Bike.currentInfowindow=infowindow;Bike.panorama=_index.map.googleMap.getStreetView();Bike.panorama.setPosition({lat:this.marker.getPosition().lat(),lng:this.marker.getPosition().lng()});
 Bike.panorama.setPov({heading:265,pitch:0});$("#streetview").click(function(){Bike.panorama.setVisible(true)});
-*/
+
 $("#closebut").click(function(){Bike.currentInfowindow.close()})}.bind(this))}.bind(this))}}]);return Bike}();
 exports.default=Bike;Bike.panorama=null;Bike.currentInfowindow=null},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});
                                                                                                                   
