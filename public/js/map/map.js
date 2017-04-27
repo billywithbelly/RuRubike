@@ -92,7 +92,7 @@ export default class Map{
       navigator.geolocation.getCurrentPosition(function (position) {
         var initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         this.googleMap.setOptions({
-          zoom: 18
+          zoom: 0
         });
         this.googleMap.setCenter(initialLocation);
         this.person.setPosition(initialLocation);
