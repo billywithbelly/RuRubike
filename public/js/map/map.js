@@ -3,7 +3,7 @@ import Directions from './direction'
 import Bike from './bike'
 
 export default class Map{
-
+/*
   constructor(){
     this.target = -1;
     this.mapOptions = {
@@ -29,7 +29,7 @@ export default class Map{
     this.setOriginLocation = this.setOriginLocation.bind(this);
     this.setOriginLocation();
   }
-/*
+
   lockMove() {
     this.googleMap.setOptions({draggable: false});
   }
