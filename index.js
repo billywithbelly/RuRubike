@@ -30,11 +30,11 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 //nthu rurubike main page
-/*
+
 app.get('/', function(request, response) {
   response.render('pages/react/index');
 });
-*/
+
 
 //IOT
 app.get('/IOT', function(request, response) {
