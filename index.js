@@ -23,7 +23,7 @@ var RurubikeAPI = require('./class/api/rubikeAPI.js');
 var MongoDB = require('./class/database/mongoDataBase.js');
 var SocketIO = require('./class/socket/socket.js');
 var mongoDataBase = new MongoDB('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase');
-var rurubike = new RurubikeAPI(app,mongoDataBase);
+//var rurubike = new RurubikeAPI(app,mongoDataBase);
 var socket = new SocketIO(httpServer,mongoDataBase);
 
 app.set('views', __dirname + '/views');
@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
   response.render('pages/react/index');
 });
-
+/*
 //IOT
 app.get('/IOT', function(request, response) {
   response.render('pages/react/iot');
@@ -51,3 +51,4 @@ app.get('/getIOT',function(req,res) {
     res.send(response);
   });
 });
+*/
