@@ -37,7 +37,7 @@ export default class Map{
   unLockMove() {
     this.googleMap.setOptions({draggable: true});
   }
-  /*
+  
   setBikes(bikes) {
     if(this.rubikes.length==0){
       for(var i=0;i<bikes.length;i++){
@@ -99,5 +99,5 @@ export default class Map{
       }.bind(this));
     }
   }
-  */
+  
 }
