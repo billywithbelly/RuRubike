@@ -742,6 +742,8 @@ this.findPath.bind(this);this.clearPath=this.clearPath.bind(this)}_createClass(D
 value:function clearPath(){this.display.setDirections({routes:[]})}}]);return Directions}();exports.default=Directions},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,
 descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor}}();var _index=__webpack_require__(1);function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}
 
+
+/****/
 var Bike=function(){function Bike(map,bike,index){_classCallCheck(this,Bike);
 this.bike=bike;this.icon={url:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/glossy-black-icons-signs/092080-glossy-black-icon-signs-z-parking-sc49.png",scaledSize:new google.maps.Size(40,40)};this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:parseFloat(bike.location.latitude),lng:parseFloat(bike.location.longitude)},icon:this.icon,customInfo:this.index});
 this.attachSecretMessage=this.attachSecretMessage.bind(this)}_createClass(Bike,[{key:"attachSecretMessage",
@@ -750,6 +752,8 @@ Bike.panorama.setPov({heading:265,pitch:0});$("#streetview").click(function(){Bi
 
 $("#closebut").click(function(){Bike.currentInfowindow.close()})}.bind(this))}.bind(this))}}]);return Bike}();
 exports.default=Bike;Bike.panorama=null;Bike.currentInfowindow=null},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});
+/****/ 
+                                                                                                                  
                                                                                                                   
 var _socket=__webpack_require__(184);var _socket2=_interopRequireDefault(_socket);function _interopRequireDefault(obj){return obj&&
 obj.__esModule?obj:{default:obj}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}var Socket=function Socket(map){var _this=this;_classCallCheck(this,Socket);this.socket=_socket2.default.connect();this.map=map;this.socket.on("log",function(log){console.log(log)});this.socket.on("bikes",function(response){var bikes=response.result;_this.map.setBikes(bikes)})};exports.default=Socket},function(module,exports,
