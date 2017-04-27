@@ -15,14 +15,14 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(compression());
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: '12345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678123456781234567812345678',
   cookie: { maxAge: 60 * 1000 }
 }));
 
 var RurubikeAPI = require('./class/api/rubikeAPI.js');
 var MongoDB = require('./class/database/mongoDataBase.js');
 var SocketIO = require('./class/socket/socket.js');
-var mongoDataBase = new MongoDB(process.env.MONGODB_ADDRESS);
+var mongoDataBase = new MongoDB('mongodb://rurubike:87878787@ds021994.mlab.com:21994/luludatabase');
 var rurubike = new RurubikeAPI(app,mongoDataBase);
 var socket = new SocketIO(httpServer,mongoDataBase);
 
