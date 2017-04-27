@@ -29,7 +29,7 @@ export default class Map{
     this.setOriginLocation = this.setOriginLocation.bind(this);
     this.setOriginLocation();
   }
-
+/*
   lockMove() {
     this.googleMap.setOptions({draggable: false});
   }
@@ -99,5 +99,5 @@ export default class Map{
       }.bind(this));
     }
   }
-  
+  */
 }
