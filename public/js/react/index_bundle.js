@@ -727,84 +727,25 @@ void 0;warnedProperties[name]=true;return true}}return true}function warnInvalid
 element.type,ReactComponentTreeHook.getStackAddendumByID(debugID)):void 0;else if(invalidProps.length>1)process.env.NODE_ENV!=="production"?warning(false,"Invalid aria props %s on <%s> tag. "+"For details, see https://fb.me/invalid-aria-prop%s",unknownPropString,element.type,ReactComponentTreeHook.getStackAddendumByID(debugID)):void 0}function handleElement(debugID,element){if(element==null||typeof element.type!=="string")return;if(element.type.indexOf("-")>=0||element.props.is)return;warnInvalidARIAProps(debugID,
 element)}var ReactDOMInvalidARIAHook={onBeforeMountComponent:function(debugID,element){if(process.env.NODE_ENV!=="production")handleElement(debugID,element)},onBeforeUpdateComponent:function(debugID,element){if(process.env.NODE_ENV!=="production")handleElement(debugID,element)}};module.exports=ReactDOMInvalidARIAHook}).call(exports,__webpack_require__(4))},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,
 props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor}}();var _person=__webpack_require__(180);var _person2=_interopRequireDefault(_person);
-var _direction=__webpack_require__(181);var _direction2=_interopRequireDefault(_direction);
-
-
-
-
-
-var _bike=__webpack_require__(182);
-var _bike2=_interopRequireDefault(_bike);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}
-var Map=function(){function Map(){_classCallCheck(this,Map);
-this.target=-1;
-this.mapOptions={center:{lat:24.792081,lng:120.992631},zoom:18,disableDefaultUI:true};
-this.rubikes=[];
-this.googleMap=new google.maps.Map(document.getElementById("googleMapDiv"),this.mapOptions);
-this.person=new _person2.default(this);
-this.bikeDirections=new _direction2.default(this,"blue");
-this.placeDirections=new _direction2.default(this,"red");
-this.lockMove=this.lockMove.bind(this);this.unLockMove=this.unLockMove.bind(this);
-this.setOriginLocation=this.setOriginLocation.bind(this);this.setBikes=this.setBikes.bind(this);
-this.setNearestBikePath=this.setNearestBikePath.bind(this);this.clearPath=this.clearPath.bind(this);
-this.findPlacePath=this.findPlacePath.bind(this);
-this.clearPlacePath=this.clearPlacePath.bind(this);
-this.setOriginLocation=this.setOriginLocation.bind(this);
-this.setOriginLocation()}_createClass(Map,[{key:"lockMove",value:function lockMove(){this.googleMap.setOptions({draggable:false})}},{key:"unLockMove",value:function unLockMove(){this.googleMap.setOptions({draggable:true})}},{key:"setBikes",value:function setBikes(bikes){if(this.rubikes.length==
-0)for(var i=0;i<bikes.length;i++){var obj=new _bike2.default(this,bikes[i],i);
-obj.attachSecretMessage();
-this.rubikes.push(obj)}else for(var i=0;
-i<bikes.length&&i<this.rubikes.length;i++){var bike=bikes[i];
-var myLatlng=new google.maps.LatLng(parseFloat(bike.location.latitude),parseFloat(bike.location.longitude));
-this.rubikes[i].marker.setPosition(myLatlng)}}},{key:"setNearestBikePath",value:function setNearestBikePath(){this.target=-1;var minDis=2E5;for(var i=0;i<this.rubikes.length;i++)if(this.rubikes[i].bike.state==
-"1"){var dis=google.maps.geometry.spherical.computeDistanceBetween(this.person.getPosition(),this.rubikes[i].marker.getPosition());
-if(dis<minDis){this.target=i;minDis=google.maps.geometry.spherical.computeDistanceBetween(this.person.getPosition(),this.rubikes[i].marker.getPosition())}}this.bikeDirections.findPath(this.person.getPosition(),this.rubikes[this.target].marker.getPosition(),function(){this.rubikes[this.target].marker.setAnimation(google.maps.Animation.BOUNCE)}.bind(this))}},{key:"clearPath",
-value:function clearPath(){this.bikeDirections.clearPath();
-this.rubikes[this.target].marker.setAnimation(null);
-this.target=-1}},{key:"findPlacePath",value:function findPlacePath(lat,lng){this.placeDirections.findPath(this.person.getPosition(),{lat:lat,lng:lng},function(){})}},{key:"clearPlacePath",value:function clearPlacePath(){this.placeDirections.clearPath()}},{key:"setOriginLocation",value:function setOriginLocation(){if(navigator.geolocation)navigator.geolocation.getCurrentPosition(function(position){var initialLocation=
-new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-this.googleMap.setOptions({zoom:18});
-this.googleMap.setCenter(initialLocation);
-this.person.setPosition(initialLocation)}.bind(this))}}]);
-return Map}();
-exports.default=Map},function(module,exports){Object.defineProperty(exports,"__esModule",{value:true});
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;
-descriptor.configurable=true;
-if("value"in descriptor)descriptor.writable=true;
-Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);
-if(staticProps)defineProperties(Constructor,staticProps);
-return Constructor}}();
-function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}
-var Person=function(){function Person(map){_classCallCheck(this,Person);
-this.icon={url:"https://freeiconshop.com/files/edd/person-flat.png",scaledSize:new google.maps.Size(40,40)};
-this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:24.792081,lng:120.992631},icon:this.icon});
-this.setPosition=this.setPosition.bind(this);
-this.getPosition=this.getPosition.bind(this)}_createClass(Person,[{key:"setPosition",value:function setPosition(initialLocation){this.marker.setPosition(initialLocation)}},{key:"getPosition",value:function getPosition(){return this.marker.getPosition()}}]);
-return Person}();
-exports.default=Person},function(module,exports){Object.defineProperty(exports,"__esModule",{value:true});
-var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];
-descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;
-if("value"in descriptor)descriptor.writable=true;
-Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,
-protoProps);if(staticProps)defineProperties(Constructor,staticProps);
-return Constructor}}();
+var _direction=__webpack_require__(181);var _direction2=_interopRequireDefault(_direction);var _bike=__webpack_require__(182);var _bike2=_interopRequireDefault(_bike);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}var Map=function(){function Map(){_classCallCheck(this,Map);
+this.target=-1;this.mapOptions={center:{lat:24.792081,lng:120.992631},zoom:18,disableDefaultUI:true};this.rubikes=[];this.googleMap=new google.maps.Map(document.getElementById("googleMapDiv"),this.mapOptions);this.person=new _person2.default(this);this.bikeDirections=new _direction2.default(this,"blue");this.placeDirections=new _direction2.default(this,"red");this.lockMove=this.lockMove.bind(this);this.unLockMove=this.unLockMove.bind(this);this.setOriginLocation=this.setOriginLocation.bind(this);this.setBikes=this.setBikes.bind(this);this.setNearestBikePath=this.setNearestBikePath.bind(this);this.clearPath=this.clearPath.bind(this);this.findPlacePath=this.findPlacePath.bind(this);this.clearPlacePath=this.clearPlacePath.bind(this);this.setOriginLocation=this.setOriginLocation.bind(this);this.setOriginLocation()}_createClass(Map,[{key:"lockMove",value:function lockMove(){this.googleMap.setOptions({draggable:false})}},{key:"unLockMove",value:function unLockMove(){this.googleMap.setOptions({draggable:true})}},{key:"setBikes",value:function setBikes(bikes){if(this.rubikes.length==
+0)for(var i=0;i<bikes.length;i++){var obj=new _bike2.default(this,bikes[i],i);obj.attachSecretMessage();this.rubikes.push(obj)}else for(var i=0;i<bikes.length&&i<this.rubikes.length;i++){var bike=bikes[i];var myLatlng=new google.maps.LatLng(parseFloat(bike.location.latitude),parseFloat(bike.location.longitude));this.rubikes[i].marker.setPosition(myLatlng)}}},{key:"setNearestBikePath",value:function setNearestBikePath(){this.target=-1;var minDis=2E5;for(var i=0;i<this.rubikes.length;i++)if(this.rubikes[i].bike.state==
+"1"){var dis=google.maps.geometry.spherical.computeDistanceBetween(this.person.getPosition(),this.rubikes[i].marker.getPosition());if(dis<minDis){this.target=i;minDis=google.maps.geometry.spherical.computeDistanceBetween(this.person.getPosition(),this.rubikes[i].marker.getPosition())}}this.bikeDirections.findPath(this.person.getPosition(),this.rubikes[this.target].marker.getPosition(),function(){this.rubikes[this.target].marker.setAnimation(google.maps.Animation.BOUNCE)}.bind(this))}},{key:"clearPath",
+value:function clearPath(){this.bikeDirections.clearPath();this.rubikes[this.target].marker.setAnimation(null);this.target=-1}},{key:"findPlacePath",value:function findPlacePath(lat,lng){this.placeDirections.findPath(this.person.getPosition(),{lat:lat,lng:lng},function(){})}},{key:"clearPlacePath",value:function clearPlacePath(){this.placeDirections.clearPath()}},{key:"setOriginLocation",value:function setOriginLocation(){if(navigator.geolocation)navigator.geolocation.getCurrentPosition(function(position){var initialLocation=
+new google.maps.LatLng(position.coords.latitude,position.coords.longitude);this.googleMap.setOptions({zoom:18});this.googleMap.setCenter(initialLocation);this.person.setPosition(initialLocation)}.bind(this))}}]);return Map}();exports.default=Map},function(module,exports){Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;
+descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);
+if(staticProps)defineProperties(Constructor,staticProps);return Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}var Person=function(){function Person(map){_classCallCheck(this,Person);this.icon={url:"https://freeiconshop.com/files/edd/person-flat.png",scaledSize:new google.maps.Size(40,40)};this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:24.792081,lng:120.992631},icon:this.icon});this.setPosition=this.setPosition.bind(this);this.getPosition=this.getPosition.bind(this)}_createClass(Person,[{key:"setPosition",value:function setPosition(initialLocation){this.marker.setPosition(initialLocation)}},{key:"getPosition",value:function getPosition(){return this.marker.getPosition()}}]);return Person}();exports.default=Person},function(module,exports){Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor}}();
 function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}var Directions=function(){function Directions(map,color){_classCallCheck(this,Directions);this.service=new google.maps.DirectionsService;this.display=new google.maps.DirectionsRenderer({polylineOptions:{strokeColor:color}});this.display.setMap(map.googleMap);this.findPath=
 this.findPath.bind(this);this.clearPath=this.clearPath.bind(this)}_createClass(Directions,[{key:"findPath",value:function findPath(origin,destination,callback){this.service.route({origin:origin,destination:destination,waypoints:[],optimizeWaypoints:true,travelMode:google.maps.TravelMode.WALKING},function(response,status){if(status===google.maps.DirectionsStatus.OK){this.display.setDirections(response);callback()}else window.alert("Directions request failed due to "+status)}.bind(this))}},{key:"clearPath",
-value:function clearPath(){this.display.setDirections({routes:[]})}}]);return Directions}();
-exports.default=Directions},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});
+value:function clearPath(){this.display.setDirections({routes:[]})}}]);return Directions}();exports.default=Directions},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});
 var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,
 descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor}}();var _index=__webpack_require__(1);function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}
-var Bike=function(){function Bike(map,bike,index){_classCallCheck(this,Bike);
-this.bike=bike;this.icon={url:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/glossy-black-icons-signs/092080-glossy-black-icon-signs-z-parking-sc49.png",scaledSize:new google.maps.Size(40,40)};this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:parseFloat(bike.location.latitude),lng:parseFloat(bike.location.longitude)},icon:this.icon,customInfo:this.index});
+var Bike=function(){function Bike(map,bike,index){_classCallCheck(this,Bike);this.bike=bike;this.icon={url:"http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/glossy-black-icons-signs/092080-glossy-black-icon-signs-z-parking-sc49.png",scaledSize:new google.maps.Size(40,40)};this.marker=new google.maps.Marker({map:map.googleMap,position:{lat:parseFloat(bike.location.latitude),lng:parseFloat(bike.location.longitude)},icon:this.icon,customInfo:this.index});
 this.attachSecretMessage=this.attachSecretMessage.bind(this)}_createClass(Bike,[{key:"attachSecretMessage",
 value:function attachSecretMessage(){$.post("/viewOfBikeInfo",{action:"bikeInfo",json:this.bike},function(Content){var infowindow=new google.maps.InfoWindow({content:Content});this.marker.addListener("click",function(){if(Bike.currentInfowindow!=undefined)Bike.currentInfowindow.close();infowindow.open(this.marker.get("map"),this.marker);Bike.currentInfowindow=infowindow;Bike.panorama=_index.map.googleMap.getStreetView();Bike.panorama.setPosition({lat:this.marker.getPosition().lat(),lng:this.marker.getPosition().lng()});
 Bike.panorama.setPov({heading:265,pitch:0});$("#streetview").click(function(){Bike.panorama.setVisible(true)});
 $("#closebut").click(function(){Bike.currentInfowindow.close()})}.bind(this))}.bind(this))}}]);return Bike}();
-exports.default=Bike;Bike.panorama=null;Bike.currentInfowindow=null},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});
-
-                
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
+exports.default=Bike;Bike.panorama=null;Bike.currentInfowindow=null},function(module,exports,__webpack_require__){Object.defineProperty(exports,"__esModule",{value:true});                                                                             
 var _socket=__webpack_require__(184);var _socket2=_interopRequireDefault(_socket);function _interopRequireDefault(obj){return obj&&
 obj.__esModule?obj:{default:obj}}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function");}var Socket=function Socket(map){var _this=this;_classCallCheck(this,Socket);this.socket=_socket2.default.connect();this.map=map;this.socket.on("log",function(log){console.log(log)});this.socket.on("bikes",function(response){var bikes=response.result;_this.map.setBikes(bikes)})};exports.default=Socket},function(module,exports,
 __webpack_require__){var url=__webpack_require__(185);var parser=__webpack_require__(190);var Manager=__webpack_require__(201);var debug=__webpack_require__(187)("socket.io-client");module.exports=exports=lookup;var cache=exports.managers={};function lookup(uri,opts){if(typeof uri==="object"){opts=uri;uri=undefined}opts=opts||{};var parsed=url(uri);var source=parsed.source;var id=parsed.id;var path=parsed.path;var sameNamespace=cache[id]&&path in cache[id].nsps;var newConnection=opts.forceNew||opts["force new connection"]||
