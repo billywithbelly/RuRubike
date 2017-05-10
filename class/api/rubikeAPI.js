@@ -9,8 +9,8 @@ class ruruBikeApi
 	{
 		var that = this;
 		this.login = new Login(app,mongodb,this);
-		this.bike = new Bike(app,mongodb);
-		this.viewOfBikeInfo = new ViewOfBikeInfo(app,mongodb);
+		//this.bike = new Bike(app,mongodb);
+		//this.viewOfBikeInfo = new ViewOfBikeInfo(app,mongodb);
 		this.contact = new Contact(app,mongodb);
 		this.apiAccess = {};
 		this.apiAccess.login = function(id,password,callback) 
