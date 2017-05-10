@@ -21,7 +21,7 @@ export default class Map{
     this.lockMove = this.lockMove.bind(this);
     this.unLockMove = this.unLockMove.bind(this);
     this.setOriginLocation = this.setOriginLocation.bind(this);
-    this.setBikes = this.setBikes.bind(this);
+    this. setBikes = this.setBikes.bind(this);
     this.setNearestBikePath = this.setNearestBikePath.bind(this);
     this.clearPath = this.clearPath.bind(this);
     this.findPlacePath = this.findPlacePath.bind(this);
