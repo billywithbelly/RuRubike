@@ -26,12 +26,13 @@ export default class Bike{
           infowindow.open(this.marker.get('map'), this.marker);
           Bike.currentInfowindow = infowindow;
           Bike.panorama = map.googleMap.getStreetView();
-          Bike.panorama.setPosition({ lat: this.marker.getPosition().lat(), lng: this.marker.getPosition().lng()});
+          //Bike.panorama.setPosition({ lat: this.marker.getPosition().lat(), lng: this.marker.getPosition().lng()});
+          Bike.panorama.setPosition({ lat: 0.0, lng: 0.0});
           Bike.panorama.setPov(({
             heading: 265,
             pitch: 0
           }));
-          //$('#streetview').click(()=>{Bike.panorama.setVisible(true);});
+          $('#streetview').click(()=>{Bike.panorama.setVisible(true);});
           $('#closebut').click(()=>{Bike.currentInfowindow.close();});
         }.bind(this));
     }.bind(this));
